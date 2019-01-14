@@ -1,3 +1,23 @@
+/*
+---------------
+FARGER
+---------------
+*/
+/*
+---------------
+BREKKPUNKTER
+---------------
+*/
+/*
+--------------
+CONTAINER
+--------------
+*/
+/*
+---------------
+GRID
+---------------
+*/
 .App {
   text-align: center;
 }
@@ -16,7 +36,7 @@
   color: white;
 }
 .App-link {
-  color: #61dafb;
+  color: #ffd399;
 }
 @keyframes App-logo-spin {
   from {
