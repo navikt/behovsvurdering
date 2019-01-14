@@ -1,5 +1,4 @@
 {
   "watchFolder": "src",
-  "outputFolder": "src",
-  "mainFile": "index.less"
+  "outputFolder": "src"
 }
