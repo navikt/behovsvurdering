@@ -26,6 +26,7 @@
     "build:js": "react-scripts build",
     "start:css": "less-watch-compiler --config less.json",
     "build:css": "less-watch-compiler --run-once --config less.json",
+    "lint": "echo not implemented, part of the build script",
     "start": "npm-run-all -p start:*",
     "build": "npm run build:css && npm run build:js",
     "test": "react-scripts test --env=jsdom",
