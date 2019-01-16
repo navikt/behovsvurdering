@@ -1,14 +1,35 @@
+@nodeModulesPath: '../node_modules/';
+
+@import "~nav-frontend-core/less/_variabler";
+@import "~nav-frontend-typografi-style";
+
 body {
   margin: 0;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+
+.wrapper {
+  margin: 2rem 2rem;
+  display: grid;
+  grid-template-rows: 2fr 4fr;
+  grid-auto-rows: minmax(500px, auto);
+}
+
+.stillingInfo {
+  display: grid;
+  grid-template-rows: 1fr 1fr 4fr;
+  grid-row-gap: 0.3rem;
+  margin: 3rem 3rem;
+
+  &__innhold {
+    &__linje {
+      border-bottom: 1px solid @navLysGra;
+      border-top: 1px solid @navLysGra;
+      padding: 0.5rem;
+    }
+  }
 }
