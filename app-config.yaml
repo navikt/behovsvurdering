@@ -9,11 +9,11 @@ port: 8080
 
 healthcheck:
   liveness:
-    path: behovsvurdering/index.html
-    initialDelay: 20
-  readiness:
-    path: behovsvurdering/index.html
-    initialDelay: 20
+    path: behovsvurdering/internal/isAlive
+    initialDelay: 60
+    readiness:
+      path: behovsvurdering/internal/isReady
+      initialDelay: 60
 
 team: oppfolging
 
