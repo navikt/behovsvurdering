@@ -5,17 +5,33 @@ replicas:
   max: 4
   cpuThresholdPercentage: 50
 port: 80
+
 healthcheck:
   liveness:
-    path: isAlive
-    initialDelay: 10
+    path: behovsvurdering/
   readiness:
-    path: isReady
-    initialDelay: 10
+    path: behovsvurdering/index.html
+    initialDelay: 20
+
+team: oppfolging
+
+alertProfiles:
+  - common-java-modules
+
+prometheus:
+  enabled: true
+  path: behovsvurdering/internal/metrics
+
+resources:
+  limits:
+    cpu: 3
+    memory: 768Mi
+  requests:
+    memory: 512Mi
+
 fasitResources:
   used:
-    - alias: loadbalancer:behovsvurdering
-      resourceType: loadbalancerconfig
-team: oppfolging
-alertProfiles:
-  - minimal
+    - alias: appres.cms
+      resourceType: baseUrl
+    - alias: appdynamics
+      resourceType: applicationproperties
