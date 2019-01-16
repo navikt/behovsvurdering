@@ -11,9 +11,9 @@ healthcheck:
   liveness:
     path: behovsvurdering/internal/isAlive
     initialDelay: 60
-    readiness:
-      path: behovsvurdering/internal/isReady
-      initialDelay: 60
+  readiness:
+    path: behovsvurdering/internal/isReady
+    initialDelay: 60
 
 team: oppfolging
 
