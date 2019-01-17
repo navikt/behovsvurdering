@@ -1,11 +1,7 @@
 import * as React from 'react';
-import {SisteStillingType} from "./sisteStillingTyper";
-import {fetchData} from "../../utils/fetchData";
+import {hentSisteStilling, SisteStillingType} from "../../api/api";
 
-
-const API_VEILARBREGISTRERING = "/veilarbregistrering/api/registrering";
-
-export const dummyStilling: SisteStillingType = {
+export const initalStateStilling: SisteStillingType = {
     sisteStilling : {
         label: "",
         konseptId: 0,
@@ -13,27 +9,23 @@ export const dummyStilling: SisteStillingType = {
     },
 };
 
-const SisteStillingContext = React.createContext<SisteStillingType>(dummyStilling);
+const SisteStillingContext = React.createContext<SisteStillingType>(initalStateStilling);
+
+interface SisteStillingProviderProps {
+    children: null | React.ReactNode | React.ReactChild | React.ReactChildren
+}
 
 
-class SisteStillingProvider extends React.Component<{}, SisteStillingType> {
-
-    constructor(props={}) {
-        super(props);
-        this.state = dummyStilling;
-        this.hentSisteStilling = this.hentSisteStilling.bind(this);
-    }
-
-    hentSisteStilling() {
-        fetchData<SisteStillingType>(API_VEILARBREGISTRERING)
-            .then(registeringsData => {
-                this.setState({sisteStilling :registeringsData.sisteStilling});
-            });
-    }
+class SisteStillingProvider extends React.Component<SisteStillingProviderProps, SisteStillingType> {
+    state = initalStateStilling;
 
     componentDidMount() {
-        this.hentSisteStilling();
+        hentSisteStilling()
+            .then(registeringsData => {
+                this.setState({sisteStilling :registeringsData.sisteStilling});
+            })
     }
+
 
     render() {
 
@@ -56,7 +48,7 @@ export const sisteStillingConsumerHoc = (Component: any) => {
     return (props: any) => (
         <SisteStillingContext.Consumer>
             {context => {
-                return <Component {...props} {...context} />;
+                return <Component {...props} context ={context} />;
             }}
         </SisteStillingContext.Consumer>
     );
