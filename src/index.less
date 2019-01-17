@@ -13,23 +13,43 @@ body {
 
 
 .wrapper {
-  margin: 2rem 2rem;
+  margin: 0rem 2rem;
   display: grid;
-  grid-template-rows: 2fr 4fr;
-  grid-auto-rows: minmax(500px, auto);
+  grid-template-rows: 2fr 4fr 8fr;
+  grid-auto-rows: minmax(100px, auto);
 }
+
+.banner {
+  background-color: @navBlaLighten80;
+  border-bottom: 0.3rem solid @navBlaLighten40;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+
+  &__innhold {
+    margin-top: 2.5rem;
+  }
+
+}
+
 
 .stillingInfo {
   display: grid;
   grid-template-rows: 1fr 1fr 4fr;
   grid-row-gap: 0.3rem;
-  margin: 3rem 3rem;
+  margin-top: 1rem;
 
   &__innhold {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
     &__linje {
       border-bottom: 1px solid @navLysGra;
-      border-top: 1px solid @navLysGra;
       padding: 0.5rem;
+      min-width: 600px;
     }
+
   }
+
 }
