@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Ingress} from "nav-frontend-typografi";
 import {sisteStillingConsumerHoc} from "./context/sisteStilling/SisteStillingProvider";
-import {SisteStillingType} from "./context/sisteStilling/sisteStillingTyper";
+import {SisteStillingType} from './api/api';
 
 
-type StillingInfoProps = SisteStillingType
+type StillingInfoProps = {context : SisteStillingType};
 
 
 function StillingInfo(props: StillingInfoProps){
@@ -12,7 +12,7 @@ function StillingInfo(props: StillingInfoProps){
         <div className= "stillingInfo">
             <div className="stillingInfo__innhold">
                 <div className="stillingInfo__innhold__linje">
-                    <Ingress>Siste stilling : {props.sisteStilling.label}</Ingress>
+                    <Ingress>Siste stilling : {props.context.sisteStilling.label}</Ingress>
                 </div>
             </div>
         </div>

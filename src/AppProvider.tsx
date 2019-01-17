@@ -1,19 +1,19 @@
 import * as React from 'react';
-import SisteStillingProvider from "./sisteStilling/SisteStillingProvider";
-import OppfolgingProvider from "./oppfolging/OppfolgingProvider";
+import SisteStillingProvider from "./context/sisteStilling/SisteStillingProvider";
+import OppfolgingStatus from "./OppfolgingStatus";
 
 
 interface AppProviderProps {
-    children: React.ReactNode
+    children: null | React.ReactNode | React.ReactChild | React.ReactChildren
 }
 
 function AppProviders(props: AppProviderProps) {
     return (
-        <OppfolgingProvider>
+        <OppfolgingStatus>
             <SisteStillingProvider>
                 {props.children}
             </SisteStillingProvider>
-        </OppfolgingProvider>
+        </OppfolgingStatus>
     )
 }
 
