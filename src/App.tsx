@@ -1,11 +1,8 @@
 import * as React from 'react';
-import StillingInfo from "./StillingInfo";
+import StillingInfo from "./components/stillingsinfo/StillingInfo";
 import AppProviders from "./AppProvider";
-import Banner from "./Banner";
-import BehovsvurderingsContainer from "./BehovsvurderingContainer";
-
-
-
+import Banner from "./components/banner/Banner";
+import BehovsvurderingsContainer from "./containers/BehovsvurderingContainer";
 
 class App extends React.Component {
     render() {

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {hentOppfolgingStatus, OppfolgingStatusType} from './api/api';
+import {hentOppfolgingStatus, OppfolgingStatusType} from '../../api/api';
 
 export const inialStateOppfolging: OppfolgingStatusType = {
     underOppfolging: false

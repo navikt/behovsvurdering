@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Ingress} from "nav-frontend-typografi";
-import {sisteStillingConsumerHoc} from "./context/sisteStilling/SisteStillingProvider";
-import {SisteStillingType} from './api/api';
+import {sisteStillingConsumerHoc} from "../../context/sisteStilling/SisteStillingProvider";
+import {SisteStillingType} from '../../api/api';
 
 
 type StillingInfoProps = {context : SisteStillingType};
