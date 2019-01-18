@@ -1,7 +1,7 @@
 Behovsvurdering
 ================
 
-Kort beskrivelse av hva prosjektet dreier seg om.
+En frontendapp som gjør det mulig for brukere å sjekke sine muligheter for å komme i arbeid. Dette er en del av behovsvurderingen veileder skal gjøre.
 
 # Kjøre appen
 ```console
