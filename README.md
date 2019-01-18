@@ -8,7 +8,6 @@ Kort beskrivelse av hva prosjektet dreier seg om.
 $ npm install
 $ npm run start
 ```
----
 
 # Henvendelser
 
