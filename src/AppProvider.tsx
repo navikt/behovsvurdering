@@ -1,6 +1,6 @@
 import * as React from 'react';
 import SisteStillingProvider from "./context/sisteStilling/SisteStillingProvider";
-import OppfolgingStatus from "./OppfolgingStatus";
+import OppfolgingStatus from "./context/oppfolgningStatus/OppfolgingStatus";
 
 
 interface AppProviderProps {
