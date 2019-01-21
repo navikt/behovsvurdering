@@ -16,4 +16,5 @@ FROM docker.adeo.no:5000/pus/decorator
 ENV APPLICATION_NAME=behovsvurdering
 COPY --from=builder /source/build /app
 
+ADD proxy.json /proxy.json
 ENV OIDC_LOGIN_URL /veilarbstepup/oidc

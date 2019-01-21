@@ -33,22 +33,11 @@ resources:
 
 fasitResources:
   used:
-
-    - alias: veilarbregistreringSBS
-      resourceType: restservice
-      propertyMap:
-        url: PUBLIC_VEILARBREGISTRERING_URL
-
-    - alias: veilarboppfolgingproxyAPI
-      resourceType: restservice
-      propertyMap:
-        url: PUBLIC_VEILARBOPPFOLGING_URL
-
     - alias: appres.cms
       resourceType: baseUrl
     - alias: appdynamics
       resourceType: applicationproperties
-      
+
       # oidc med AzureAD B2C
     - alias: aad_b2c_clientid
       resourceType: credential
