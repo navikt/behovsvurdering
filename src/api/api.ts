@@ -1,15 +1,11 @@
 import {fetchData} from "../utils/fetchData";
+import SisteStillingType from "../datatyper/sisteStillingFraRegistrering";
+import BoligInformasjonType from "../datatyper/boligInformasjon";
 
 const API_VEILARBREGISTRERING = "/veilarbregistrering/api/registrering";
 const API_VEILARBOPPFOLGING = "/veilarboppfolging/api/oppfolging";
+const API_VEILARBPERSON = "veilarbperson/api/person/boliginformasjon";
 
-export interface SisteStillingType {
-    sisteStilling : {
-        label: string,
-        konseptId: number,
-        styrk08: string,
-    },
-}
 
 export interface OppfolgingStatusType {
     underOppfolging: boolean;
@@ -22,4 +18,8 @@ export function hentSisteStilling(): Promise<SisteStillingType> {
 
 export function hentOppfolgingStatus(): Promise<OppfolgingStatusType> {
     return fetchData<OppfolgingStatusType>(API_VEILARBOPPFOLGING);
+}
+
+export function hentBoligInformasjon(): Promise<BoligInformasjonType> {
+    return fetchData<BoligInformasjonType>(API_VEILARBOPPFOLGING);
 }

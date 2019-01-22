@@ -1,5 +1,6 @@
 import * as React from 'react';
-import {hentSisteStilling, SisteStillingType} from "../../api/api";
+import {hentSisteStilling} from "../../api/api";
+import SisteStillingType from "../../datatyper/sisteStillingFraRegistrering";
 
 export const initalStateStilling: SisteStillingType = {
     sisteStilling : {
