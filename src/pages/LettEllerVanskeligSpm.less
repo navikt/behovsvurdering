@@ -1,0 +1,20 @@
+
+.alternativGruppe span.inputPanel__label {
+  &:extend(.typo-element);
+}
+
+.alternativGruppe {
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+}
+
+.alternativGruppe .col {
+  margin-bottom: 0.5rem;
+
+  @media only screen and (min-width: @screen-tablet) {
+    &:not(:nth-child(2n)) {
+      clear: left;
+    }
+  }
+}
