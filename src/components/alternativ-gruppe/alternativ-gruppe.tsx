@@ -62,21 +62,19 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
     }
 
     lagNesteKnapp() {
-        if (this.props.nesteLink) {
-            return (
-                <Row className=''>
-                    <Column xs='12' className="centered">
-                        <Link onClick={(e) => this.duMaaSvareAdvarsel(e)} to={this.props.nesteLink}>
-                            <Hovedknapp>
-                                {this.props.nesteLinkText}
-                            </Hovedknapp>
-                        </Link>
-                    </Column>
-                </Row>
-            );
-        }
+        if (!this.props.nesteLink) return;
 
-        return null;
+        return (
+            <Row className=''>
+                <Column xs='12' className="centered">
+                    <Link onClick={(e) => this.duMaaSvareAdvarsel(e)} to={this.props.nesteLink}>
+                        <Hovedknapp>
+                            {this.props.nesteLinkText}
+                        </Hovedknapp>
+                    </Link>
+                </Column>
+            </Row>
+        );
     }
 
     render() {
