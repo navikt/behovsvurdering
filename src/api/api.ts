@@ -1,25 +1,29 @@
 import {fetchData} from "../utils/fetchData";
+import {GeografiskTilknytning} from "../datatyper/geografiskTilknytning";
+import {KommuneOgLedigeStillinger} from "../datatyper/kommuneOgLedigeStillinger";
 import SisteStillingType from "../datatyper/sisteStillingFraRegistrering";
-import BoligInformasjonType from "../datatyper/boligInformasjon";
-
-const API_VEILARBREGISTRERING = "/veilarbregistrering/api/registrering";
-const API_VEILARBOPPFOLGING = "/veilarboppfolging/api/oppfolging";
-const API_VEILARBPERSON = "veilarbperson/api/person/boliginformasjon";
+export const API_VEILARBREGISTRERING = "/veilarbregistrering/api/registrering";
+export const API_VEILARBOPPFOLGING = "/veilarboppfolging/api/oppfolging";
+export const API_VEILARBPERSON = "/veilarbperson/api/person/geografisktilknytning";
+export const API_MIA = "/mia/api/";
 
 
 export interface OppfolgingStatusType {
     underOppfolging: boolean;
 }
 
-
-export function hentSisteStilling(): Promise<SisteStillingType> {
-    return fetchData<SisteStillingType>(API_VEILARBREGISTRERING);
+export function hentSisteStilling():Promise<SisteStillingType> {
+    return fetchData(API_VEILARBREGISTRERING).then((registeringsData:any) => ({sisteStilling: registeringsData.sisteStilling}));
 }
 
-export function hentOppfolgingStatus(): Promise<OppfolgingStatusType> {
-    return fetchData<OppfolgingStatusType>(API_VEILARBOPPFOLGING);
+export function hentOppfolgingStatus():Promise<OppfolgingStatusType> {
+    return fetchData(API_VEILARBOPPFOLGING).then((oppfolgingStatus:any) => ({underOppfolging: oppfolgingStatus.underOppfolging}));
 }
 
-export function hentBoligInformasjon(): Promise<BoligInformasjonType> {
-    return fetchData<BoligInformasjonType>(API_VEILARBOPPFOLGING);
+export function hentKommuneOgStillinger([kommunnenummer,styrkkode]: string[]): Promise<KommuneOgLedigeStillinger>{
+    return fetchData<KommuneOgLedigeStillinger>(`${API_MIA}?kommunennummer=${kommunnenummer}&styrkkode=${styrkkode}`)
+}
+
+export function hentGeografiskTilknytning(): Promise<GeografiskTilknytning> {
+    return fetchData<GeografiskTilknytning>(API_VEILARBOPPFOLGING);
 }

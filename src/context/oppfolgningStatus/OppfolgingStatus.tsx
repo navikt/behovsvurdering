@@ -1,38 +1,24 @@
 import * as React from 'react';
-import {hentOppfolgingStatus, OppfolgingStatusType} from '../../api/api';
+import {API_VEILARBOPPFOLGING, hentOppfolgingStatus, OppfolgingStatusType} from '../../api/api';
+import DataFetcher from "../../utils/dataFetcher";
 
-export const inialStateOppfolging: OppfolgingStatusType = {
-    underOppfolging: false
-};
 
-type OppfolgingProviderState = OppfolgingStatusType;
-
-interface OppfolgingProviderProps {
-    children: null | React.ReactNode | React.ReactChild | React.ReactChildren
+interface OppfolgingStatusProps {
+    children : React.ReactNode;
 }
 
-
-class OppfolgingStatus extends React.Component<OppfolgingProviderProps, OppfolgingProviderState> {
-    state = inialStateOppfolging;
-
-    componentDidMount() {
-        hentOppfolgingStatus()
-            .then(oppfolgingData =>
-                this.setState({underOppfolging: oppfolgingData.underOppfolging})
-            );
-    }
-
-    render() {
-
-        if(!this.state.underOppfolging) {
-            return <div/>
-        }
-
-        return (
-            this.props.children
-        )
-    }
-
+function OppfolgingStatus(props: OppfolgingStatusProps) {
+    return (
+        <DataFetcher<OppfolgingStatusType> fetchFunc={()=> hentOppfolgingStatus()}>
+            {(data: OppfolgingStatusType) => {
+                if(!data.underOppfolging) {
+                    return <div/>;
+                }
+                return props.children;
+            }}
+        </DataFetcher>
+    )
 }
+
 
 export default OppfolgingStatus;

@@ -2,5 +2,9 @@
   {
     "contextPath": "/veilarboppfolging",
     "baseUrl": "http://veilarbproxy"
+  },
+  {
+    "contextPath": "/veilarbperson",
+    "baseUrl": "http://veilarbproxy"
   }
 ]
