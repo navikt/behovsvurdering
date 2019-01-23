@@ -5,18 +5,14 @@ import {
 } from "../../context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider";
 import {KommuneOgLedigeStillinger} from "../../datatyper/kommuneOgLedigeStillinger";
 
-interface BoligInformajsonProps {
-    kommuneOgLedigeStillingerContext: KommuneOgLedigeStillinger;
-}
-
-function BoligInformajson(props: BoligInformajsonProps) {
+function BoligInformajson(props: KommuneOgLedigeStillinger) {
     return (
         <div className="stillingContainer__innhold">
             <div className="stillingContainer__innhold__linje">
-                <Ingress>Kommune : {props.kommuneOgLedigeStillingerContext.kommunenavn} </Ingress>
+                <Ingress>Kommune : {props.kommunenavn} </Ingress>
             </div>
         </div>
     )
 }
 
-export default kommuneOgLedigeStillingerContextConsumerHoc(BoligInformajson);
+export default kommuneOgLedigeStillingerContextConsumerHoc<{}>(BoligInformajson);

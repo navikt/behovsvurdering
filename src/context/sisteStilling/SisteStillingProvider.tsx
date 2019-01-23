@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {API_VEILARBREGISTRERING, hentSisteStilling} from "../../api/api";
+import {hentSisteStilling} from "../../api/api";
 import SisteStillingType from "../../datatyper/sisteStillingFraRegistrering";
 import DataFetcher from "../../utils/dataFetcher";
 
@@ -31,11 +31,11 @@ function SisteStillingProvider(props: SisteStillingProviderProps) {
 
 
 //TODO FIKS TYPER
-export const sisteStillingConsumerHoc = (Component: any) => {
-    return (props: any) => (
+export function sisteStillingConsumerHoc<P>(Component: React.ComponentType<P & SisteStillingType>): React.ComponentType<P> {
+    return (props: P) => (
         <SisteStillingContext.Consumer>
-            {context => {
-                return <Component {...props} sisteStillingContext={context} />;
+            {(context: SisteStillingType) => {
+                return <Component {...props} {...context} />;
             }}
         </SisteStillingContext.Consumer>
     );

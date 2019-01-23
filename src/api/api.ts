@@ -13,11 +13,11 @@ export interface OppfolgingStatusType {
 }
 
 export function hentSisteStilling():Promise<SisteStillingType> {
-    return fetchData(API_VEILARBREGISTRERING).then((registeringsData:any) => ({sisteStilling: registeringsData.sisteStilling}));
+    return fetchData<SisteStillingType>(API_VEILARBREGISTRERING).then((registeringsData: SisteStillingType) => ({sisteStilling: registeringsData.sisteStilling}));
 }
 
 export function hentOppfolgingStatus():Promise<OppfolgingStatusType> {
-    return fetchData(API_VEILARBOPPFOLGING).then((oppfolgingStatus:any) => ({underOppfolging: oppfolgingStatus.underOppfolging}));
+    return fetchData<OppfolgingStatusType>(API_VEILARBOPPFOLGING).then((oppfolgingStatus: OppfolgingStatusType) => ({underOppfolging: oppfolgingStatus.underOppfolging}));
 }
 
 export function hentKommuneOgStillinger([kommunnenummer,styrkkode]: string[], errorHandler:(response?: Response) => Promise<KommuneOgLedigeStillinger>): Promise<KommuneOgLedigeStillinger>{
@@ -25,5 +25,5 @@ export function hentKommuneOgStillinger([kommunnenummer,styrkkode]: string[], er
 }
 
 export function hentGeografiskTilknytning(): Promise<GeografiskTilknytning> {
-    return fetchData<GeografiskTilknytning>(API_VEILARBOPPFOLGING);
+    return fetchData<GeografiskTilknytning>(API_VEILARBPERSON);
 }

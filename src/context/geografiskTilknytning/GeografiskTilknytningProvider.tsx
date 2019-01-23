@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {API_VEILARBPERSON, API_VEILARBREGISTRERING, hentGeografiskTilknytning} from "../../api/api";
+import {hentGeografiskTilknytning} from "../../api/api";
 import {GeografiskTilknytning} from "../../datatyper/geografiskTilknytning";
 import DataFetcher from "../../utils/dataFetcher";
 
@@ -28,11 +28,11 @@ function GeografiskTilknytningProvider (props: GeografiskTilknytningProps) {
 }
 
 //TODO FIKS TYPER
-export const geografiskTilknytningContextConsumerHoc = (Component: any) => {
-    return (props: any) => (
+export function geografiskTilknytningContextConsumerHoc<P>(Component: React.ComponentType<P & GeografiskTilknytning>): React.ComponentType<P> {
+    return (props: P) => (
         <GeografiskTilknytningContext.Consumer>
-            {context => {
-                return <Component {...props} geografiskTilknytningContext = {context} />;
+            {(geografiskTilknytning: GeografiskTilknytning) => {
+                return <Component {...props} {...geografiskTilknytning} />;
             }}
         </GeografiskTilknytningContext.Consumer>
     );

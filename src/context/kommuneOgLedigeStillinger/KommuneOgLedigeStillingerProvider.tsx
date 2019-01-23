@@ -17,16 +17,11 @@ export const initalStateKommuneOgLedigeStillinger: KommuneOgLedigeStillinger = {
 
 const KommuneOgLedigeStillingerContext = React.createContext<KommuneOgLedigeStillinger>(initalStateKommuneOgLedigeStillinger);
 
-interface KommuneOgLedigeStillingerProps {
-    sisteStillingContext : SisteStillingType;
-    geografiskTilknytningContext: GeografiskTilknytning;
-    children: React.ReactNode;
-}
+type  KommuneOgLedigeStillingerProps = SisteStillingType & GeografiskTilknytning & {children: React.ReactNode};
 
 //TODO BRUK RIKTIG ENDEPUNKT DENNE ER BARA TEST
-function KommuneOgLedigeStillingerProvider ({sisteStillingContext, geografiskTilknytningContext, children}: KommuneOgLedigeStillingerProps) {
-    const {geografiskTilknytning} = geografiskTilknytningContext;
-    const {styrk08} = sisteStillingContext.sisteStilling;
+function KommuneOgLedigeStillingerProvider (props: KommuneOgLedigeStillingerProps) {
+    const {styrk08} = props.sisteStilling;
 
     const fallBackObj: KommuneOgLedigeStillinger = {
         kommunenavn: "Skall komma fra Mia",
@@ -37,10 +32,10 @@ function KommuneOgLedigeStillingerProvider ({sisteStillingContext, geografiskTil
         new Promise<KommuneOgLedigeStillinger>((resolve) => (resolve(fallBackObj)));
 
     return (
-        <DataFetcher<KommuneOgLedigeStillinger> fetchFunc={() => hentKommuneOgStillinger([geografiskTilknytning, styrk08], kommuneOgLedigeStillingerErrorHandler)}>
+        <DataFetcher<KommuneOgLedigeStillinger> fetchFunc={() => hentKommuneOgStillinger([props.geografiskTilknytning, styrk08], kommuneOgLedigeStillingerErrorHandler)}>
             {(data: KommuneOgLedigeStillinger) =>
                 <KommuneOgLedigeStillingerContext.Provider value ={data}>
-                    {children}
+                    {props.children}
                 </KommuneOgLedigeStillingerContext.Provider>
             }
         </DataFetcher>
@@ -48,12 +43,11 @@ function KommuneOgLedigeStillingerProvider ({sisteStillingContext, geografiskTil
 
 }
 
-//TODO FIKS TYPER
-export const kommuneOgLedigeStillingerContextConsumerHoc = (Component: any) => {
-    return (props: any) => (
+export function kommuneOgLedigeStillingerContextConsumerHoc<P>(Component: React.ComponentType<P & KommuneOgLedigeStillinger>): React.ComponentType<P> {
+    return (props: P) => (
         <KommuneOgLedigeStillingerContext.Consumer>
-            {context => {
-                return <Component {...props} kommuneOgLedigeStillingerContext ={context} />;
+            {(kommuneOgLedigeStillinger: KommuneOgLedigeStillinger) => {
+                return <Component {...props} {...kommuneOgLedigeStillinger} />;
             }}
         </KommuneOgLedigeStillingerContext.Consumer>
     );
