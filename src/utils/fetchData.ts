@@ -1,4 +1,4 @@
-export function fetchData<T>(url: string, errorHandler?: (response: Response) => any): Promise<T> {
+export function fetchData<T>(url: string, errorHandler?: (response?: Response) => any): Promise<T> {
     return fetch(url)
         .then(response => {
             if (!response.ok) {

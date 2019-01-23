@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {API_VEILARBOPPFOLGING, hentOppfolgingStatus, OppfolgingStatusType} from '../../api/api';
+import {hentOppfolgingStatus, OppfolgingStatusType} from '../../api/api';
 import DataFetcher from "../../utils/dataFetcher";
 
 
@@ -9,7 +9,7 @@ interface OppfolgingStatusProps {
 
 function OppfolgingStatus(props: OppfolgingStatusProps) {
     return (
-        <DataFetcher<OppfolgingStatusType> fetchFunc={()=> hentOppfolgingStatus()}>
+        <DataFetcher<OppfolgingStatusType> fetchFunc={hentOppfolgingStatus}>
             {(data: OppfolgingStatusType) => {
                 if(!data.underOppfolging) {
                     return <div/>;

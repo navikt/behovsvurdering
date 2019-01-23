@@ -37,6 +37,7 @@ fasitResources:
       resourceType: baseUrl
     - alias: appdynamics
       resourceType: applicationproperties
+
       # oidc med AzureAD B2C
     - alias: aad_b2c_clientid
       resourceType: credential

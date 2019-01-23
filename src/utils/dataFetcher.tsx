@@ -4,7 +4,7 @@ import NavFrontendSpinner from "nav-frontend-spinner";
 
 
 interface DataFetcherProps<T> {
-    fetchFunc: (...args: string[]) => Promise<T>;
+    fetchFunc: (args?: string[], errorHandler?: (response?: Response) => any) => Promise<T>;
     children: (data: T) => React.ReactNode;
 }
 

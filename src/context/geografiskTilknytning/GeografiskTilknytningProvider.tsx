@@ -17,7 +17,7 @@ interface GeografiskTilknytningProps {
 
 function GeografiskTilknytningProvider (props: GeografiskTilknytningProps) {
     return (
-        <DataFetcher<GeografiskTilknytning> fetchFunc={()=> hentGeografiskTilknytning()}>
+        <DataFetcher<GeografiskTilknytning> fetchFunc={hentGeografiskTilknytning}>
             {(data: GeografiskTilknytning) =>
                 <GeografiskTilknytningContext.Provider value={data}>
                     {props.children}

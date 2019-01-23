@@ -20,8 +20,8 @@ export function hentOppfolgingStatus():Promise<OppfolgingStatusType> {
     return fetchData(API_VEILARBOPPFOLGING).then((oppfolgingStatus:any) => ({underOppfolging: oppfolgingStatus.underOppfolging}));
 }
 
-export function hentKommuneOgStillinger([kommunnenummer,styrkkode]: string[]): Promise<KommuneOgLedigeStillinger>{
-    return fetchData<KommuneOgLedigeStillinger>(`${API_MIA}?kommunennummer=${kommunnenummer}&styrkkode=${styrkkode}`)
+export function hentKommuneOgStillinger([kommunnenummer,styrkkode]: string[], errorHandler:(response?: Response) => Promise<KommuneOgLedigeStillinger>): Promise<KommuneOgLedigeStillinger>{
+    return fetchData<KommuneOgLedigeStillinger>(`${API_MIA}?kommunennummer=${kommunnenummer}&styrkkode=${styrkkode}`, errorHandler)
 }
 
 export function hentGeografiskTilknytning(): Promise<GeografiskTilknytning> {

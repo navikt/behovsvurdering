@@ -36,6 +36,6 @@ const mock = FetchMock.configure({
 mock.get('/veilarbregistrering/api/registrering', SisteArbeidsforhold );
 mock.get('/veilarboppfolging/api/oppfolging', OppfolgingStatus );
 mock.get('/veilarbperson/api/person/geografisktilknytning', BoligInformajson );
-mock.get('/mia/api/', DataFraMia );
+//mock.get('/mia/api/', DataFraMia );
 
 export default mock;

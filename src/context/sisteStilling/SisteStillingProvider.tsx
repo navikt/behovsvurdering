@@ -19,7 +19,7 @@ interface SisteStillingProviderProps {
 
 function SisteStillingProvider(props: SisteStillingProviderProps) {
     return (
-        <DataFetcher<SisteStillingType> fetchFunc={() => hentSisteStilling()}>
+        <DataFetcher<SisteStillingType> fetchFunc={hentSisteStilling}>
             {(data: SisteStillingType) =>
                 <SisteStillingContext.Provider value={data}>
                     {props.children}

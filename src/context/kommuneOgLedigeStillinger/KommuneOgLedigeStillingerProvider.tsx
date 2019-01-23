@@ -27,8 +27,17 @@ interface KommuneOgLedigeStillingerProps {
 function KommuneOgLedigeStillingerProvider ({sisteStillingContext, geografiskTilknytningContext, children}: KommuneOgLedigeStillingerProps) {
     const {geografiskTilknytning} = geografiskTilknytningContext;
     const {styrk08} = sisteStillingContext.sisteStilling;
+
+    const fallBackObj: KommuneOgLedigeStillinger = {
+        kommunenavn: "Skall komma fra Mia",
+        antalStillinger: 0,
+        antalStillingerIKategorin:0 };
+
+    const kommuneOgLedigeStillingerErrorHandler = () =>
+        new Promise<KommuneOgLedigeStillinger>((resolve) => (resolve(fallBackObj)));
+
     return (
-        <DataFetcher<KommuneOgLedigeStillinger> fetchFunc={() => hentKommuneOgStillinger([geografiskTilknytning, styrk08])}>
+        <DataFetcher<KommuneOgLedigeStillinger> fetchFunc={() => hentKommuneOgStillinger([geografiskTilknytning, styrk08], kommuneOgLedigeStillingerErrorHandler)}>
             {(data: KommuneOgLedigeStillinger) =>
                 <KommuneOgLedigeStillingerContext.Provider value ={data}>
                     {children}
