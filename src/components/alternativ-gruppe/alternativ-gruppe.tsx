@@ -1,21 +1,19 @@
 import * as React from "react";
 
-import * as PT from 'prop-types';
 import { RadioPanel } from 'nav-frontend-skjema'
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Innholdstittel } from 'nav-frontend-typografi';
 import { Row, Column, Container } from 'nav-frontend-grid'
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper'
-import { Link } from 'react-router-dom';
 
 interface AlternativGruppeProps {
-    label: PT.string,
-    options: PT.array,
-    gruppeId: PT.string
-    onChange: PT.function,
-    valgtAlternativ: PT.function,
-    nesteLink?: PT.string,
-    nesteLinkText?: PT.string
+    label: string,
+    options: any[],
+    gruppeId: string,
+    onChange: (string) => void,
+    valgtAlternativ: () => string,
+    nextPage?: () => void,
+    nextPageBtnText?: string
 }
 
 interface State {
@@ -47,9 +45,10 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
     duMaaSvareAdvarsel(e) {
         if (this.props.valgtAlternativ() === '') {
             e.preventDefault();
-            this.setState({ advarsel: true })
+            this.setState({ advarsel: true });
         } else {
-            this.setState({ advarsel: false })
+            this.setState({ advarsel: false });
+            if (this.props.nextPage) this.props.nextPage();
         }
     }
 
@@ -62,16 +61,14 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
     }
 
     lagNesteKnapp() {
-        if (!this.props.nesteLink) return;
+        if (!this.props.nextPage) return;
 
         return (
             <Row className=''>
                 <Column xs='12' className="centered">
-                    <Link onClick={(e) => this.duMaaSvareAdvarsel(e)} to={this.props.nesteLink}>
-                        <Hovedknapp>
-                            {this.props.nesteLinkText}
-                        </Hovedknapp>
-                    </Link>
+                    <Hovedknapp onClick={(e) => this.duMaaSvareAdvarsel(e)}>
+                        {this.props.nextPageBtnText}
+                    </Hovedknapp>
                 </Column>
             </Row>
         );

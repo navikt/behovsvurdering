@@ -1,9 +1,10 @@
 import * as React from "react";
 
-import AlternativGruppe from "../components/alternativ-gruppe/alternativ-gruppe";
+import AlternativGruppe from "../../components/alternativ-gruppe/alternativ-gruppe";
 
 interface LettEllerVanskeligSpmProps {
-    children: null | React.ReactNode | React.ReactChild | React.ReactChildren
+    children?: null | React.ReactNode | React.ReactChild | React.ReactChildren
+    nextPage?: () => void,
 }
 
 interface State {
@@ -35,8 +36,8 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps, 
                         {label: "Usikker", value: "usikker"}
                     ]
                 }
-                nesteLink="/start"
-                nesteLinkText="Del med NAV"
+                nextPage={this.props.nextPage}
+                nextPageBtnText="Del med NAV"
              />
         );
     }

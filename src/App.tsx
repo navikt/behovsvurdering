@@ -4,17 +4,15 @@ import AppProviders from "./AppProvider";
 import Banner from "./components/banner/Banner";
 import BehovsvurderingsContainer from "./containers/BehovsvurderingContainer";
 
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom';
-import { Redirect, Switch } from 'react-router';
-import LettEllerVanskeligSpm from './pages/LettEllerVanskeligSpm';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Row, Column, Container } from 'nav-frontend-grid'
+import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm";
 
-class Start extends React.Component {
+interface Props {
+    onClick?: () => void
+}
+
+class StartPage extends React.Component<Props> {
     render() {
         return (
             <div>
@@ -22,35 +20,46 @@ class Start extends React.Component {
                 <Container fluid={false}>
                     <Row className=''>
                         <Column xs='12' className="centered">
-                            <Link to="/lettvanskelig">
-                                <Hovedknapp>
-                                    Ditt Behov
-                                </Hovedknapp>
-                            </Link>
+                            <Hovedknapp onClick={this.props.onClick}>
+                                Ditt Behov
+                            </Hovedknapp>
                         </Column>
                     </Row>
                 </Container>
-
             </div>
         );
     }
 }
 
-class App extends React.Component {
+interface State {
+    page?: string
+}
+
+interface AppProps {
+
+}
+
+class App extends React.Component<AppProps, State> {
+
+    constructor(props: AppProps) {
+        super(props);
+        this.state = { page: '' };
+    }
+
+    renderPage() {
+        if (this.state.page === 'lett-vanskelig') {
+            return <LettEllerVanskeligSpm nextPage={ () => this.setState({page: '' }) } />;
+        }
+
+        return <StartPage onClick={ () => this.setState({page: 'lett-vanskelig' })}  />;
+    }
+
     render() {
         return (
             <AppProviders>
                 <BehovsvurderingsContainer>
                     <Banner/>
-                    <Router basename="/behovsvurdering">
-                        <>
-                            <Switch>
-                                <Route path="/start" component={Start}/>
-                                <Route path="/lettvanskelig" component={LettEllerVanskeligSpm}/>
-                                <Redirect exact={true} from="/" to="/start"/>
-                            </Switch>
-                        </>
-                    </Router>
+                    { this.renderPage() }
                 </BehovsvurderingsContainer>
             </AppProviders>
         );
