@@ -2,7 +2,7 @@ import FetchMock, {Middleware, MiddlewareUtils} from "yet-another-fetch-mock";
 import SisteArbeidsforhold from "./registrering";
 import OppfolgingStatus from "./oppfolging";
 import BoligInformajson from "./boliginformasjon";
-import DataFraMia from "./dataFraMia";
+//import DataFraMia from "./dataFraMia";
 
 const loggingMiddleware: Middleware = (request, response) => {
     // tslint:disable

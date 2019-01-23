@@ -22,7 +22,7 @@ class App extends React.Component<AppProps, State> {
         this.state = { page: '' };
     }
 
-    renderPage(ctx) {
+    renderPage() {
         if (this.state.page === 'lett-vanskelig') {
             return <LettEllerVanskeligSpm nextPage={ () => this.setState({page: '' }) } />;
         }
@@ -30,7 +30,7 @@ class App extends React.Component<AppProps, State> {
         // default page
         return (
             <div>
-                <StillingInfo context={ctx} />
+                <StillingInfo />
                 <MittBehovKnapp onClick={ () => this.setState({page: 'lett-vanskelig' })}  />
             </div>
         );
@@ -41,7 +41,7 @@ class App extends React.Component<AppProps, State> {
             <AppProviders>
                 <BehovsvurderingsContainer>
                     <Banner/>
-                    { this.renderPage(this.context) }
+                    { this.renderPage() }
                 </BehovsvurderingsContainer>
             </AppProviders>
         );
