@@ -26,7 +26,7 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps, 
         return (
             <AlternativGruppe
                 label="Hvor lett eller vanskelig tror du det er for deg å få jobb i dagens arbeidsmarked?"
-                gruppeId=""
+                gruppeId="lett-vanskelig"
                 onChange={this.onChange}
                 valgtAlternativ={() => this.state.svar}
                 options={

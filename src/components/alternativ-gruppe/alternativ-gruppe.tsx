@@ -6,9 +6,14 @@ import { Row, Column, Container } from 'nav-frontend-grid'
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper'
 import AlternativGruppeTittel from "./alternativ-gruppe-tittel";
 
+type AlternativOptionType = {
+    value: string,
+    label: string
+}
+
 interface AlternativGruppeProps {
     label: string,
-    options: any[],
+    options: AlternativOptionType[],
     gruppeId: string,
     onChange: (arg: string) => void,
     valgtAlternativ: () => string,
@@ -42,9 +47,9 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
         })
     }
 
-    duMaaSvareAdvarsel(e) {
+    duMaaSvareAdvarsel(event: React.MouseEvent) {
         if (this.props.valgtAlternativ() === '') {
-            e.preventDefault();
+            event.preventDefault();
             this.setState({ advarsel: true });
         } else {
             this.setState({ advarsel: false });
@@ -68,7 +73,7 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
         return (
             <Row className=''>
                 <Column xs='12' className="centered">
-                    <Hovedknapp onClick={(e) => this.duMaaSvareAdvarsel(e)}>
+                    <Hovedknapp id={"nextPageBtn-"+this.props.gruppeId} onClick={(e) => this.duMaaSvareAdvarsel(e)}>
                         {this.props.nextPageBtnText}
                     </Hovedknapp>
                 </Column>

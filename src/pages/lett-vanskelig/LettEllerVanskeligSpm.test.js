@@ -1,12 +1,9 @@
 
 import React from 'react';
-import {shallow} from 'enzyme';
+import { mount, shallow, render } from 'enzyme';
 
 import LettEllerVanskeligSpm from './LettEllerVanskeligSpm';
 
-test('has correct license nr', () => {
-
-    const spm = shallow( <LettEllerVanskeligSpm nextPage={ () => true } /> );
-    expect('AB12345').toBe("AB12345");
+it('renders without crashing', () => {
+    shallow(<LettEllerVanskeligSpm nextPage={ jest.fn() } />);
 });
-

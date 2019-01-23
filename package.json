@@ -64,6 +64,8 @@
     "@types/jest": "^23.3.12",
     "cross-env": "^5.2.0",
     "enzyme": "^3.8.0",
+    "enzyme-adapter-react-16": "^1.7.1",
+    "enzyme-to-json": "^3.3.5",
     "less": "^3.9.0",
     "less-plugin-npm-import": "^2.1.0",
     "less-watch-compiler": "^1.13.0",
