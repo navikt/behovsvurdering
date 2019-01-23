@@ -3,6 +3,16 @@
 @import "~nav-frontend-core/less/_variabler";
 @import "~nav-frontend-typografi-style";
 @import "~nav-frontend-spinner-style";
+@import '~nav-frontend-knapper-style/src/index';
+@import '~nav-frontend-skjema-style/src/index';
+@import '~nav-frontend-paneler-style/src/index';
+@import '~nav-frontend-grid-style/src/index';
+@import '~nav-frontend-alertstriper-style/src/index';
+
+@import 'mixins';
+@import 'pages/lett-vanskelig/LettEllerVanskeligSpm';
+@import 'components/stillingsinfo/StillingInfo';
+@import 'components/banner/Banner';
 
 body {
   margin: 0;
@@ -12,48 +22,15 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-.wrapper {
-  display: grid;
-  grid-template-rows: 2fr 4fr 8fr;
-  grid-auto-rows: minmax(100px, auto);
+.container, .container-fluid {
+  margin-top: 5.5rem;
+  margin-bottom: 2.5rem;
 }
 
-.banner {
-  background-color: @navBlaLighten80;
-  border-bottom: 0.3rem solid @navBlaLighten40;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-
-  &__innhold {
-    margin-top: 2.5rem;
-  }
-
+.container-row-padding .row {
+  .paddingBottom(1.5rem);
 }
 
-
-.stillingContainer {
-  display: grid;
-  grid-template-rows: 1fr 1fr 4fr;
-  grid-row-gap: 0.3rem;
-  margin-top: 1rem;
-
-  &__innhold {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-
-    &__linje {
-      border-bottom: 1px solid @navLysGra;
-      padding: 0.5rem;
-      min-width: 600px;
-    }
-
-  }
-
-  @media (max-width: @screen-sm-max) {
-    margin-left: 1rem;
-  }
-
+.centered {
+  .centerContent();
 }

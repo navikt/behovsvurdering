@@ -1,0 +1,22 @@
+.stillingContainer {
+  display: grid;
+  grid-template-rows: 1fr 1fr 4fr;
+  grid-row-gap: 0.3rem;
+  margin-top: 1rem;
+
+  &__innhold {
+    .centerContent();
+
+    &__linje {
+      border-bottom: 1px solid @navLysGra;
+      padding: 0.5rem;
+      min-width: 600px;
+    }
+
+  }
+
+  @media (max-width: @screen-sm-max) {
+    margin-left: 1rem;
+  }
+
+}
