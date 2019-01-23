@@ -4,32 +4,8 @@ import AppProviders from "./AppProvider";
 import Banner from "./components/banner/Banner";
 import BehovsvurderingsContainer from "./containers/BehovsvurderingContainer";
 
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { Row, Column, Container } from 'nav-frontend-grid'
 import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm";
-
-interface Props {
-    onClick?: () => void
-}
-
-class StartPage extends React.Component<Props> {
-    render() {
-        return (
-            <div>
-                <StillingInfo/>
-                <Container fluid={false}>
-                    <Row className=''>
-                        <Column xs='12' className="centered">
-                            <Hovedknapp onClick={this.props.onClick}>
-                                Ditt Behov
-                            </Hovedknapp>
-                        </Column>
-                    </Row>
-                </Container>
-            </div>
-        );
-    }
-}
+import MittBehovKnapp from './components/mitt-behov-knapp/MittBehovKnapp';
 
 interface State {
     page?: string
@@ -46,12 +22,18 @@ class App extends React.Component<AppProps, State> {
         this.state = { page: '' };
     }
 
-    renderPage() {
+    renderPage(ctx) {
         if (this.state.page === 'lett-vanskelig') {
             return <LettEllerVanskeligSpm nextPage={ () => this.setState({page: '' }) } />;
         }
 
-        return <StartPage onClick={ () => this.setState({page: 'lett-vanskelig' })}  />;
+        // default page
+        return (
+            <div>
+                <StillingInfo context={ctx} />
+                <MittBehovKnapp onClick={ () => this.setState({page: 'lett-vanskelig' })}  />
+            </div>
+        );
     }
 
     render() {
@@ -59,7 +41,7 @@ class App extends React.Component<AppProps, State> {
             <AppProviders>
                 <BehovsvurderingsContainer>
                     <Banner/>
-                    { this.renderPage() }
+                    { this.renderPage(this.context) }
                 </BehovsvurderingsContainer>
             </AppProviders>
         );

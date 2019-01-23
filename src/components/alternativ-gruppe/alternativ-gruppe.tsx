@@ -2,9 +2,9 @@ import * as React from "react";
 
 import { RadioPanel } from 'nav-frontend-skjema'
 import { Hovedknapp } from 'nav-frontend-knapper';
-import { Innholdstittel } from 'nav-frontend-typografi';
 import { Row, Column, Container } from 'nav-frontend-grid'
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper'
+import AlternativGruppeTittel from "./alternativ-gruppe-tittel";
 
 interface AlternativGruppeProps {
     label: string,
@@ -54,9 +54,11 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
 
     static lagAdvarsel() {
         return (
-            <AlertStripeAdvarsel>
-                Du må svare på spørsmålet før du kan gå videre.
-            </AlertStripeAdvarsel>
+            <Column md='6' xs='12'>
+                <AlertStripeAdvarsel>
+                    Du må svare på spørsmålet før du kan gå videre.
+                </AlertStripeAdvarsel>
+            </Column>
         );
     }
 
@@ -78,13 +80,7 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
         return (
             <Container fluid={false} className="container-row-padding">
 
-                <Row className='centered'>
-                    <Column xs='10' md='7'>
-                        <Innholdstittel tag="h1">
-                            { this.props.label }
-                        </Innholdstittel>
-                    </Column>
-                </Row>
+                <AlternativGruppeTittel label={this.props.label} />
 
                 <Row className="alternativGruppe">
                     {
@@ -92,7 +88,7 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
                     }
                 </Row>
 
-                <Row className=''>
+                <Row className='centered'>
                     {this.state.advarsel ? AlternativGruppe.lagAdvarsel() : <div />}
                 </Row>
 
