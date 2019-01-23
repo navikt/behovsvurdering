@@ -43,5 +43,4 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps, 
     }
 }
 
-
 export default LettEllerVanskeligSpm;
