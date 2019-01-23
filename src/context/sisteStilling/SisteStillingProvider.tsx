@@ -1,5 +1,7 @@
 import * as React from 'react';
-import {hentSisteStilling, SisteStillingType} from "../../api/api";
+import {hentSisteStilling} from "../../api/api";
+import SisteStillingType from "../../datatyper/sisteStillingFraRegistrering";
+import DataFetcher from "../../utils/dataFetcher";
 
 export const initalStateStilling: SisteStillingType = {
     sisteStilling : {
@@ -12,43 +14,28 @@ export const initalStateStilling: SisteStillingType = {
 const SisteStillingContext = React.createContext<SisteStillingType>(initalStateStilling);
 
 interface SisteStillingProviderProps {
-    children: null | React.ReactNode | React.ReactChild | React.ReactChildren
+    children : React.ReactNode;
 }
 
-
-class SisteStillingProvider extends React.Component<SisteStillingProviderProps, SisteStillingType> {
-    state = initalStateStilling;
-
-    componentDidMount() {
-        hentSisteStilling()
-            .then(registeringsData => {
-                this.setState({sisteStilling :registeringsData.sisteStilling});
-            })
-    }
-
-
-    render() {
-
-        const context: SisteStillingType = {
-            sisteStilling: this.state.sisteStilling
-        };
-
-        return (
-            <SisteStillingContext.Provider value={context}>
-                {this.props.children}
-            </SisteStillingContext.Provider>
-
-        )
-    }
-
+function SisteStillingProvider(props: SisteStillingProviderProps) {
+    return (
+        <DataFetcher<SisteStillingType> fetchFunc={hentSisteStilling}>
+            {(data: SisteStillingType) =>
+                <SisteStillingContext.Provider value={data}>
+                    {props.children}
+                </SisteStillingContext.Provider>
+            }
+        </DataFetcher>
+    )
 }
+
 
 //TODO FIKS TYPER
-export const sisteStillingConsumerHoc = (Component: any) => {
-    return (props: any) => (
+export function sisteStillingConsumerHoc<P>(Component: React.ComponentType<P & SisteStillingType>): React.ComponentType<P> {
+    return (props: P) => (
         <SisteStillingContext.Consumer>
-            {context => {
-                return <Component {...props} context ={context} />;
+            {(context: SisteStillingType) => {
+                return <Component {...props} {...context} />;
             }}
         </SisteStillingContext.Consumer>
     );

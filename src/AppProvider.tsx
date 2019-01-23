@@ -1,17 +1,24 @@
 import * as React from 'react';
-import SisteStillingProvider from "./context/sisteStilling/SisteStillingProvider";
 import OppfolgingStatus from "./context/oppfolgningStatus/OppfolgingStatus";
+import SisteStillingProvider from "./context/sisteStilling/SisteStillingProvider";
+import KommuneOgLedigeStillingerProvider from "./context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider";
+import GeografiskTilknytningProvider from "./context/geografiskTilknytning/GeografiskTilknytningProvider";
+
 
 
 interface AppProviderProps {
-    children: null | React.ReactNode | React.ReactChild | React.ReactChildren
+    children: React.ReactNode
 }
 
 function AppProviders(props: AppProviderProps) {
     return (
         <OppfolgingStatus>
             <SisteStillingProvider>
-                {props.children}
+                <GeografiskTilknytningProvider>
+                    <KommuneOgLedigeStillingerProvider>
+                        {props.children}
+                    </KommuneOgLedigeStillingerProvider>
+                </GeografiskTilknytningProvider>
             </SisteStillingProvider>
         </OppfolgingStatus>
     )

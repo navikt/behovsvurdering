@@ -1,22 +1,15 @@
 import * as React from 'react';
-import {Ingress} from "nav-frontend-typografi";
-import {sisteStillingConsumerHoc} from "../../context/sisteStilling/SisteStillingProvider";
-import {SisteStillingType} from '../../api/api';
+import SisteStilling from "./SisteStilling";
+import BoligInformasjon from "./BoligInformasjon";
 
 
-type StillingInfoProps = {context : SisteStillingType};
-
-
-function StillingInfo(props: StillingInfoProps){
+function StillingInfo(){
     return (
-        <div className= "stillingInfo">
-            <div className="stillingInfo__innhold">
-                <div className="stillingInfo__innhold__linje">
-                    <Ingress>Siste stilling : {props.context.sisteStilling.label}</Ingress>
-                </div>
-            </div>
+        <div className= "stillingContainer">
+            <SisteStilling/>
+            <BoligInformasjon/>
         </div>
     )
 }
 
-export default sisteStillingConsumerHoc(StillingInfo);
+export default StillingInfo;
