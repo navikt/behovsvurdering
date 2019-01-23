@@ -46,6 +46,7 @@
     "build:css": "less-watch-compiler --run-once --config less.json",
     "lint": "echo not implemented, part of the build script",
     "tslint:fix": "tslint -c tslint.json 'src/**/*.ts*' --fix",
+    "test:coverage": "npm test -- --coverage",
     "start": "cross-env REACT_APP_MOCK=true npm-run-all -p start:*",
     "build": "npm run build:css && npm run build:js",
     "test": "react-scripts test --env=jsdom",
