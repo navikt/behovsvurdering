@@ -10,7 +10,7 @@ interface AlternativGruppeProps {
     label: string,
     options: any[],
     gruppeId: string,
-    onChange: (string) => void,
+    onChange: (arg: string) => void,
     valgtAlternativ: () => string,
     nextPage?: () => void,
     nextPageBtnText?: string
