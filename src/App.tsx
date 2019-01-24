@@ -2,7 +2,6 @@ import * as React from 'react';
 import StillingInfo from "./components/stillingsinfo/StillingInfo";
 import AppProviders from "./AppProvider";
 import Banner from "./components/banner/Banner";
-import BehovsvurderingsContainer from "./containers/BehovsvurderingContainer";
 
 import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm";
 import MittBehovKnapp from './components/mitt-behov-knapp/MittBehovKnapp';
@@ -39,10 +38,8 @@ class App extends React.Component<AppProps, State> {
     render() {
         return (
             <AppProviders>
-                <BehovsvurderingsContainer>
-                    <Banner/>
-                    { this.renderPage() }
-                </BehovsvurderingsContainer>
+                <Banner/>
+                { this.renderPage() }
             </AppProviders>
         );
     }
