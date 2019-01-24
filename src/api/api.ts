@@ -13,7 +13,8 @@ export interface OppfolgingStatusType {
 }
 
 export function hentSisteStilling():Promise<SisteStillingType> {
-    return fetchData<SisteStillingType>(API_VEILARBREGISTRERING).then((registeringsData: SisteStillingType) => ({sisteStilling: registeringsData.sisteStilling}));
+    return fetchData<SisteStillingType>(API_VEILARBREGISTRERING)
+        .then((registeringsData: SisteStillingType) => ({sisteStilling: registeringsData.sisteStilling}));
 }
 
 export function hentOppfolgingStatus():Promise<OppfolgingStatusType> {
