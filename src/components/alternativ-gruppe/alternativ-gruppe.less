@@ -1,0 +1,28 @@
+/** Uncomment to make AlternativGruppe questions bold **/
+/**.alternativGruppe span.inputPanel__label {
+  &:extend(.typo-element);
+}**/
+
+.container, .container-fluid {
+  margin-top: 5.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.container-row-padding .row {
+  .paddingBottom(1.5rem);
+}
+
+.alternativGruppe {
+  margin: auto;
+  width: 70%;
+  padding: 10px;
+
+  @media (max-width: @screen-xs-max) {
+    width: 90%;
+  }
+
+  .col {
+    margin-bottom: 0.5rem;
+  }
+}
+
