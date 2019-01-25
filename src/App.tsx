@@ -75,7 +75,7 @@ class App extends React.Component<AppProps, State> {
         return (
             <div>
                 <StillingInfo />
-                <MittBehovKnapp onClick={ () => this.setState({page: 'lett-vanskelig' })}  />
+                <MittBehovKnapp onClick={ () => this.setState({page: LettEllerVanskeligSpm.Id })}  />
             </div>
         );
     }
