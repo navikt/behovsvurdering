@@ -3,32 +3,30 @@ import * as React from "react";
 import AlternativGruppe from "../../components/alternativ-gruppe/alternativ-gruppe";
 
 interface LettEllerVanskeligSpmProps {
-    children?: null | React.ReactNode | React.ReactChild | React.ReactChildren
     nextPage?: () => void,
+    endreAlternativ: (arg: string) => void,
+    valgtAlternativ: string
 }
 
-interface State {
-    svar: string;
-}
+class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> {
 
-class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps, State> {
+    static Id = "lett-vanskelig";
 
     constructor(props: LettEllerVanskeligSpmProps) {
         super(props);
-        this.state = { svar: '' };
     }
 
     onChange = (value: string) => {
-        this.setState({ svar: value });
+        this.props.endreAlternativ(value);
     };
 
     render() {
         return (
             <AlternativGruppe
                 label="Hvor lett eller vanskelig tror du det er for deg å få jobb i dagens arbeidsmarked?"
-                gruppeId="lett-vanskelig"
+                gruppeId={LettEllerVanskeligSpm.Id}
                 onChange={this.onChange}
-                valgtAlternativ={() => this.state.svar}
+                valgtAlternativ={() => this.props.valgtAlternativ}
                 options={
                     [
                         {label: "Lett", value: "lett"},

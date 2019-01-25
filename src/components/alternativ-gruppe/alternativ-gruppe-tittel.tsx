@@ -11,7 +11,7 @@ export default class AlternativGruppeTittel extends React.Component<Props> {
         return (
             <Row className='centered'>
                 <Column xs='10' md='7'>
-                    <Innholdstittel tag="h1">
+                    <Innholdstittel tag="h1" className="alternativGruppeTittel">
                         { this.props.label }
                     </Innholdstittel>
                 </Column>
