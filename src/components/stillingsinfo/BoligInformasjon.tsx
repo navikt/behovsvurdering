@@ -5,7 +5,7 @@ import {
 } from "../../context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider";
 import {KommuneOgLedigeStillinger} from "../../datatyper/kommuneOgLedigeStillinger";
 
-function BoligInformajson(props: KommuneOgLedigeStillinger) {
+function BoligInformasjon(props: KommuneOgLedigeStillinger) {
     return (
         <div className="stillingContainer__innhold">
             <div className="stillingContainer__innhold__linje">
@@ -15,4 +15,4 @@ function BoligInformajson(props: KommuneOgLedigeStillinger) {
     )
 }
 
-export default kommuneOgLedigeStillingerContextConsumerHoc<{}>(BoligInformajson);
+export default kommuneOgLedigeStillingerContextConsumerHoc<{}>(BoligInformasjon);
