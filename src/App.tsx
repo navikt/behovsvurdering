@@ -55,7 +55,7 @@ class App extends React.Component<AppProps, State> {
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
             .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
-            .ellers(App.StartSideId);
+            .ellers(App.StartSideId); // skal endres til siste side i FO-1853 og FO-1854
 
         if (this.state.page === LettEllerVanskeligSpm.Id) {
             return <LettEllerVanskeligSpm
