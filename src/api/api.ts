@@ -12,7 +12,7 @@ export interface OppfolgingStatusType {
     underOppfolging: boolean;
 }
 
-export function hentSisteStilling():Promise<SisteStillingType> {
+export function hentSisteStilling(errorHandler:(response?: Response) => Promise<SisteStillingType>):Promise<SisteStillingType> {
     return fetchData<SisteStillingType>(API_VEILARBREGISTRERING).then((registeringsData: SisteStillingType) => ({sisteStilling: registeringsData.sisteStilling}));
 }
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {hentSisteStilling} from "../../api/api";
 import SisteStillingType from "../../datatyper/sisteStillingFraRegistrering";
 import DataFetcher from "../../utils/dataFetcher";
+import {KommuneOgLedigeStillinger} from "../../datatyper/kommuneOgLedigeStillinger";
 
 export const initalStateStilling: SisteStillingType = {
     sisteStilling : {
@@ -18,8 +19,12 @@ interface SisteStillingProviderProps {
 }
 
 function SisteStillingProvider(props: SisteStillingProviderProps) {
+
+    const sisteStillingFallback = () =>
+        new Promise<SisteStillingType>((resolve) => (resolve(initalStateStilling)));
+
     return (
-        <DataFetcher<SisteStillingType> fetchFunc={hentSisteStilling}>
+        <DataFetcher<SisteStillingType> fetchFunc={()=> hentSisteStilling(sisteStillingFallback)} >
             {(data: SisteStillingType) =>
                 <SisteStillingContext.Provider value={data}>
                     {props.children}
