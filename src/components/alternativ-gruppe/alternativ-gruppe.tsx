@@ -32,6 +32,38 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
         this.state = {advarsel: false};
     }
 
+    duMaaSvareAdvarsel(event: React.MouseEvent) {
+        if (this.props.valgtAlternativ() === '') {
+            event.preventDefault();
+            this.setState({ advarsel: true });
+        } else {
+            this.setState({ advarsel: false });
+            if (this.props.nextPage) this.props.nextPage();
+        }
+    }
+
+    static lagAdvarsel() {
+        return (
+            <Column md='8' xs='12'>
+                <AlertStripeAdvarsel>
+                    Du må svare på spørsmålet før du kan gå videre.
+                </AlertStripeAdvarsel>
+            </Column>
+        );
+    }
+
+    lagNesteKnapp() {
+        if (!this.props.nextPage) return;
+
+        return(
+            <Column xs='12' className="centered">
+                <Hovedknapp id={"nextPageBtn-"+this.props.gruppeId} onClick={(e) => this.duMaaSvareAdvarsel(e)}>
+                    {this.props.nextPageBtnText}
+                </Hovedknapp>
+            </Column>
+        );
+    }
+
     lagSpmGruppe() {
         return this.props.options.map(key => {
             return <Column md='6' xs='12' key={'col-' + key.value}>
@@ -47,59 +79,23 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
         })
     }
 
-    duMaaSvareAdvarsel(event: React.MouseEvent) {
-        if (this.props.valgtAlternativ() === '') {
-            event.preventDefault();
-            this.setState({ advarsel: true });
-        } else {
-            this.setState({ advarsel: false });
-            if (this.props.nextPage) this.props.nextPage();
-        }
-    }
-
-    static lagAdvarsel() {
-        return (
-            <Column md='6' xs='12'>
-                <AlertStripeAdvarsel>
-                    Du må svare på spørsmålet før du kan gå videre.
-                </AlertStripeAdvarsel>
-            </Column>
-        );
-    }
-
-    lagNesteKnapp() {
-        if (!this.props.nextPage) return;
-
-        return (
-            <Row className=''>
-                <Column xs='12' className="centered">
-                    <Hovedknapp id={"nextPageBtn-"+this.props.gruppeId} onClick={(e) => this.duMaaSvareAdvarsel(e)}>
-                        {this.props.nextPageBtnText}
-                    </Hovedknapp>
-                </Column>
-            </Row>
-        );
-    }
-
     render() {
         return (
-            <Container fluid={false} className="container-row-padding">
+            <Container fluid={false} className={this.props.gruppeId + "-alternativGruppe-container container-row-padding"}>
 
                 <AlternativGruppeTittel label={this.props.label} />
 
                 <Row className="alternativGruppe">
-                    {
-                        this.lagSpmGruppe()
-                    }
+                    { this.lagSpmGruppe() }
                 </Row>
 
                 <Row className='centered'>
                     {this.state.advarsel ? AlternativGruppe.lagAdvarsel() : <div />}
                 </Row>
 
-                {
-                    this.lagNesteKnapp()
-                }
+                <Row className=''>
+                    { this.lagNesteKnapp() }
+                </Row>
 
             </Container>
         );
