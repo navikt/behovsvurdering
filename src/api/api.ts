@@ -1,7 +1,7 @@
-import {fetchData} from "../utils/fetchData";
-import {GeografiskTilknytning} from "../datatyper/geografiskTilknytning";
-import {KommuneOgLedigeStillinger} from "../datatyper/kommuneOgLedigeStillinger";
-import SisteStillingType from "../datatyper/sisteStillingFraRegistrering";
+import { fetchData } from "../utils/fetchData";
+import { GeografiskTilknytning } from "../datatyper/geografiskTilknytning";
+import { KommuneOgLedigeStillinger } from "../datatyper/kommuneOgLedigeStillinger";
+import SisteStillingType, { RegistreringDataType } from "../datatyper/sisteStillingFraRegistrering";
 export const API_VEILARBREGISTRERING = "/veilarbregistrering/api/registrering";
 export const API_VEILARBOPPFOLGING = "/veilarboppfolging/api/oppfolging";
 export const API_VEILARBPERSON = "/veilarbperson/api/person/geografisktilknytning";
@@ -12,8 +12,9 @@ export interface OppfolgingStatusType {
     underOppfolging: boolean;
 }
 
-export function hentSisteStilling(errorHandler:(response?: Response) => Promise<SisteStillingType>):Promise<SisteStillingType> {
-    return fetchData<SisteStillingType>(API_VEILARBREGISTRERING).then((registeringsData: SisteStillingType) => ({sisteStilling: registeringsData.sisteStilling}));
+export function hentSisteStilling(errorHandler:(response?: Response) => Promise<SisteStillingType>): Promise<SisteStillingType> {
+    return fetchData<RegistreringDataType>(API_VEILARBREGISTRERING)
+        .then((registeringsData: RegistreringDataType) => ({sisteStilling: registeringsData.registrering.sisteStilling}));
 }
 
 export function hentOppfolgingStatus():Promise<OppfolgingStatusType> {

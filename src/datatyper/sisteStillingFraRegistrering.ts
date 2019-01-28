@@ -6,4 +6,8 @@ interface SisteStillingType {
     },
 }
 
+export interface RegistreringDataType {
+    registrering: SisteStillingType
+
+}
 export default SisteStillingType;
