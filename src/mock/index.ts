@@ -2,7 +2,7 @@ import FetchMock, {Middleware, MiddlewareUtils} from "yet-another-fetch-mock";
 import SisteArbeidsforhold from "./registrering";
 import OppfolgingStatus from "./oppfolging";
 import BoligInformajson from "./boliginformasjon";
-//import DataFraMia from "./dataFraMia";
+import DataFraMia from "./dataFraMia";
 
 const loggingMiddleware: Middleware = (request, response) => {
     // tslint:disable
@@ -36,6 +36,6 @@ const mock = FetchMock.configure({
 mock.get('/veilarbregistrering/api/registrering', SisteArbeidsforhold );
 mock.get('/veilarboppfolging/api/oppfolging', OppfolgingStatus );
 mock.get('/veilarbperson/api/person/geografisktilknytning', BoligInformajson );
-//mock.get('/mia/api/', DataFraMia );
+mock.get('/mia/api/', DataFraMia );
 
 export default mock;

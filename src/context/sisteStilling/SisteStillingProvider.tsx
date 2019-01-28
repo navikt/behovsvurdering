@@ -18,8 +18,12 @@ interface SisteStillingProviderProps {
 }
 
 function SisteStillingProvider(props: SisteStillingProviderProps) {
+
+    const sisteStillingFallback = () =>
+        new Promise<SisteStillingType>((resolve) => (resolve(initalStateStilling)));
+
     return (
-        <DataFetcher<SisteStillingType> fetchFunc={hentSisteStilling}>
+        <DataFetcher<SisteStillingType> fetchFunc={()=> hentSisteStilling(sisteStillingFallback)} >
             {(data: SisteStillingType) =>
                 <SisteStillingContext.Provider value={data}>
                     {props.children}
