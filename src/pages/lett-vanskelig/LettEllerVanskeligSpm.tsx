@@ -35,7 +35,7 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> 
                     ]
                 }
                 nextPage={this.props.nextPage}
-                nextPageBtnText="Del med NAV"
+                nextPageBtnText="Neste"
              />
         );
     }

@@ -43,7 +43,7 @@ class KanDuFinneJobbSpm extends React.Component<KanDuFinneJobbSpmProps> {
                             ]
                         }
                         nextPage={this.props.nextPage}
-                        nextPageBtnText="Del med NAV"
+                        nextPageBtnText="Neste"
                     />
                 </Row>
             </Container>
