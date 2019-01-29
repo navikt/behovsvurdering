@@ -5,7 +5,7 @@ import SisteStillingType, { RegistreringDataType } from "../datatyper/sisteStill
 export const API_VEILARBREGISTRERING = "/veilarbregistrering/api/registrering";
 export const API_VEILARBOPPFOLGING = "/veilarboppfolging/api/oppfolging";
 export const API_VEILARBPERSON = "/veilarbperson/api/person/geografisktilknytning";
-export const API_VEILARBDIALOG = "/veilarbperson/api/dialog";
+export const API_VEILARBDIALOG = "/veilarbdialog/api/dialog";
 export const API_MIA = "/mia/api/";
 
 
