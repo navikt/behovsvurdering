@@ -5,6 +5,7 @@ import SisteStillingType, { RegistreringDataType } from "../datatyper/sisteStill
 export const API_VEILARBREGISTRERING = "/veilarbregistrering/api/registrering";
 export const API_VEILARBOPPFOLGING = "/veilarboppfolging/api/oppfolging";
 export const API_VEILARBPERSON = "/veilarbperson/api/person/geografisktilknytning";
+export const API_VEILARBDIALOG = "/veilarbperson/api/dialog";
 export const API_MIA = "/mia/api/";
 
 
@@ -27,4 +28,8 @@ export function hentKommuneOgStillinger([kommunnenummer,styrkkode]: string[], er
 
 export function hentGeografiskTilknytning(): Promise<GeografiskTilknytning> {
     return fetchData<GeografiskTilknytning>(API_VEILARBPERSON);
+}
+
+export function postDialog(data: any): Promise<void> {
+    return fetchData<void>(API_VEILARBDIALOG, {method: 'post', body: JSON.stringify(data)});
 }

@@ -1,5 +1,5 @@
-export function fetchData<T>(url: string, errorHandler?: (response?: Response) => any): Promise<T> {
-    return fetch(url)
+export function fetchData<T>(url: string, config = {}, errorHandler?: (response?: Response) => any): Promise<T> {
+    return fetch(url, config)
         .then(response => {
             if (!response.ok) {
                 if(errorHandler) {

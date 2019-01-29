@@ -7,6 +7,7 @@ import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm"
 import MittBehovKnapp from './components/mitt-behov-knapp/MittBehovKnapp';
 import KanDuFinneJobbSpm from "./pages/kan-du-finne-jobb/KanDuFinneJobb";
 import ConditionalNavigation from "./utils/conditional-navigation";
+import {postDialog} from "./api/api";
 
 interface State {
     page?: string,
@@ -52,6 +53,8 @@ class App extends React.Component<AppProps, State> {
     }
 
     renderPage() {
+        
+        console.log('initialState', initialState);
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
             .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
@@ -68,7 +71,15 @@ class App extends React.Component<AppProps, State> {
             return <KanDuFinneJobbSpm
                 valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
                 endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar) }
-                nextPage={ () => this.endreSide(App.StartSideId) } />;
+                nextPage={ () => {
+
+                    console.log('this.state.svar', this.state.svar);
+                    // post dialog
+                    postDialog({overskrift: 'overskrift', tekst: 'tekst'})
+                        .then(() => {
+                            this.endreSide(App.StartSideId)
+                        })
+                }} />;
         }
 
         // default page
