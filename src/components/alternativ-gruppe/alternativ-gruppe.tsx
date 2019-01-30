@@ -81,7 +81,7 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
 
     render() {
         return (
-            <Container fluid={false} className={this.props.gruppeId + "-alternativGruppe-container container-row-padding"}>
+            <Container fluid={false} className={this.props.gruppeId + "-alternativGruppe-container container-row-padding spm-container"}>
 
                 <AlternativGruppeTittel label={this.props.label} />
 
