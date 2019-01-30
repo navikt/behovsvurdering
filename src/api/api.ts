@@ -23,7 +23,7 @@ export function hentOppfolgingStatus():Promise<OppfolgingStatusType> {
 }
 
 export function hentKommuneOgStillinger([kommunnenummer,styrkkode]: string[], errorHandler:(response?: Response) => Promise<KommuneOgLedigeStillinger>): Promise<KommuneOgLedigeStillinger>{
-    return fetchData<KommuneOgLedigeStillinger>(`${API_MIA}?kommunennummer=${kommunnenummer}&styrkkode=${styrkkode}`, errorHandler)
+    return fetchData<KommuneOgLedigeStillinger>(`${API_MIA}?kommunennummer=${kommunnenummer}&styrkkode=${styrkkode}`, {}, errorHandler)
 }
 
 export function hentGeografiskTilknytning(): Promise<GeografiskTilknytning> {
