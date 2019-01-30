@@ -4,7 +4,7 @@ import { RadioPanel } from 'nav-frontend-skjema'
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { Row, Column, Container } from 'nav-frontend-grid'
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper'
-import AlternativGruppeTittel from "./alternativ-gruppe-tittel";
+import AlternativGruppeTittel from "./AlternativGruppeTittel";
 
 type AlternativOptionType = {
     value: string,

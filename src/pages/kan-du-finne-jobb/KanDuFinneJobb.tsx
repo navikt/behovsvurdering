@@ -1,7 +1,8 @@
 import * as React from "react";
 
-import AlternativGruppe from "../../components/alternativ-gruppe/alternativ-gruppe";
-import { Row, Column, Container } from 'nav-frontend-grid'
+import AlternativGruppe from "../../components/alternativ-gruppe/AlternativGruppe";
+import { Row, Container } from 'nav-frontend-grid'
+import InfoPanel from "../../components/infopanel/InfoPanel";
 
 interface KanDuFinneJobbSpmProps {
     nextPage?: () => void,
@@ -23,13 +24,12 @@ class KanDuFinneJobbSpm extends React.Component<KanDuFinneJobbSpmProps> {
 
     render() {
         return (
-            <Container>
+            <Container className="kan-du-finne-jobb-container">
                 <Row className="">
-                    <Column>
-
-                    </Column>
-                </Row>
-                <Row className="">
+                    <InfoPanel>
+                        Utfra informasjonen du har gitt oss og det vi vet om arbeidssøkere i omtrent samme
+                        situasjon, mener vi at du har gode muligheter til å finne ny jobb.
+                    </InfoPanel>
                     <AlternativGruppe
                         label="Kan du finne jobb selv?"
                         gruppeId={KanDuFinneJobbSpm.Id}

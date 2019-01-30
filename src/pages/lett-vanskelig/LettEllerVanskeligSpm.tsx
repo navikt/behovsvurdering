@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import AlternativGruppe from "../../components/alternativ-gruppe/alternativ-gruppe";
+import AlternativGruppe from "../../components/alternativ-gruppe/AlternativGruppe";
 
 interface LettEllerVanskeligSpmProps {
     nextPage?: () => void,
