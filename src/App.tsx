@@ -7,6 +7,8 @@ import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm"
 import MittBehovKnapp from './components/mitt-behov-knapp/MittBehovKnapp';
 import KanDuFinneJobbSpm from "./pages/kan-du-finne-jobb/KanDuFinneJobb";
 import ConditionalNavigation from "./utils/conditional-navigation";
+import ResultatLettAFaJobb from "./pages/resultat-lett-afa-jobb/ResultatLettAFaJobb";
+import ResultatVanskeligAFaJobb from "./pages/rsultat-vanskelig-afa-jobb/ResultatVanskeligAFaJobb";
 
 interface State {
     page?: string,
@@ -55,7 +57,7 @@ class App extends React.Component<AppProps, State> {
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
             .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
-            .ellers(App.StartSideId); // skal endres til siste side i FO-1853 og FO-1854
+            .ellers(ResultatVanskeligAFaJobb.Id); // skal endres til siste side i FO-1853 og FO-1854
 
         if (this.state.page === LettEllerVanskeligSpm.Id) {
             return <LettEllerVanskeligSpm
@@ -64,11 +66,24 @@ class App extends React.Component<AppProps, State> {
                 nextPage={ () => this.endreSide(hvisSvaretErLett.naviger()) } />;
         }
 
+        const hvisSvaretErJa = new ConditionalNavigation()
+            .navigerTil(ResultatLettAFaJobb.Id)
+            .hvis(this.state.svar[KanDuFinneJobbSpm.Id] === 'ja')
+            .ellers(ResultatVanskeligAFaJobb.Id);
+
         if (this.state.page === KanDuFinneJobbSpm.Id) {
             return <KanDuFinneJobbSpm
                 valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
                 endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar) }
-                nextPage={ () => this.endreSide(App.StartSideId) } />;
+                nextPage={ () => this.endreSide(hvisSvaretErJa.naviger()) } />;
+        }
+
+        if (this.state.page === ResultatLettAFaJobb.Id) {
+            return <ResultatLettAFaJobb />
+        }
+
+        if (this.state.page === ResultatVanskeligAFaJobb.Id) {
+            return <ResultatVanskeligAFaJobb />
         }
 
         // default page
