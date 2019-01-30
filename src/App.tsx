@@ -7,6 +7,7 @@ import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm"
 import MittBehovKnapp from './components/mitt-behov-knapp/MittBehovKnapp';
 import KanDuFinneJobbSpm from "./pages/kan-du-finne-jobb/KanDuFinneJobb";
 import ConditionalNavigation from "./utils/conditional-navigation";
+import {postDialog} from "./api/api";
 
 interface State {
     page?: string,
@@ -51,6 +52,12 @@ class App extends React.Component<AppProps, State> {
         });
     }
 
+    byggDialog(){
+        let dialog = {overskrift: 'mine tanker om mitt behov for veiledning', tekst: 'tekst'};//tslint disable-line
+        dialog.tekst = `Kan du finne jobb selv? ${this.state.svar[KanDuFinneJobbSpm.Id]}\n Lett eller vanskelig? ${this.state.svar[LettEllerVanskeligSpm.Id]}`;//tslint disable-line
+        console.log("dialog:", dialog);
+    }
+
     renderPage() {
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
@@ -68,7 +75,14 @@ class App extends React.Component<AppProps, State> {
             return <KanDuFinneJobbSpm
                 valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
                 endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar) }
-                nextPage={ () => this.endreSide(App.StartSideId) } />;
+                nextPage={ () => {
+                    this.byggDialog();
+                    console.log('this.state.svar', this.state.svar);
+                    postDialog({overskrift: 'mine tanker om mitt behov for veiledning', tekst: 'tekst'})
+                        .then(() => {
+                            this.endreSide(App.StartSideId)
+                        })
+                }} />;
         }
 
         // default page
