@@ -11,7 +11,7 @@ export const initalStateStilling: SisteStillingType = {
     },
 };
 
-const SisteStillingContext = React.createContext<SisteStillingType>(initalStateStilling);
+export const SisteStillingContext = React.createContext<SisteStillingType>(initalStateStilling);
 
 interface SisteStillingProviderProps {
     children : React.ReactNode;
