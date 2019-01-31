@@ -31,36 +31,39 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                 </div>
 
                 <div className="ikon-blokker">
-                    <div className="registrer-cv-blokk">
-                        <div className="blokk-img">
-                            <img src={cvSvg} alt=""/>
+                    <div className="justify-blokk">
+                        <div className="registrer-cv-blokk">
+                            <div className="blokk-img">
+                                <img src={cvSvg} alt=""/>
+                            </div>
+                            <div className="blokk-txt">
+                                <Element>
+                                    Registrer din CV her
+                                </Element>
+                                <Normaltekst>
+                                    Bli synlig for arbeidsgivere i CV-databasen.
+                                </Normaltekst>
+                                <Lenke href="" target="_blank">
+                                    <Element>Min CV <NavFrontendChevron stor={true} /> </Element>
+                                </Lenke>
+                            </div>
                         </div>
-                        <div className="blokk-txt">
-                            <Element>
-                                Registrer din CV her
-                            </Element>
-                            <Normaltekst>
-                                Bli synlig for arbeidsgivere i CV-databasen.
-                            </Normaltekst>
-                            <Lenke href="" target="_blank">
-                                <Element>Min CV <NavFrontendChevron stor={true} /> </Element>
-                            </Lenke>
-                        </div>
-                    </div>
-                    <div className="arbeidsplassen-blokk">
-                        <div className="blokk-img">
-                            <img src={arbeidsplassenSvg} alt=""/>
-                        </div>
-                        <div className="blokk-txt">
-                            <Element>
-                                Arbeidsplassen
-                            </Element>
-                            <Normaltekst>
-                                Se alle offentlige utlyste stillinger.
-                            </Normaltekst>
-                            <Lenke href="" target="_blank">
-                                <Element>Se jobbannonser <NavFrontendChevron stor={true} /> </Element>
-                            </Lenke>
+
+                        <div className="arbeidsplassen-blokk">
+                            <div className="blokk-img">
+                                <img src={arbeidsplassenSvg} alt=""/>
+                            </div>
+                            <div className="blokk-txt">
+                                <Element>
+                                    Arbeidsplassen
+                                </Element>
+                                <Normaltekst>
+                                    Se alle offentlige utlyste stillinger.
+                                </Normaltekst>
+                                <Lenke href="" target="_blank">
+                                    <Element>Se jobbannonser <NavFrontendChevron stor={true} /> </Element>
+                                </Lenke>
+                            </div>
                         </div>
                     </div>
                 </div>

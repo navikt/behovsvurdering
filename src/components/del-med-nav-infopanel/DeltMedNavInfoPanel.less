@@ -24,8 +24,18 @@
 
   .ikon-blokker {
 
-    @media (max-width: @screen-xs-max) {
-      flex-direction: column;
+    .justify-blokk {
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+      margin-bottom: 40px;
+      width: 600px;
+
+      @media (max-width: @screen-xs-max) {
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+
     }
 
     .registrer-cv-blokk,.arbeidsplassen-blokk {
@@ -56,7 +66,7 @@
 
 
   .veilederpanel-blokk {
-    background-color: @navGra20;
+    background-color: @navLysGra;
     flex: 1;
 
     .nav-veilederpanel-wrapper {
@@ -64,6 +74,7 @@
 
       @media (max-width: @screen-xs-max) {
         width: 90%;
+        margin-top: 20px;
       }
 
       .nav-veilederpanel {
@@ -92,7 +103,6 @@
 
 .delt-med-nav-infopanel > * {
   display: flex;
-  flex: 1 100%;
   justify-content: center;
   align-content: center;
 }
