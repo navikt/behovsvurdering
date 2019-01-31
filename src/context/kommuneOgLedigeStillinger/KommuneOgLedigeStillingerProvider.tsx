@@ -15,7 +15,7 @@ export const initalStateKommuneOgLedigeStillinger: KommuneOgLedigeStillinger = {
     antalStillingerIKategorin:0
 };
 
-const KommuneOgLedigeStillingerContext = React.createContext<KommuneOgLedigeStillinger>(initalStateKommuneOgLedigeStillinger);
+export const KommuneOgLedigeStillingerContext = React.createContext<KommuneOgLedigeStillinger>(initalStateKommuneOgLedigeStillinger);
 
 type  KommuneOgLedigeStillingerProps = SisteStillingType & GeografiskTilknytning & {children: React.ReactNode};
 

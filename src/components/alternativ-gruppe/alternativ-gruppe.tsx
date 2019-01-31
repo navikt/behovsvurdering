@@ -18,7 +18,8 @@ interface AlternativGruppeProps {
     onChange: (arg: string) => void,
     valgtAlternativ: () => string,
     nextPage?: () => void,
-    nextPageBtnText?: string
+    nextPageBtnText?: string,
+    onNextClick?: () => void
 }
 
 interface State {
@@ -39,6 +40,7 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
         } else {
             this.setState({ advarsel: false });
             if (this.props.nextPage) this.props.nextPage();
+            if (this.props.onNextClick) this.props.onNextClick();
         }
     }
 
