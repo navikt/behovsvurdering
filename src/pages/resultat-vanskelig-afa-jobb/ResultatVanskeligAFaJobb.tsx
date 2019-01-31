@@ -1,4 +1,5 @@
 import * as React from "react";
+import DeltMedNavInfoPanel from "../../components/del-med-nav-infopanel/DeltMedNavInfoPanel";
 
 interface ResultatVanskeligAFaJobbProps {
 
@@ -10,7 +11,9 @@ class ResultatVanskeligAFaJobb extends React.Component<ResultatVanskeligAFaJobbP
 
     render() {
         return (
-            <div>Vanskelig å få jobb.</div>
+            <DeltMedNavInfoPanel modus="ikke-lett">
+
+            </DeltMedNavInfoPanel>
         );
     }
 }
