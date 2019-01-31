@@ -5,16 +5,18 @@ import { Normaltekst } from 'nav-frontend-typografi';
 import Icon from 'nav-frontend-ikoner-assets';
 
 interface InfoPanelProps {
-    children: string
+    children: React.ReactNode | React.ReactChild | React.ReactChildren
+    type: string,
+    className?: string
 }
 
 function InfoPanel(props: InfoPanelProps) {
     return (
-        <div className="spm-info">
+        <div className={"spm-info " + props.className}>
                 <span className="spm-info__ikon" aria-label="info">
-                    <Icon kind="info-sirkel-fyll" size="1.5em"/>
+                    <Icon kind={props.type} size="1.5em"/>
                 </span>
-            <Normaltekst>
+            <Normaltekst >
                 { props.children }
             </Normaltekst>
         </div>

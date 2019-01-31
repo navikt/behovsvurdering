@@ -26,7 +26,7 @@ class KanDuFinneJobbSpm extends React.Component<KanDuFinneJobbSpmProps> {
         return (
             <Container className="kan-du-finne-jobb-container">
                 <Row className="">
-                    <InfoPanel>
+                    <InfoPanel type="info-sirkel-fyll">
                         Utfra informasjonen du har gitt oss og det vi vet om arbeidssøkere i omtrent samme
                         situasjon, mener vi at du har gode muligheter til å finne ny jobb.
                     </InfoPanel>

@@ -8,7 +8,7 @@ import MittBehovKnapp from './components/mitt-behov-knapp/MittBehovKnapp';
 import KanDuFinneJobbSpm from "./pages/kan-du-finne-jobb/KanDuFinneJobb";
 import ConditionalNavigation from "./utils/conditional-navigation";
 import ResultatLettAFaJobb from "./pages/resultat-lett-afa-jobb/ResultatLettAFaJobb";
-import ResultatVanskeligAFaJobb from "./pages/rsultat-vanskelig-afa-jobb/ResultatVanskeligAFaJobb";
+import ResultatVanskeligAFaJobb from "./pages/resultat-vanskelig-afa-jobb/ResultatVanskeligAFaJobb";
 
 interface State {
     page?: string,
