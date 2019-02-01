@@ -3,6 +3,7 @@ import SisteArbeidsforhold from "./registrering";
 import OppfolgingStatus from "./oppfolging";
 import BoligInformajson from "./boliginformasjon";
 import DataFraMia from "./dataFraMia";
+import {opprettDialog} from "./dialog";
 
 const loggingMiddleware: Middleware = (request, response) => {
     // tslint:disable
@@ -37,5 +38,6 @@ mock.get('/veilarbregistrering/api/registrering', SisteArbeidsforhold );
 mock.get('/veilarboppfolging/api/oppfolging', OppfolgingStatus );
 mock.get('/veilarbperson/api/person/geografisktilknytning', BoligInformajson );
 mock.get('/mia/api/', DataFraMia );
+mock.post('/veilarbdialog/api/dialog', ({ body }): any => opprettDialog(body));
 
 export default mock;

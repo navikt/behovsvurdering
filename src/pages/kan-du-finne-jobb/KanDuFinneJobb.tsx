@@ -6,7 +6,8 @@ import { Row, Column, Container } from 'nav-frontend-grid'
 interface KanDuFinneJobbSpmProps {
     nextPage?: () => void,
     endreAlternativ: (arg: string) => void,
-    valgtAlternativ: string
+    valgtAlternativ: string,
+    byggOgSendDialog: () => void
 }
 
 class KanDuFinneJobbSpm extends React.Component<KanDuFinneJobbSpmProps> {
@@ -44,6 +45,7 @@ class KanDuFinneJobbSpm extends React.Component<KanDuFinneJobbSpmProps> {
                         }
                         nextPage={this.props.nextPage}
                         nextPageBtnText="Neste"
+                        onNextClick={() => this.props.byggOgSendDialog()}
                     />
                 </Row>
             </Container>
