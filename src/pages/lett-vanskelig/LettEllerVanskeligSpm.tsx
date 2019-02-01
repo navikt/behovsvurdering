@@ -6,6 +6,7 @@ interface LettEllerVanskeligSpmProps {
     nextPage?: () => void,
     endreAlternativ: (arg: string) => void,
     valgtAlternativ: string
+    byggOgSendDialog: () => void
 }
 
 class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> {
@@ -19,6 +20,12 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> 
     onChange = (value: string) => {
         this.props.endreAlternativ(value);
     };
+
+    byggOgSendDialog() {
+        if(this.props.valgtAlternativ !== "lett"){
+            this.props.byggOgSendDialog()
+        }
+    }
 
     render() {
         return (
@@ -36,6 +43,7 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> 
                 }
                 nextPage={this.props.nextPage}
                 nextPageBtnText="Neste"
+                onNextClick={() => this.byggOgSendDialog()}
              />
         );
     }
