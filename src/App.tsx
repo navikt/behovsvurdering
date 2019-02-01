@@ -57,7 +57,7 @@ class App extends React.Component<AppProps, State> {
     }
 
     byggOgSendDialog(sisteStilling: string, kommune: string, antallStillinger: number) {
-        let dialog = {
+        const dialog = {
             overskrift: 'mine tanker om mitt behov for veiledning',
             tekst: `Siste stilling: ${sisteStilling}
                     Kommune: ${kommune}
@@ -72,7 +72,7 @@ class App extends React.Component<AppProps, State> {
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
             .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
-            .ellers(ResultatVanskeligAFaJobb.Id); // skal endres til siste side i FO-1853 og FO-1854
+            .ellers(ResultatVanskeligAFaJobb.Id);
 
         if (this.state.page === LettEllerVanskeligSpm.Id) {
             return <LettEllerVanskeligSpm
@@ -92,17 +92,17 @@ class App extends React.Component<AppProps, State> {
             return <KanDuFinneJobbSpm
                 valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
                 endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar) }
-                nextPage={ () => this.endreSide(hvisSvaretErJa.naviger()) } />;
+                nextPage={ () => this.endreSide(hvisSvaretErJa.naviger()) }
                 byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
             />;
         }
 
         if (this.state.page === ResultatLettAFaJobb.Id) {
-            return <ResultatLettAFaJobb />
+            return <ResultatLettAFaJobb />;
         }
 
         if (this.state.page === ResultatVanskeligAFaJobb.Id) {
-            return <ResultatVanskeligAFaJobb />
+            return <ResultatVanskeligAFaJobb />;
         }
 
         // default page

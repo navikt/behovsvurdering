@@ -5,7 +5,7 @@ import AlternativGruppe from "../../components/alternativ-gruppe/AlternativGrupp
 interface LettEllerVanskeligSpmProps {
     nextPage?: () => void,
     endreAlternativ: (arg: string) => void,
-    valgtAlternativ: string
+    valgtAlternativ: string,
     byggOgSendDialog: () => void
 }
 
