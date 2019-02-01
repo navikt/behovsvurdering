@@ -14,18 +14,20 @@ interface DeltMedNavInfoPanelProps {
 }
 
 const TEKST_MAP = {
+    REG_CV_LENKE: 'https://arbeidsplassen.nav.no/', // todo: maa skrives om til aa gjenkjenne milo
+
     ARB_BLOKK_ICON:arbeidsplassenSvg,
     ARB_BLOKK_TITTEL:"Arbeidsplassen",
     ARB_BLOKK_TEKST:"Se alle offentlige utlyste stillinger.",
     ARB_BLOKK_LENKE:"Se jobbannonser",
-    ARB_BLOKK_HREF:"",
+    ARB_BLOKK_HREF:"https://stillingsok.nav.no", // todo: maa skrives om til aa gjenkjenne milo
     LETT_VEILEDER_INFO:"Trenger du mer veiledning på et senere tidspunkt, kan du kontakte veilederen din i ",
 
     JOBB_BLOKK_ICON:jobbsokertipsSvg,
     JOBB_BLOKK_TITTEL:"Jobbsøkertips",
     JOBB_BLOKK_TEKST:"Du skal kanskje søke jobb og vet kanskje ikke helt hvor du skal begynne?",
     JOBB_BLOKK_LENKE:"Se tips",
-    JOBB_BLOKK_HREF:"",
+    JOBB_BLOKK_HREF:"https://tjenester.nav.no/veiviserarbeidssoker/?situasjon=mistet-jobben",
     VSK_VEILEDER_INFO:"Hva mer bør NAV vite? Snakk med din veileder gjennom den digitale "
 };
 
@@ -45,7 +47,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
             case 'link-text': return this.props.modus === 'lett' ? TEKST_MAP["ARB_BLOKK_LENKE"] : TEKST_MAP["JOBB_BLOKK_LENKE"];
             case 'link-href': return this.props.modus === 'lett' ? TEKST_MAP["ARB_BLOKK_HREF"] : TEKST_MAP["JOBB_BLOKK_HREF"];
             case 'info': return this.props.modus === 'lett' ? TEKST_MAP["LETT_VEILEDER_INFO"] : TEKST_MAP["VSK_VEILEDER_INFO"];
-            default: return "";
+            default: return TEKST_MAP[txt];
         }
     }
 
@@ -72,7 +74,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                                 <Normaltekst>
                                     Bli synlig for arbeidsgivere i CV-databasen.
                                 </Normaltekst>
-                                <Lenke href="" target="_blank">
+                                <Lenke href={this.getTekst(TEKST_MAP.REG_CV_LENKE)} target="_blank">
                                     <Element>Min CV <NavFrontendChevron stor={true} /> </Element>
                                 </Lenke>
                             </div>
@@ -89,7 +91,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                                 <Normaltekst>
                                     { this.getTekst('text') }
                                 </Normaltekst>
-                                <Lenke href="" target="_blank">
+                                <Lenke href={ this.getTekst('link-href') } target="_blank">
                                     <Element>{ this.getTekst('link-text') } <NavFrontendChevron stor={true} /> </Element>
                                 </Lenke>
                             </div>

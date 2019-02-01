@@ -4,7 +4,6 @@ import AppProviders from "./AppProvider";
 import Banner from "./components/banner/Banner";
 
 import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm";
-import MittBehovKnapp from './components/mitt-behov-knapp/MittBehovKnapp';
 import KanDuFinneJobbSpm from "./pages/kan-du-finne-jobb/KanDuFinneJobb";
 import ConditionalNavigation from "./utils/conditional-navigation";
 import ResultatLettAFaJobb from "./pages/resultat-lett-afa-jobb/ResultatLettAFaJobb";
@@ -106,12 +105,12 @@ class App extends React.Component<AppProps, State> {
         }
 
         // default page
-        return (
-            <div>
-                <StillingInfo />
-                <MittBehovKnapp onClick={ () => this.setState({page: LettEllerVanskeligSpm.Id })}  />
-            </div>
-        );
+        return <StillingInfo
+            stillingKategori={""}
+            sisteStilling={sisteStilling}
+            antallStillinger={3} // <- todo: MAA KODES I FO-1863
+            antallIKategorien={antallStillinger}
+            onClick={ () => this.setState({page: LettEllerVanskeligSpm.Id })} />;
     }
 
     render() {
