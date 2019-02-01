@@ -12,10 +12,14 @@ import ResultatVanskeligAFaJobb from "./pages/resultat-vanskelig-afa-jobb/Result
 import { postDialog } from "./api/api";
 import { SisteStillingContext } from "./context/sisteStilling/SisteStillingProvider";
 import { KommuneOgLedigeStillingerContext } from "./context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider";
+import NavFrontendSpinner from "nav-frontend-spinner";
 
 interface State {
     page?: string,
-    svar: object
+    svar: object,
+    venterPaaDialogRespons: boolean,
+    dialogId: string
+
 }
 
 const initialState = {
@@ -23,7 +27,9 @@ const initialState = {
     svar: {
         [LettEllerVanskeligSpm.Id] : "",
         [KanDuFinneJobbSpm.Id]: ""
-    }
+    },
+    venterPaaDialogRespons: false,
+    dialogId: ''
 };
 
 interface AppProps {
@@ -65,10 +71,25 @@ class App extends React.Component<AppProps, State> {
                     Lett å få jobb: ${this.state.svar[LettEllerVanskeligSpm.Id]}
                     Kan finne jobb selv: ${this.state.svar[KanDuFinneJobbSpm.Id]}`
         };
-        return postDialog(dialog);
+
+        this.setState({
+            venterPaaDialogRespons: true,
+        });
+        
+        return postDialog(dialog).then((response: any) => {
+            this.setState({
+                dialogId: response.dialogId,
+                venterPaaDialogRespons: false,
+            });
+        });
     }
 
     renderPage(sisteStilling: string, kommune: string, antallStillinger: number) {
+
+        if(this.state.venterPaaDialogRespons) {
+            return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>
+        }
+
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
             .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
@@ -98,11 +119,11 @@ class App extends React.Component<AppProps, State> {
         }
 
         if (this.state.page === ResultatLettAFaJobb.Id) {
-            return <ResultatLettAFaJobb />;
+            return <ResultatLettAFaJobb dialogId={this.state.dialogId} />;
         }
 
         if (this.state.page === ResultatVanskeligAFaJobb.Id) {
-            return <ResultatVanskeligAFaJobb />;
+            return <ResultatVanskeligAFaJobb dialogId={this.state.dialogId} />;
         }
 
         // default page
