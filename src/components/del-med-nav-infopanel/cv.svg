@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.1 (67048) - http://www.bohemiancoding.com/sketch -->
+    <title>CV</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="50" cy="50" r="50"></circle>
+    </defs>
+    <g id="Brukerhistorier" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="FO-1853" transform="translate(-15.000000, -221.000000)">
+            <g id="CV" transform="translate(15.000000, 221.000000)">
+                <mask id="mask-2" fill="white">
+                    <use xlink:href="#path-1"></use>
+                </mask>
+                <use id="Oval" fill="#CCDEE6" fill-rule="nonzero" xlink:href="#path-1"></use>
+                <g id="Group-3" mask="url(#mask-2)">
+                    <g transform="translate(28.000000, 23.000000)">
+                        <path d="M0,9.30755277 L0,44 L44,44 L44,2.82528034 C44,1.26434697 42.7195694,0 41.1408307,0 L9.94972568,0 L0,9.30755277 Z" id="Fill-6" stroke="none" fill="#FFFFFF" fill-rule="evenodd"></path>
+                        <path d="M7,27 L37,27" id="Stroke-12" stroke="#8E9294" stroke-width="2.403092" fill="none" stroke-linecap="round"></path>
+                        <path d="M28,15 L36.6006438,15" id="Stroke-12-Copy" stroke="#8E9294" stroke-width="2.403092" fill="none" stroke-linecap="round"></path>
+                        <path d="M28,19 L36.6006438,19" id="Stroke-12-Copy-2" stroke="#8E9294" stroke-width="2.403092" fill="none" stroke-linecap="round"></path>
+                        <rect id="Rectangle" stroke="none" fill="#FFFFFF" fill-rule="nonzero" x="0" y="40" width="44" height="14" rx="4"></rect>
+                        <path d="M7,34 L37,34" id="Stroke-14" stroke="#8E9294" stroke-width="2.579576" fill="none" stroke-linecap="round"></path>
+                        <path d="M7,40 L37,40" id="Stroke-16" stroke="#8E9294" stroke-width="2.579576" fill="none" stroke-linecap="round"></path>
+                        <path d="M7,46 L37,46" id="Stroke-16-Copy" stroke="#8E9294" stroke-width="2.579576" fill="none" stroke-linecap="round"></path>
+                        <path d="M9,0 L9,6.2680764 C9,7.7774313 7.84178967,9 6.41374539,9 L0,9 L9,0 Z" id="Fill-7" stroke="none" fill="#CCCAC8" fill-rule="evenodd"></path>
+                        <polygon id="Rectangle-6" stroke="none" fill="#D8D8D8" fill-rule="evenodd" points="6 13 14 13 14 22 6 22"></polygon>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

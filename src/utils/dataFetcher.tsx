@@ -26,7 +26,7 @@ class DataFetcher<T> extends Component<DataFetcherProps<T>, DataFetcherState<T>>
 
     render() {
         if(this.state.isLoading) {
-            return <NavFrontendSpinner type="XXL"/>;
+            return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>
         }
 
         if(this.state.data === null) {

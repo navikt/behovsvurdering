@@ -7,6 +7,8 @@ import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm"
 import MittBehovKnapp from './components/mitt-behov-knapp/MittBehovKnapp';
 import KanDuFinneJobbSpm from "./pages/kan-du-finne-jobb/KanDuFinneJobb";
 import ConditionalNavigation from "./utils/conditional-navigation";
+import ResultatLettAFaJobb from "./pages/resultat-lett-afa-jobb/ResultatLettAFaJobb";
+import ResultatVanskeligAFaJobb from "./pages/resultat-vanskelig-afa-jobb/ResultatVanskeligAFaJobb";
 import { postDialog } from "./api/api";
 import { SisteStillingContext } from "./context/sisteStilling/SisteStillingProvider";
 import { KommuneOgLedigeStillingerContext } from "./context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider";
@@ -55,7 +57,7 @@ class App extends React.Component<AppProps, State> {
     }
 
     byggOgSendDialog(sisteStilling: string, kommune: string, antallStillinger: number) {
-        let dialog = {
+        const dialog = {
             overskrift: 'mine tanker om mitt behov for veiledning',
             tekst: `Siste stilling: ${sisteStilling}
                     Kommune: ${kommune}
@@ -70,7 +72,7 @@ class App extends React.Component<AppProps, State> {
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
             .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
-            .ellers(App.StartSideId); // skal endres til siste side i FO-1853 og FO-1854
+            .ellers(ResultatVanskeligAFaJobb.Id);
 
         if (this.state.page === LettEllerVanskeligSpm.Id) {
             return <LettEllerVanskeligSpm
@@ -81,13 +83,26 @@ class App extends React.Component<AppProps, State> {
             />;
         }
 
+        const hvisSvaretErJa = new ConditionalNavigation()
+            .navigerTil(ResultatLettAFaJobb.Id)
+            .hvis(this.state.svar[KanDuFinneJobbSpm.Id] === 'ja')
+            .ellers(ResultatVanskeligAFaJobb.Id);
+
         if (this.state.page === KanDuFinneJobbSpm.Id) {
             return <KanDuFinneJobbSpm
                 valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
                 endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar) }
-                nextPage={ () => this.endreSide(App.StartSideId)}
+                nextPage={ () => this.endreSide(hvisSvaretErJa.naviger()) }
                 byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
             />;
+        }
+
+        if (this.state.page === ResultatLettAFaJobb.Id) {
+            return <ResultatLettAFaJobb />;
+        }
+
+        if (this.state.page === ResultatVanskeligAFaJobb.Id) {
+            return <ResultatVanskeligAFaJobb />;
         }
 
         // default page

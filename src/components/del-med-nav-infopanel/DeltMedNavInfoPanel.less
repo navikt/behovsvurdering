@@ -1,0 +1,109 @@
+.delt-med-nav-infopanel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .info-blokk {
+
+    .spm-info {
+      margin-top: 40px;
+      margin-bottom: 32px;
+      margin-left: 0;
+      margin-right: 0;
+      width: auto;
+
+      &__ikon {
+        border: none;
+        margin-right: 0;
+        padding-right: 0;
+        display: block;
+      }
+    }
+  }
+
+
+  .ikon-blokker {
+    background-color: #FFFFFF;
+
+    .justify-blokk {
+      display: flex;
+      justify-content: space-between;
+      align-content: space-between;
+      margin-bottom: 40px;
+      width: 600px;
+
+      @media (max-width: @screen-xs-max) {
+        flex-direction: column;
+        margin-bottom: 10px;
+      }
+
+    }
+
+    .registrer-cv-blokk,.arbeidsplassen-blokk {
+      display: flex;
+      flex-direction: column;
+      width: 180px;
+
+      @media (max-width: @screen-xs-max) {
+        flex-direction: row;
+        width: 95%;
+
+        .blokk-img {
+          margin-right: 30px;
+          margin-left: 10px;
+        }
+      }
+    }
+
+    .lenke {
+      font-weight: bold;
+      color: @navBla
+    }
+
+    .typo-element, .typo-normal {
+      margin-bottom: 16px;
+    }
+  }
+
+
+  .veilederpanel-blokk {
+    background-color: @navLysGra;
+    flex: 1;
+
+    .nav-veilederpanel-wrapper {
+      margin-top: 40px;
+
+      @media (max-width: @screen-xs-max) {
+        width: 90%;
+        margin-top: 20px;
+      }
+
+      .nav-veilederpanel {
+        border-radius: 9px;
+        border: 2px solid #99BDCD
+      }
+
+      .nav-veilederpanel--kompakt:not(.nav-veilederpanel--plakat) {
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+        padding-left: 3.5rem;
+        margin-left: 2.5rem;
+
+        @media (max-width: @screen-xs-max) {
+          padding-top: 1.5rem;
+        }
+      }
+
+      .nav-veileder__frame {
+        background: #99BDCD;
+      }
+    }
+  }
+
+}
+
+.delt-med-nav-infopanel > * {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
