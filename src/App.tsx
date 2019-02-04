@@ -12,6 +12,7 @@ import ResultatVanskeligAFaJobb from "./pages/resultat-vanskelig-afa-jobb/Result
 import { postDialog } from "./api/api";
 import { SisteStillingContext } from "./context/sisteStilling/SisteStillingProvider";
 import { KommuneOgLedigeStillingerContext } from "./context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider";
+import { getSpmText } from "./dialogTekst";
 import NavFrontendSpinner from "nav-frontend-spinner";
 
 interface State {
@@ -65,17 +66,16 @@ class App extends React.Component<AppProps, State> {
     byggOgSendDialog(sisteStilling: string, kommune: string, antallStillinger: number) {
         const dialog = {
             overskrift: 'mine tanker om mitt behov for veiledning',
-            tekst: `Siste stilling: ${sisteStilling}
-                    Kommune: ${kommune}
-                    Antall ledige stillinger i kategori: ${antallStillinger} 
-                    Lett å få jobb: ${this.state.svar[LettEllerVanskeligSpm.Id]}
-                    Kan finne jobb selv: ${this.state.svar[KanDuFinneJobbSpm.Id]}`
+            tekst: `Siste stilling: ${sisteStilling}\n`+
+                `Kommune: ${kommune}\n`+
+                `Antall ledige stillinger i kategori: ${antallStillinger}\n`+
+                `${getSpmText(this.state.svar[LettEllerVanskeligSpm.Id],  this.state.svar[KanDuFinneJobbSpm.Id])}`
         };
 
         this.setState({
             venterPaaDialogRespons: true,
         });
-        
+
         return postDialog(dialog).then((response: any) => {
             this.setState({
                 dialogId: response.dialogId,
