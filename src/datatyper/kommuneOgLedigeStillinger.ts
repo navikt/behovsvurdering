@@ -1,5 +1,12 @@
 export interface KommuneOgLedigeStillinger {
     kommunenavn: string;
-    antalStillinger: number;
-    antalStillingerIKategorin: number;
+    fylkesnavn: string;
+    hovedkategori: {
+        kategori: string;
+        antallStillinger: number
+    };
+    underkategori: {
+        kategori: string;
+        antallStillinger: number
+    };
 }

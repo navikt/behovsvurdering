@@ -13,6 +13,7 @@ import { SisteStillingContext } from './context/sisteStilling/SisteStillingProvi
 import { KommuneOgLedigeStillingerContext } from './context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider';
 import { getSpmText } from './dialogTekst';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import { KommuneOgLedigeStillinger } from './datatyper/kommuneOgLedigeStillinger';
 
 interface State {
     page?: string;
@@ -37,8 +38,6 @@ interface AppProps {
 
 class App extends React.Component<AppProps, State> {
 
-    static StartSideId: string = '';
-
     constructor(props: AppProps) {
         super(props);
         this.state = initialState;
@@ -61,15 +60,14 @@ class App extends React.Component<AppProps, State> {
         });
     }
 
-    byggOgSendDialog(sisteStilling: string, kommune: string, antallStillinger: number) {
+    byggOgSendDialog(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
         const dialog = {
             overskrift: 'mine tanker om mitt behov for veiledning',
             tekst: `Siste stilling: ${sisteStilling}\n` +
-                `Kommune: ${kommune}\n` +
-                `Antall ledige stillinger i kategori: ${antallStillinger}\n` +
+                `${mia.underkategori.antallStillinger} annonser for ${mia.underkategori.kategori} i ${mia.fylkesnavn} \n` +
+                `${mia.hovedkategori.antallStillinger} annonser i bransje ${mia.hovedkategori.kategori} i ${mia.fylkesnavn} \n` +
                 `${getSpmText(this.state.svar[LettEllerVanskeligSpm.Id],  this.state.svar[KanDuFinneJobbSpm.Id])}`
         };
-
         this.setState({
             venterPaaDialogRespons: true,
         });
@@ -82,7 +80,7 @@ class App extends React.Component<AppProps, State> {
         });
     }
 
-    renderPage(sisteStilling: string, kommune: string, antallStillinger: number) {
+    renderPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
 
         if (this.state.venterPaaDialogRespons) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
@@ -99,7 +97,7 @@ class App extends React.Component<AppProps, State> {
                     valgtAlternativ={this.state.svar[LettEllerVanskeligSpm.Id]}
                     endreAlternativ={(svar) => this.velgSvar(LettEllerVanskeligSpm.Id, svar)}
                     nextPage={() => this.endreSide(hvisSvaretErLett.naviger())}
-                    byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
+                    byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
                 />
             );
         }
@@ -115,7 +113,7 @@ class App extends React.Component<AppProps, State> {
                     valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
                     endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar)}
                     nextPage={() => this.endreSide(hvisSvaretErJa.naviger())}
-                    byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
+                    byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
                 />
             );
         }
@@ -133,8 +131,8 @@ class App extends React.Component<AppProps, State> {
             <StillingInfo
                 stillingKategori={''}
                 sisteStilling={sisteStilling}
-                antallStillinger={3} // <- todo: MAA KODES I FO-1863
-                antallIKategorien={antallStillinger}
+                antallStillinger={mia.underkategori.antallStillinger}
+                antallIKategorien={mia.hovedkategori.antallStillinger}
                 onClick={() => this.setState({page: LettEllerVanskeligSpm.Id })}
             />
         );
@@ -147,7 +145,7 @@ class App extends React.Component<AppProps, State> {
                 <KommuneOgLedigeStillingerContext.Consumer>
                     {mia =>
                         <SisteStillingContext.Consumer>
-                            {stilling => this.renderPage(stilling.sisteStilling.label, mia.kommunenavn, mia.antalStillingerIKategorin)}
+                            {stilling => this.renderPage(stilling.sisteStilling.label, mia)}
                         </SisteStillingContext.Consumer>
                     }
                 </KommuneOgLedigeStillingerContext.Consumer>

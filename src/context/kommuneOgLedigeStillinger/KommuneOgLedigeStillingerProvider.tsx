@@ -7,13 +7,20 @@ import { KommuneOgLedigeStillinger } from '../../datatyper/kommuneOgLedigeStilli
 import DataFetcher from '../../utils/dataFetcher';
 import { hentKommuneOgStillinger } from '../../api/api';
 
-//TODO FIKS typen KommuneOgLedigeStillinger
-
-export const initalStateKommuneOgLedigeStillinger: KommuneOgLedigeStillinger = {
+const initialStateMia: KommuneOgLedigeStillinger = {
     kommunenavn: '',
-    antalStillinger: 0,
-    antalStillingerIKategorin: 0
+    fylkesnavn: '',
+    hovedkategori: {
+        kategori: '',
+        antallStillinger: 0
+    },
+    underkategori: {
+        kategori: '',
+        antallStillinger: 0
+    }
 };
+
+export const initalStateKommuneOgLedigeStillinger: KommuneOgLedigeStillinger = initialStateMia;
 
 export const KommuneOgLedigeStillingerContext = React.createContext<KommuneOgLedigeStillinger>(initalStateKommuneOgLedigeStillinger);
 
@@ -23,10 +30,7 @@ type  KommuneOgLedigeStillingerProps = SisteStillingType & GeografiskTilknytning
 function KommuneOgLedigeStillingerProvider (props: KommuneOgLedigeStillingerProps) {
     const {styrk08} = props.sisteStilling;
 
-    const fallBackObj: KommuneOgLedigeStillinger = {
-        kommunenavn: 'Skall komma fra Mia',
-        antalStillinger: 0,
-        antalStillingerIKategorin: 0 };
+    const fallBackObj: KommuneOgLedigeStillinger = initialStateMia;
 
     const kommuneOgLedigeStillingerErrorHandler = () =>
         new Promise<KommuneOgLedigeStillinger>((resolve) => (resolve(fallBackObj)));
