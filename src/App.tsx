@@ -12,7 +12,7 @@ import { postDialog } from './api/api';
 import { SisteStillingContext } from './context/sisteStilling/SisteStillingProvider';
 import { KommuneOgLedigeStillingerContext } from './context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider';
 import { getSpmText } from './dialogTekst';
-import NavFrontendSpinner from "nav-frontend-spinner";
+import NavFrontendSpinner from 'nav-frontend-spinner';
 
 interface State {
     page?: string;
@@ -84,8 +84,8 @@ class App extends React.Component<AppProps, State> {
 
     renderPage(sisteStilling: string, kommune: string, antallStillinger: number) {
 
-        if(this.state.venterPaaDialogRespons) {
-            return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>
+        if (this.state.venterPaaDialogRespons) {
+            return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
         const hvisSvaretErLett = new ConditionalNavigation()

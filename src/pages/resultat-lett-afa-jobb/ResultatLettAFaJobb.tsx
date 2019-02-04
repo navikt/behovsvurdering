@@ -2,7 +2,7 @@ import * as React from 'react';
 import DeltMedNavInfoPanel from '../../components/del-med-nav-infopanel/DeltMedNavInfoPanel';
 
 interface ResultatLettAFaJobbProps {
-    dialogId: string
+    dialogId: string;
 }
 
 class ResultatLettAFaJobb extends React.Component<ResultatLettAFaJobbProps> {

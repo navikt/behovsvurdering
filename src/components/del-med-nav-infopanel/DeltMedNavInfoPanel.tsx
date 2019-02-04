@@ -34,7 +34,7 @@ const TEKST_MAP = {
 
 class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
 
-    static renderLenkeDeltMedNav(value: string) {
+    renderLenkeDeltMedNav(value: string) {
         return (
             <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>{value}</Lenke>
         );
@@ -58,7 +58,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
 
                 <div className="info-blokk">
                     <InfoPanel type="ok-sirkel-fyll" className="">
-                        Dine svar er {DeltMedNavInfoPanel.renderLenkeDeltMedNav('delt')} med din med veileder i NAV.
+                        Dine svar er {this.renderLenkeDeltMedNav('delt')} med din med veileder i NAV.
                     </InfoPanel>
                 </div>
 
@@ -103,7 +103,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                 <div className="veilederpanel-blokk">
                     <VeilederPanel>
                         <Normaltekst>
-                            {this.getTekst('info')} { <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>dialogen</Lenke> }.
+                            {this.getTekst('info')} {<Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>dialogen</Lenke>}.
                         </Normaltekst>
                     </VeilederPanel>
                 </div>
