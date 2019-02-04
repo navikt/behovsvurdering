@@ -1,7 +1,7 @@
 import * as React from "react";
 import InfoPanel from "../infopanel/InfoPanel";
 import Lenke from 'nav-frontend-lenker';
-import { Element, Normaltekst } from 'nav-frontend-typografi'
+import {Element, Normaltekst} from 'nav-frontend-typografi'
 import NavFrontendChevron from 'nav-frontend-chevron';
 import VeilederPanel from "../veilederpanel/VeilederPanel";
 
@@ -34,7 +34,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
 
     renderLenkeDeltMedNav(value: string) {
         return (
-            <Lenke href={`aktivitetsplan/dialog/${this.props.dialogId}`} target="_blank">{value}</Lenke>
+            <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>{value}</Lenke>
         );
     }
 
@@ -101,7 +101,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                 <div className="veilederpanel-blokk">
                     <VeilederPanel>
                         <Normaltekst>
-                            {this.getTekst('info')} { <Lenke href="" target="_blank">dialogen</Lenke> }.
+                            {this.getTekst('info')} { <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>dialogen</Lenke> }.
                         </Normaltekst>
                     </VeilederPanel>
                 </div>
