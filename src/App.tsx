@@ -129,8 +129,8 @@ class App extends React.Component<AppProps, State> {
         // default page
         return (
             <StillingInfo
-                stillingKategori={''}
-                sisteStilling={sisteStilling}
+                stillingKategori={mia.hovedkategori.kategori}
+                sisteStilling={mia.underkategori.kategori}
                 antallStillinger={mia.underkategori.antallStillinger}
                 antallIKategorien={mia.hovedkategori.antallStillinger}
                 onClick={() => this.setState({page: LettEllerVanskeligSpm.Id })}

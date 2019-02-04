@@ -34,7 +34,7 @@ function StillingInfo(props: StillingsInfoProps) {
                 </div>
                 <div id="antallForKategori">
                     <Sidetittel>{props.antallIKategorien}</Sidetittel>
-                    <Normaltekst>Stillinger i kategorien <br/> {props.sisteStilling} </Normaltekst>
+                    <Normaltekst>Stillinger i kategorien <br/> {props.stillingKategori} </Normaltekst>
                 </div>
                 <div id="stillingsInfoSvgStor">
                     <img src={svgStor} alt="Arbeidsmarkedet stor ikon"/>
