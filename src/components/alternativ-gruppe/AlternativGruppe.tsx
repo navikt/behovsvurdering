@@ -68,16 +68,18 @@ class AlternativGruppe extends React.Component<AlternativGruppeProps, State> {
 
     lagSpmGruppe() {
         return this.props.options.map(key => {
-            return <Column md="6" xs="12" key={'col-' + key.value}>
-                <RadioPanel
-                    onChange={() => this.props.onChange(key.value)}
-                    inputProps={{className: 'blokk-xs'}}
-                    name={'alternativ'}
-                    label={key.label}
-                    value={key.value}
-                    checked={this.props.valgtAlternativ() === key.value}
-                />
-            </Column>;
+            return (
+                <Column md="6" xs="12" key={'col-' + key.value}>
+                    <RadioPanel
+                        onChange={() => this.props.onChange(key.value)}
+                        inputProps={{className: 'blokk-xs'}}
+                        name={'alternativ'}
+                        label={key.label}
+                        value={key.value}
+                        checked={this.props.valgtAlternativ() === key.value}
+                    />
+                </Column>
+            );
         });
     }
 

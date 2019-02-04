@@ -74,7 +74,7 @@ class App extends React.Component<AppProps, State> {
             venterPaaDialogRespons: true,
         });
 
-        return postDialog(dialog).then((response: any) => {
+        return postDialog(dialog).then((response: any) => { // tslint:disable-line
             this.setState({
                 dialogId: response.dialogId,
                 venterPaaDialogRespons: false,
@@ -94,12 +94,14 @@ class App extends React.Component<AppProps, State> {
             .ellers(ResultatVanskeligAFaJobb.Id);
 
         if (this.state.page === LettEllerVanskeligSpm.Id) {
-            return <LettEllerVanskeligSpm
-                valgtAlternativ={this.state.svar[LettEllerVanskeligSpm.Id]}
-                endreAlternativ={(svar) => this.velgSvar(LettEllerVanskeligSpm.Id, svar)}
-                nextPage={() => this.endreSide(hvisSvaretErLett.naviger())}
-                byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
-            />;
+            return (
+                <LettEllerVanskeligSpm
+                    valgtAlternativ={this.state.svar[LettEllerVanskeligSpm.Id]}
+                    endreAlternativ={(svar) => this.velgSvar(LettEllerVanskeligSpm.Id, svar)}
+                    nextPage={() => this.endreSide(hvisSvaretErLett.naviger())}
+                    byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
+                />
+            );
         }
 
         const hvisSvaretErJa = new ConditionalNavigation()
@@ -108,12 +110,14 @@ class App extends React.Component<AppProps, State> {
             .ellers(ResultatVanskeligAFaJobb.Id);
 
         if (this.state.page === KanDuFinneJobbSpm.Id) {
-            return <KanDuFinneJobbSpm
-                valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
-                endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar)}
-                nextPage={() => this.endreSide(hvisSvaretErJa.naviger())}
-                byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
-            />;
+            return (
+                <KanDuFinneJobbSpm
+                    valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
+                    endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar)}
+                    nextPage={() => this.endreSide(hvisSvaretErJa.naviger())}
+                    byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
+                />
+            );
         }
 
         if (this.state.page === ResultatLettAFaJobb.Id) {
@@ -125,12 +129,15 @@ class App extends React.Component<AppProps, State> {
         }
 
         // default page
-        return <StillingInfo
-            stillingKategori={''}
-            sisteStilling={sisteStilling}
-            antallStillinger={3} // <- todo: MAA KODES I FO-1863
-            antallIKategorien={antallStillinger}
-            onClick={() => this.setState({page: LettEllerVanskeligSpm.Id })} />;
+        return (
+            <StillingInfo
+                stillingKategori={''}
+                sisteStilling={sisteStilling}
+                antallStillinger={3} // <- todo: MAA KODES I FO-1863
+                antallIKategorien={antallStillinger}
+                onClick={() => this.setState({page: LettEllerVanskeligSpm.Id })}
+            />
+        );
     }
 
     render() {

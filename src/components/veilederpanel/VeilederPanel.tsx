@@ -1,5 +1,4 @@
-//@ts-ignore
-
+/* tslint:disable */
 import * as React from 'react';
 
 import Veilederpanel from 'nav-frontend-veilederpanel';
@@ -24,7 +23,8 @@ function VeilederPanel(props: VeilederPanelProps) {
 }
 
 function getSvg() {
-    return <svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    return (
+        <svg width="100px" height="100px" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
             <defs>
                 <circle id="path-1" cx="50" cy="50" r="50"></circle>
                 <path d="M38.3689052,0.335235703 C41.3376285,1.12162906 45.7453682,3.29251598 49.4109441,6.85799606 C53.0765626,10.4235176 56,15.7859336 56,19.9471694 L56,44.9565217 L0,44.9565217 L0,19.9471694 C0,15.794346 2.86171448,10.4410671 6.46079003,6.87962984 C10.1773709,3.20191608 14.6802466,1.00125714 17.6301242,0.271569064 C17.6850427,5.16944295 22.3067566,10.2173913 28,10.2173913 C33.668578,10.2173913 38.274891,5.21308764 38.3689052,0.335235703 Z" id="path-3"></path>
@@ -130,7 +130,8 @@ function getSvg() {
                     </g>
                 </g>
             </g>
-        </svg>;
+        </svg>
+    );
 }
 
 export default VeilederPanel;

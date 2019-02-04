@@ -47,6 +47,6 @@ export function hentGeografiskTilknytning(): Promise<GeografiskTilknytning> {
     return fetchData<GeografiskTilknytning>(API_VEILARBPERSON, CONFIG);
 }
 
-export function postDialog(data: any): Promise<void> {
+export function postDialog(data: any): Promise<void> { // tslint:disable-line
     return fetchData<void>(API_VEILARBDIALOG, {method: 'post', body: JSON.stringify(data), ...CONFIG});
 }

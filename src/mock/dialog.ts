@@ -1,4 +1,9 @@
-export function opprettDialog(update: any) {
+interface OpprettDialogType {
+    overskrift: string;
+    tekst: string;
+}
+
+export function opprettDialog(update: OpprettDialogType) {
     const dialogId = 1;
     return {
         dialogId: dialogId,
