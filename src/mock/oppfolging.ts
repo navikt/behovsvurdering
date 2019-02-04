@@ -1,5 +1,5 @@
 const oppfolgingStatus = {
-    "underOppfolging": true
+    'underOppfolging': true
 };
 
 export default oppfolgingStatus;

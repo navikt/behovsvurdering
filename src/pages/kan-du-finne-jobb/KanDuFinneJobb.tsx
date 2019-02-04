@@ -1,19 +1,19 @@
-import * as React from "react";
+import * as React from 'react';
 
-import AlternativGruppe from "../../components/alternativ-gruppe/AlternativGruppe";
-import { Row, Container } from 'nav-frontend-grid'
-import InfoPanel from "../../components/infopanel/InfoPanel";
+import AlternativGruppe from '../../components/alternativ-gruppe/AlternativGruppe';
+import { Row, Container } from 'nav-frontend-grid';
+import InfoPanel from '../../components/infopanel/InfoPanel';
 
 interface KanDuFinneJobbSpmProps {
-    nextPage?: () => void,
-    endreAlternativ: (arg: string) => void,
-    valgtAlternativ: string,
-    byggOgSendDialog: () => void
+    nextPage?: () => void;
+    endreAlternativ: (arg: string) => void;
+    valgtAlternativ: string;
+    byggOgSendDialog: () => void;
 }
 
 class KanDuFinneJobbSpm extends React.Component<KanDuFinneJobbSpmProps> {
 
-    static Id = "finne-jobb";
+    static Id = 'finne-jobb';
 
     constructor(props: KanDuFinneJobbSpmProps) {
         super(props);
@@ -21,7 +21,7 @@ class KanDuFinneJobbSpm extends React.Component<KanDuFinneJobbSpmProps> {
 
     onChange = (value: string) => {
         this.props.endreAlternativ(value);
-    };
+    }
 
     render() {
         return (
@@ -38,9 +38,9 @@ class KanDuFinneJobbSpm extends React.Component<KanDuFinneJobbSpmProps> {
                         valgtAlternativ={() => this.props.valgtAlternativ}
                         options={
                             [
-                                {label: "Ja", value: "ja"},
-                                {label: "Nei", value: "nei"},
-                                {label: "Usikker", value: "usikker"}
+                                {label: 'Ja', value: 'ja'},
+                                {label: 'Nei', value: 'nei'},
+                                {label: 'Usikker', value: 'usikker'}
                             ]
                         }
                         nextPage={this.props.nextPage}

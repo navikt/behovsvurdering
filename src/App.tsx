@@ -1,28 +1,28 @@
 import * as React from 'react';
-import StillingInfo from "./components/stillingsinfo/StillingInfo";
-import AppProviders from "./AppProvider";
-import Banner from "./components/banner/Banner";
+import StillingInfo from './components/stillingsinfo/StillingInfo';
+import AppProviders from './AppProvider';
+import Banner from './components/banner/Banner';
 
-import LettEllerVanskeligSpm from "./pages/lett-vanskelig/LettEllerVanskeligSpm";
-import KanDuFinneJobbSpm from "./pages/kan-du-finne-jobb/KanDuFinneJobb";
-import ConditionalNavigation from "./utils/conditional-navigation";
-import ResultatLettAFaJobb from "./pages/resultat-lett-afa-jobb/ResultatLettAFaJobb";
-import ResultatVanskeligAFaJobb from "./pages/resultat-vanskelig-afa-jobb/ResultatVanskeligAFaJobb";
-import { postDialog } from "./api/api";
-import { SisteStillingContext } from "./context/sisteStilling/SisteStillingProvider";
-import { KommuneOgLedigeStillingerContext } from "./context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider";
-import { getSpmText } from "./dialogTekst";
+import LettEllerVanskeligSpm from './pages/lett-vanskelig/LettEllerVanskeligSpm';
+import KanDuFinneJobbSpm from './pages/kan-du-finne-jobb/KanDuFinneJobb';
+import ConditionalNavigation from './utils/conditional-navigation';
+import ResultatLettAFaJobb from './pages/resultat-lett-afa-jobb/ResultatLettAFaJobb';
+import ResultatVanskeligAFaJobb from './pages/resultat-vanskelig-afa-jobb/ResultatVanskeligAFaJobb';
+import { postDialog } from './api/api';
+import { SisteStillingContext } from './context/sisteStilling/SisteStillingProvider';
+import { KommuneOgLedigeStillingerContext } from './context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider';
+import { getSpmText } from './dialogTekst';
 
 interface State {
-    page?: string,
-    svar: object
+    page?: string;
+    svar: object;
 }
 
 const initialState = {
     page: '',
     svar: {
-        [LettEllerVanskeligSpm.Id] : "",
-        [KanDuFinneJobbSpm.Id]: ""
+        [LettEllerVanskeligSpm.Id] : '',
+        [KanDuFinneJobbSpm.Id]: ''
     }
 };
 
@@ -59,9 +59,9 @@ class App extends React.Component<AppProps, State> {
     byggOgSendDialog(sisteStilling: string, kommune: string, antallStillinger: number) {
         const dialog = {
             overskrift: 'mine tanker om mitt behov for veiledning',
-            tekst: `Siste stilling: ${sisteStilling}\n`+
-                `Kommune: ${kommune}\n`+
-                `Antall ledige stillinger i kategori: ${antallStillinger}\n`+
+            tekst: `Siste stilling: ${sisteStilling}\n` +
+                `Kommune: ${kommune}\n` +
+                `Antall ledige stillinger i kategori: ${antallStillinger}\n` +
                 `${getSpmText(this.state.svar[LettEllerVanskeligSpm.Id],  this.state.svar[KanDuFinneJobbSpm.Id])}`
         };
         return postDialog(dialog);
@@ -76,8 +76,8 @@ class App extends React.Component<AppProps, State> {
         if (this.state.page === LettEllerVanskeligSpm.Id) {
             return <LettEllerVanskeligSpm
                 valgtAlternativ={this.state.svar[LettEllerVanskeligSpm.Id]}
-                endreAlternativ={(svar) => this.velgSvar(LettEllerVanskeligSpm.Id, svar) }
-                nextPage={ () => this.endreSide(hvisSvaretErLett.naviger()) }
+                endreAlternativ={(svar) => this.velgSvar(LettEllerVanskeligSpm.Id, svar)}
+                nextPage={() => this.endreSide(hvisSvaretErLett.naviger())}
                 byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
             />;
         }
@@ -90,8 +90,8 @@ class App extends React.Component<AppProps, State> {
         if (this.state.page === KanDuFinneJobbSpm.Id) {
             return <KanDuFinneJobbSpm
                 valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
-                endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar) }
-                nextPage={ () => this.endreSide(hvisSvaretErJa.naviger()) }
+                endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar)}
+                nextPage={() => this.endreSide(hvisSvaretErJa.naviger())}
                 byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, kommune, antallStillinger)}
             />;
         }
@@ -106,11 +106,11 @@ class App extends React.Component<AppProps, State> {
 
         // default page
         return <StillingInfo
-            stillingKategori={""}
+            stillingKategori={''}
             sisteStilling={sisteStilling}
             antallStillinger={3} // <- todo: MAA KODES I FO-1863
             antallIKategorien={antallStillinger}
-            onClick={ () => this.setState({page: LettEllerVanskeligSpm.Id })} />;
+            onClick={() => this.setState({page: LettEllerVanskeligSpm.Id })} />;
     }
 
     render() {

@@ -1,22 +1,21 @@
 //@ts-ignore
 
-import * as React from "react";
+import * as React from 'react';
 
 import Veilederpanel from 'nav-frontend-veilederpanel';
 
 interface VeilederPanelProps {
-    children?: React.ReactNode | React.ReactChild | React.ReactChildren,
-    type?: 'normal' | 'plakat',
-    className?: string
+    children?: React.ReactNode | React.ReactChild | React.ReactChildren;
+    type?: 'normal' | 'plakat';
+    className?: string;
 }
 
 function VeilederPanel(props: VeilederPanelProps) {
 
-
     return (
         <div className="nav-veilederpanel-wrapper">
             <Veilederpanel type={props.type}
-                           svg={getSvg() }
+                           svg={getSvg()}
                            kompakt={true}>
                 {props.children}
             </Veilederpanel>
@@ -131,7 +130,7 @@ function getSvg() {
                     </g>
                 </g>
             </g>
-        </svg>
+        </svg>;
 }
 
 export default VeilederPanel;

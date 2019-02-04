@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Innholdstittel, Sidetittel, Normaltekst } from "nav-frontend-typografi";
-import SisteStilling from "./SisteStilling";
-import BoligInformasjon from "./BoligInformasjon";
+import { Innholdstittel, Sidetittel, Normaltekst } from 'nav-frontend-typografi';
+import SisteStilling from './SisteStilling';
+import BoligInformasjon from './BoligInformasjon';
 import svg from '../del-med-nav-infopanel/arbeidsplassen.svg';
 import svgStor from './Jobbmuligheter_desktop.svg';
-import MittBehovKnapp from "../mitt-behov-knapp/MittBehovKnapp";
+import MittBehovKnapp from '../mitt-behov-knapp/MittBehovKnapp';
 
 interface StillingsInfoProps {
     onClick: () => void;
@@ -14,10 +14,9 @@ interface StillingsInfoProps {
     antallIKategorien: number;
 }
 
-
-function StillingInfo(props: StillingsInfoProps){
+function StillingInfo(props: StillingsInfoProps) {
     return (
-        <div className= "stillingContainer">
+        <div className="stillingContainer">
             <SisteStilling/>
             <BoligInformasjon/>
             <div id="stillingsInfoSvg">
@@ -42,10 +41,10 @@ function StillingInfo(props: StillingsInfoProps){
                 </div>
             </div>
 
-            <MittBehovKnapp onClick={ () => props.onClick() }  />
+            <MittBehovKnapp onClick={() => props.onClick()}  />
 
         </div>
-    )
+    );
 }
 
 export default StillingInfo;

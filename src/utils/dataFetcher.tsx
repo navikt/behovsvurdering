@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import NavFrontendSpinner from "nav-frontend-spinner";
-
+import NavFrontendSpinner from 'nav-frontend-spinner';
 
 interface DataFetcherProps<T> {
     fetchFunc: (args?: string[], errorHandler?: (response?: Response) => any) => Promise<T>;
@@ -21,15 +20,15 @@ class DataFetcher<T> extends Component<DataFetcherProps<T>, DataFetcherState<T>>
     componentDidMount() {
         this.props.fetchFunc()
             .then((data: T) =>
-                this.setState({data, isLoading: false}))
+                this.setState({data, isLoading: false}));
     }
 
     render() {
-        if(this.state.isLoading) {
-            return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>
+        if (this.state.isLoading) {
+            return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
-        if(this.state.data === null) {
+        if (this.state.data === null) {
             return <div/>;
         }
 
@@ -37,6 +36,5 @@ class DataFetcher<T> extends Component<DataFetcherProps<T>, DataFetcherState<T>>
 
     }
 }
-
 
 export default DataFetcher;

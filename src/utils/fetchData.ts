@@ -2,17 +2,17 @@ export function fetchData<T>(url: string, config = {}, errorHandler?: (response?
     return fetch(url, config)
         .then(response => {
             if (!response.ok) {
-                if(errorHandler) {
+                if (errorHandler) {
                     return errorHandler(response);
                 }
-                throw new Error(response.statusText)
+                throw new Error(response.statusText);
             }
             return response.json();
         })
         .catch(error => {
             if (errorHandler) {
-                return errorHandler(error)
+                return errorHandler(error);
             }
-            throw new Error(error)
-        })
+            throw new Error(error);
+        });
 }

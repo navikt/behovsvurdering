@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
 interface Props {
-    onClick?: () => void
+    onClick?: () => void;
 }
 
 export default class MittBehovKnapp extends React.Component<Props> {

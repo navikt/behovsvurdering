@@ -1,5 +1,5 @@
 export interface KommuneOgLedigeStillinger {
     kommunenavn: string;
-    antalStillinger: number,
+    antalStillinger: number;
     antalStillingerIKategorin: number;
 }

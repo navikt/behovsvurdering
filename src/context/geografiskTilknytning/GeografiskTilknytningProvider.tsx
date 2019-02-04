@@ -1,19 +1,17 @@
 import * as React from 'react';
-import {hentGeografiskTilknytning} from "../../api/api";
-import {GeografiskTilknytning} from "../../datatyper/geografiskTilknytning";
-import DataFetcher from "../../utils/dataFetcher";
+import { hentGeografiskTilknytning } from '../../api/api';
+import { GeografiskTilknytning } from '../../datatyper/geografiskTilknytning';
+import DataFetcher from '../../utils/dataFetcher';
 
 export const initalStateGeografiskTilknyting: GeografiskTilknytning = {
-    geografiskTilknytning: "",
+    geografiskTilknytning: '',
 };
 
 const GeografiskTilknytningContext = React.createContext<GeografiskTilknytning>(initalStateGeografiskTilknyting);
 
 interface GeografiskTilknytningProps {
-    children : React.ReactNode;
+    children: React.ReactNode;
 }
-
-
 
 function GeografiskTilknytningProvider (props: GeografiskTilknytningProps) {
     return (
@@ -24,7 +22,7 @@ function GeografiskTilknytningProvider (props: GeografiskTilknytningProps) {
                 </GeografiskTilknytningContext.Provider>
             }
         </DataFetcher>
-    )
+    );
 }
 
 //TODO FIKS TYPER
@@ -36,6 +34,6 @@ export function geografiskTilknytningContextConsumerHoc<P>(Component: React.Comp
             }}
         </GeografiskTilknytningContext.Consumer>
     );
-};
+}
 
 export default GeografiskTilknytningProvider;
