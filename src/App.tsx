@@ -60,9 +60,9 @@ class App extends React.Component<AppProps, State> {
     byggOgSendDialog(sisteStilling: string, kommune: string, antallStillinger: number) {
         const dialog = {
             overskrift: 'mine tanker om mitt behov for veiledning',
-            tekst: `Siste stilling: ${sisteStilling}\n`+
-                `Kommune: ${kommune}\n`+
-                `Antall ledige stillinger i kategori: ${antallStillinger}\n`+
+            tekst: `Siste stilling: ${sisteStilling}`+
+                `Kommune: ${kommune}`+
+                `Antall ledige stillinger i kategori: ${antallStillinger}`+
                 `${getSpmText(this.state.svar[LettEllerVanskeligSpm.Id],  this.state.svar[KanDuFinneJobbSpm.Id])}`
         };
         return postDialog(dialog);
