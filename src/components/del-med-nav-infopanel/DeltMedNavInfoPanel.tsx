@@ -14,13 +14,13 @@ interface DeltMedNavInfoPanelProps {
 }
 
 const TEKST_MAP = {
-    REG_CV_LENKE: 'https://arbeidsplassen.nav.no/', // todo: maa skrives om til aa gjenkjenne milo
+    REG_CV_LENKE: 'https://arbeidsplassen.nav.no/', // todo: maa skrives om til aa gjenkjenne miljo
 
     ARB_BLOKK_ICON:arbeidsplassenSvg,
     ARB_BLOKK_TITTEL:"Arbeidsplassen",
     ARB_BLOKK_TEKST:"Se alle offentlige utlyste stillinger.",
     ARB_BLOKK_LENKE:"Se jobbannonser",
-    ARB_BLOKK_HREF:"https://stillingsok.nav.no", // todo: maa skrives om til aa gjenkjenne milo
+    ARB_BLOKK_HREF:"https://stillingsok.nav.no", // todo: maa skrives om til aa gjenkjenne miljo
     LETT_VEILEDER_INFO:"Trenger du mer veiledning på et senere tidspunkt, kan du kontakte veilederen din i ",
 
     JOBB_BLOKK_ICON:jobbsokertipsSvg,
