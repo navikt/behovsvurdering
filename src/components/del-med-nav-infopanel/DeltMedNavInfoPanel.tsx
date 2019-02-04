@@ -1,7 +1,7 @@
 import * as React from "react";
 import InfoPanel from "../infopanel/InfoPanel";
 import Lenke from 'nav-frontend-lenker';
-import { Element, Normaltekst } from 'nav-frontend-typografi'
+import {Element, Normaltekst} from 'nav-frontend-typografi'
 import NavFrontendChevron from 'nav-frontend-chevron';
 import VeilederPanel from "../veilederpanel/VeilederPanel";
 
@@ -10,7 +10,8 @@ import arbeidsplassenSvg from './arbeidsplassen.svg';
 import jobbsokertipsSvg from './jobbsokertips.svg';
 
 interface DeltMedNavInfoPanelProps {
-    modus: string
+    modus: string,
+    dialogId: string
 }
 
 const TEKST_MAP = {
@@ -31,9 +32,9 @@ const TEKST_MAP = {
 
 class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
 
-    static renderLenkeDeltMedNav(value: string) {
+    renderLenkeDeltMedNav(value: string) {
         return (
-            <Lenke href="" target="_blank">{value}</Lenke>
+            <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>{value}</Lenke>
         );
     }
 
@@ -55,7 +56,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
 
                 <div className="info-blokk">
                     <InfoPanel type="ok-sirkel-fyll" className="">
-                        Dine svar er {DeltMedNavInfoPanel.renderLenkeDeltMedNav("delt")} med din med veileder i NAV.
+                        Dine svar er {this.renderLenkeDeltMedNav("delt")} med din med veileder i NAV.
                     </InfoPanel>
                 </div>
 
@@ -100,7 +101,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                 <div className="veilederpanel-blokk">
                     <VeilederPanel>
                         <Normaltekst>
-                            {this.getTekst('info')} { <Lenke href="" target="_blank">dialogen</Lenke> }.
+                            {this.getTekst('info')} { <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>dialogen</Lenke> }.
                         </Normaltekst>
                     </VeilederPanel>
                 </div>
