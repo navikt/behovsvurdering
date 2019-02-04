@@ -34,17 +34,15 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> 
                 gruppeId={LettEllerVanskeligSpm.Id}
                 onChange={this.onChange}
                 valgtAlternativ={() => this.props.valgtAlternativ}
-                options={
-                    [
+                options={ [
                         {label: 'Lett', value: 'lett'},
                         {label: 'Vanskelig', value: 'vanskelig'},
                         {label: 'Usikker', value: 'usikker'}
-                    ]
-                }
+                    ] }
                 nextPage={this.props.nextPage}
                 nextPageBtnText="Neste"
                 onNextClick={() => this.byggOgSendDialog()}
-             />
+            />
         );
     }
 }

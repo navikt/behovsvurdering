@@ -76,7 +76,7 @@ class App extends React.Component<AppProps, State> {
 
         return postDialog(dialog).then((response: any) => { // tslint:disable-line
             this.setState({
-                dialogId: response.dialogId,
+                dialogId: response.id,
                 venterPaaDialogRespons: false,
             });
         });

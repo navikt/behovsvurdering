@@ -1,4 +1,4 @@
-export function fetchData<T>(url: string, config = {}, errorHandler?: (response?: Response) => any): Promise<T> {
+export function fetchData<T>(url: string, config = {}, errorHandler?: (response?: Response) => any): Promise<T> { // tslint:disable-line
     return fetch(url, config)
         .then(response => {
             if (!response.ok) {
