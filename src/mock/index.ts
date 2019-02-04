@@ -1,9 +1,9 @@
-import FetchMock, {Middleware, MiddlewareUtils} from "yet-another-fetch-mock";
-import SisteArbeidsforhold from "./registrering";
-import OppfolgingStatus from "./oppfolging";
-import BoligInformajson from "./boliginformasjon";
-import DataFraMia from "./dataFraMia";
-import {opprettDialog} from "./dialog";
+import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import SisteArbeidsforhold from './registrering';
+import OppfolgingStatus from './oppfolging';
+import BoligInformajson from './boliginformasjon';
+import DataFraMia from './dataFraMia';
+import { opprettDialog } from './dialog';
 
 const loggingMiddleware: Middleware = (request, response) => {
     // tslint:disable
@@ -38,6 +38,6 @@ mock.get('/veilarbregistrering/api/registrering', SisteArbeidsforhold );
 mock.get('/veilarboppfolging/api/oppfolging', OppfolgingStatus );
 mock.get('/veilarbperson/api/person/geografisktilknytning', BoligInformajson );
 mock.get('/mia/api/', DataFraMia );
-mock.post('/veilarbdialog/api/dialog', ({ body }): any => opprettDialog(body));
+mock.post('/veilarbdialog/api/dialog', ({ body }): any => opprettDialog(body)); // tslint:disable-line
 
 export default mock;

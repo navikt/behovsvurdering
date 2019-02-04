@@ -1,9 +1,9 @@
-import * as React from "react";
-import {Ingress} from "nav-frontend-typografi";
+import * as React from 'react';
+import { Ingress } from 'nav-frontend-typografi';
 import {
     kommuneOgLedigeStillingerContextConsumerHoc
-} from "../../context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider";
-import {KommuneOgLedigeStillinger} from "../../datatyper/kommuneOgLedigeStillinger";
+} from '../../context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider';
+import { KommuneOgLedigeStillinger } from '../../datatyper/kommuneOgLedigeStillinger';
 
 function BoligInformasjon(props: KommuneOgLedigeStillinger) {
     return (
@@ -12,7 +12,7 @@ function BoligInformasjon(props: KommuneOgLedigeStillinger) {
                 <Ingress>Kommune : {props.kommunenavn} </Ingress>
             </div>
         </div>
-    )
+    );
 }
 
 export default kommuneOgLedigeStillingerContextConsumerHoc<{}>(BoligInformasjon);

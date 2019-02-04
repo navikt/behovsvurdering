@@ -1,7 +1,6 @@
 .stillingContainer {
-  display: grid;
-  grid-template-rows: 1fr 1fr 4fr;
-  grid-row-gap: 0.3rem;
+  display: flex;
+  flex-direction: column;
   margin-top: 1rem;
 
   &__innhold {
@@ -11,12 +10,68 @@
       border-bottom: 1px solid @navLysGra;
       padding: 0.5rem;
       min-width: 600px;
+
+      @media (max-width: @screen-sm-max) {
+        min-width: 90%;
+      }
+    }
+  }
+
+  #stillingsInfoSvg {
+    .centerContent();
+    padding: 2rem;
+  }
+
+  #jobbmuligheter_tittel {
+    .centerContent();
+    padding-bottom: 2rem;
+  }
+
+  #antallStillingerInfo {
+    .centerContent();
+    padding-bottom: 5rem;
+
+    .typo-sidetittel {
+      font-size: 40pt;
+      font-weight: bolder;
+      padding-bottom: 0.8rem;
     }
 
+    #antallForStilling,#antallForKategori {
+      .centerContent();
+      flex-direction: column;
+      width: 180px;
+    }
+
+    #antallForStilling > *,#antallForKategori > * {
+      .centerContent();
+    }
+  }
+
+  #mitt-behov-knapp {
+    .centerContent();
+    padding-bottom: 3rem;
+  }
+
+  @media (min-width: @screen-md-min) {
+    #stillingsInfoSvg {
+      display: none;
+    }
+    #jobbmuligheter_tittel {
+      margin-top: 5rem;
+    }
   }
 
   @media (max-width: @screen-sm-max) {
     margin-left: 1rem;
+
+    #stillingsInfoSvgStor {
+      display: none;
+    }
   }
 
+}
+
+.stillingContainer > * {
+  margin-bottom: 0.3rem;
 }

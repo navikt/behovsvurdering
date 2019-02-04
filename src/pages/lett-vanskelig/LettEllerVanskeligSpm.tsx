@@ -1,17 +1,17 @@
-import * as React from "react";
+import * as React from 'react';
 
-import AlternativGruppe from "../../components/alternativ-gruppe/AlternativGruppe";
+import AlternativGruppe from '../../components/alternativ-gruppe/AlternativGruppe';
 
 interface LettEllerVanskeligSpmProps {
-    nextPage?: () => void,
-    endreAlternativ: (arg: string) => void,
-    valgtAlternativ: string,
-    byggOgSendDialog: () => void
+    nextPage?: () => void;
+    endreAlternativ: (arg: string) => void;
+    valgtAlternativ: string;
+    byggOgSendDialog: () => void;
 }
 
 class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> {
 
-    static Id = "lett-vanskelig";
+    static Id = 'lett-vanskelig';
 
     constructor(props: LettEllerVanskeligSpmProps) {
         super(props);
@@ -19,11 +19,11 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> 
 
     onChange = (value: string) => {
         this.props.endreAlternativ(value);
-    };
+    }
 
     byggOgSendDialog() {
-        if(this.props.valgtAlternativ !== "lett"){
-            this.props.byggOgSendDialog()
+        if (this.props.valgtAlternativ !== 'lett') {
+            this.props.byggOgSendDialog();
         }
     }
 
@@ -34,17 +34,15 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> 
                 gruppeId={LettEllerVanskeligSpm.Id}
                 onChange={this.onChange}
                 valgtAlternativ={() => this.props.valgtAlternativ}
-                options={
-                    [
-                        {label: "Lett", value: "lett"},
-                        {label: "Vanskelig", value: "vanskelig"},
-                        {label: "Usikker", value: "usikker"}
-                    ]
-                }
+                options={ [
+                        {label: 'Lett', value: 'lett'},
+                        {label: 'Vanskelig', value: 'vanskelig'},
+                        {label: 'Usikker', value: 'usikker'}
+                    ] }
                 nextPage={this.props.nextPage}
                 nextPageBtnText="Neste"
                 onNextClick={() => this.byggOgSendDialog()}
-             />
+            />
         );
     }
 }

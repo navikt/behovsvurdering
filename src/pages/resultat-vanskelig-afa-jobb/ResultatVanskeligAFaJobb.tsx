@@ -1,13 +1,13 @@
-import * as React from "react";
-import DeltMedNavInfoPanel from "../../components/del-med-nav-infopanel/DeltMedNavInfoPanel";
+import * as React from 'react';
+import DeltMedNavInfoPanel from '../../components/del-med-nav-infopanel/DeltMedNavInfoPanel';
 
 interface ResultatVanskeligAFaJobbProps {
-    dialogId: string
+    dialogId: string;
 }
 
 class ResultatVanskeligAFaJobb extends React.Component<ResultatVanskeligAFaJobbProps> {
 
-    static Id = "resultat-vanskelig-afa-jobb";
+    static Id = 'resultat-vanskelig-afa-jobb';
 
     render() {
         return (

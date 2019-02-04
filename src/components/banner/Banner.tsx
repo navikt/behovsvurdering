@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Systemtittel} from 'nav-frontend-typografi';
+import { Systemtittel } from 'nav-frontend-typografi';
 
 function Banner () {
     return(
@@ -8,7 +8,7 @@ function Banner () {
                 <Systemtittel tag="h1">Dine jobbmuligheter</Systemtittel>
             </div>
         </div>
-    )
+    );
 }
 
 export default Banner;

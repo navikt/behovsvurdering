@@ -1,7 +1,7 @@
 
 export default class ConditionalNavigation {
-    _side: string = "";
-    _sideNot: string = "";
+    _side: string = '';
+    _sideNot: string = '';
     _condition: boolean = true;
 
     navigerTil(value: string) {
@@ -14,7 +14,7 @@ export default class ConditionalNavigation {
         return this;
     }
 
-    ellers(value : string) {
+    ellers(value: string) {
         this._sideNot = value;
         return this;
     }

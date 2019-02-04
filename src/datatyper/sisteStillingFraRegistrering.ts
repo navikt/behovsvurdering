@@ -1,13 +1,13 @@
 interface SisteStillingType {
-    sisteStilling : {
+    sisteStilling: {
         label: string,
         konseptId: number,
         styrk08: string,
-    },
+    };
 }
 
 export interface RegistreringDataType {
-    registrering: SisteStillingType
+    registrering: SisteStillingType;
 
 }
 export default SisteStillingType;
