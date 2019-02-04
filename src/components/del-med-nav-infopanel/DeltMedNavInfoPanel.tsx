@@ -11,6 +11,7 @@ import jobbsokertipsSvg from './jobbsokertips.svg';
 
 interface DeltMedNavInfoPanelProps {
     modus: string;
+    dialogId: string;
 }
 
 const TEKST_MAP = {
@@ -35,7 +36,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
 
     static renderLenkeDeltMedNav(value: string) {
         return (
-            <Lenke href="" target="_blank">{value}</Lenke>
+            <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>{value}</Lenke>
         );
     }
 
@@ -102,7 +103,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                 <div className="veilederpanel-blokk">
                     <VeilederPanel>
                         <Normaltekst>
-                            {this.getTekst('info')} {<Lenke href="" target="_blank">dialogen</Lenke>}.
+                            {this.getTekst('info')} { <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>dialogen</Lenke> }.
                         </Normaltekst>
                     </VeilederPanel>
                 </div>
