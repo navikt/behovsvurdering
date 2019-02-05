@@ -6,4 +6,4 @@ proxy:
   - contextPath: "/veilarbregistrering"
     baseUrl: "http://veilarbproxy"
   - contextPath: "/veilarbdialog"
-    baseUrl: "http://veilarbdialog"
+    baseUrl: "http://veilarbproxy"
