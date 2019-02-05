@@ -1,7 +1,14 @@
 const dataFraMia = {
-    'kommunenavn': 'Oslo',
-    'antalStillinger': 0,
-    'antalStillingerIKategorin': 11,
+    'kommunenavn': 'Asker',
+    'fylkesnavn': 'Akershus',
+    'hovedkategori': {
+        'kategori': 'IT',
+        'antallStillinger': 100
+    },
+    'underkategori': {
+        'kategori': 'Utvikling',
+        'antallStillinger': 10
+    }
 };
 
 export default dataFraMia;
