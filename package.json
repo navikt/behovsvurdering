@@ -2,7 +2,6 @@
   "name": "behovsvurdering",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/behovsvurdering",
   "dependencies": {
     "@types/classnames": "2.2.7",
     "@types/fetch-mock": "7.2.2",
