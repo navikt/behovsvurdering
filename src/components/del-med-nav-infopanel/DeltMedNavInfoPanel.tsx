@@ -75,7 +75,7 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                                 <Normaltekst>
                                     Bli synlig for arbeidsgivere i CV-databasen.
                                 </Normaltekst>
-                                <Lenke href={this.getTekst(TEKST_MAP.REG_CV_LENKE)} target="_blank">
+                                <Lenke href={this.getTekst('REG_CV_LENKE')} target="_blank">
                                     <Element>Min CV <NavFrontendChevron stor={true} /> </Element>
                                 </Lenke>
                             </div>
