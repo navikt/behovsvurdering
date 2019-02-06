@@ -10,7 +10,7 @@ export default class MittBehovKnapp extends React.Component<Props> {
         return (
             <div id="mitt-behov-knapp">
                 <Hovedknapp onClick={this.props.onClick}>
-                    Ditt Behov
+                    Neste
                 </Hovedknapp>
             </div>
         );
