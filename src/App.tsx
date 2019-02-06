@@ -62,7 +62,7 @@ class App extends React.Component<AppProps, State> {
 
     byggOgSendDialog(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
         const dialog = {
-            overskrift: 'mine tanker om mitt behov for veiledning',
+            overskrift: 'Svarene jeg har gitt om mine jobbmuligheter',
             tekst: `Siste stilling: ${sisteStilling}\n` +
                 `${mia.underkategori.antallStillinger} annonser for ${mia.underkategori.kategori} i ${mia.fylkesnavn} \n` +
                 `${mia.hovedkategori.antallStillinger} annonser i bransje ${mia.hovedkategori.kategori} i ${mia.fylkesnavn} \n` +
