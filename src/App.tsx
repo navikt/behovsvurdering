@@ -80,62 +80,69 @@ class App extends React.Component<AppProps, State> {
         });
     }
 
+    renderLettVanskeSpmPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
+        const hvisSvaretErLett = new ConditionalNavigation()
+            .navigerTil(KanDuFinneJobbSpm.Id)
+            .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
+            .ellers(ResultatVanskeligAFaJobb.Id);
+
+        return (
+            <LettEllerVanskeligSpm
+                valgtAlternativ={this.state.svar[LettEllerVanskeligSpm.Id]}
+                endreAlternativ={(svar) => this.velgSvar(LettEllerVanskeligSpm.Id, svar)}
+                nextPage={() => this.endreSide(hvisSvaretErLett.naviger())}
+                byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
+            />
+        );
+    }
+
+    renderanDuFinneJobbSpm(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
+        const hvisSvaretErJa = new ConditionalNavigation()
+            .navigerTil(ResultatLettAFaJobb.Id)
+            .hvis(this.state.svar[KanDuFinneJobbSpm.Id] === 'ja')
+            .ellers(ResultatVanskeligAFaJobb.Id);
+
+        return (
+            <KanDuFinneJobbSpm
+                valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
+                endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar)}
+                nextPage={() => this.endreSide(hvisSvaretErJa.naviger())}
+                byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
+            />
+        );
+    }
+
     renderPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
 
         if (this.state.venterPaaDialogRespons) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
-        const hvisSvaretErLett = new ConditionalNavigation()
-            .navigerTil(KanDuFinneJobbSpm.Id)
-            .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
-            .ellers(ResultatVanskeligAFaJobb.Id);
+        switch (this.state.page) {
+            case LettEllerVanskeligSpm.Id:
+                return this.renderLettVanskeSpmPage(sisteStilling, mia);
 
-        if (this.state.page === LettEllerVanskeligSpm.Id) {
-            return (
-                <LettEllerVanskeligSpm
-                    valgtAlternativ={this.state.svar[LettEllerVanskeligSpm.Id]}
-                    endreAlternativ={(svar) => this.velgSvar(LettEllerVanskeligSpm.Id, svar)}
-                    nextPage={() => this.endreSide(hvisSvaretErLett.naviger())}
-                    byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
-                />
-            );
+            case KanDuFinneJobbSpm.Id:
+                return this.renderanDuFinneJobbSpm(sisteStilling, mia);
+
+            case ResultatLettAFaJobb.Id:
+                return <ResultatLettAFaJobb dialogId={this.state.dialogId} />;
+
+            case ResultatVanskeligAFaJobb.Id:
+                return <ResultatVanskeligAFaJobb dialogId={this.state.dialogId} />;
+
+            default:
+                return (
+                    <StillingInfo
+                        stillingKategori={mia.hovedkategori.kategori}
+                        sisteStilling={mia.underkategori.kategori}
+                        antallStillinger={mia.underkategori.antallStillinger}
+                        antallIKategorien={mia.hovedkategori.antallStillinger}
+                        onClick={() => this.setState({page: LettEllerVanskeligSpm.Id })}
+                    />
+                );
         }
 
-        const hvisSvaretErJa = new ConditionalNavigation()
-            .navigerTil(ResultatLettAFaJobb.Id)
-            .hvis(this.state.svar[KanDuFinneJobbSpm.Id] === 'ja')
-            .ellers(ResultatVanskeligAFaJobb.Id);
-
-        if (this.state.page === KanDuFinneJobbSpm.Id) {
-            return (
-                <KanDuFinneJobbSpm
-                    valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
-                    endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar)}
-                    nextPage={() => this.endreSide(hvisSvaretErJa.naviger())}
-                    byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
-                />
-            );
-        }
-
-        if (this.state.page === ResultatLettAFaJobb.Id) {
-            return <ResultatLettAFaJobb dialogId={this.state.dialogId} />;
-        }
-
-        if (this.state.page === ResultatVanskeligAFaJobb.Id) {
-            return <ResultatVanskeligAFaJobb dialogId={this.state.dialogId} />;
-        }
-
-        // default page
-        return (
-            <StillingInfo
-                stillingKategori={mia.hovedkategori.kategori}
-                sisteStilling={mia.underkategori.kategori}
-                antallStillinger={mia.underkategori.antallStillinger}
-                antallIKategorien={mia.hovedkategori.antallStillinger}
-                onClick={() => this.setState({page: LettEllerVanskeligSpm.Id })}
-            />
-        );
     }
 
     render() {
