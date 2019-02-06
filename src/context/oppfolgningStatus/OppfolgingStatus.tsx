@@ -11,7 +11,7 @@ function OppfolgingStatus(props: OppfolgingStatusProps) {
     return (
         <DataFetcher<OppfolgingStatusType> fetchFunc={hentOppfolgingStatus}>
             {(data: OppfolgingStatusType) => {
-                if (data.underOppfolging) {
+                if (!data.underOppfolging) {
                     return (
                         <div id="ikke-under-oppfolgning-container">
                             <AlertStripe type="info" className="ikke-under-oppfolgning-boks">
