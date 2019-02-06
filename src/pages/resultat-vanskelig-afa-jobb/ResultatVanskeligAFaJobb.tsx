@@ -9,6 +9,14 @@ class ResultatVanskeligAFaJobb extends React.Component<ResultatVanskeligAFaJobbP
 
     static Id = 'resultat-vanskelig-afa-jobb';
 
+    componentDidMount() {
+        const hj =  (window as any).hj;  // tslint:disable-line
+
+        if (hj) {
+            hj('trigger', 'testrat');
+        }
+    }
+
     render() {
         return (
             <DeltMedNavInfoPanel modus="ikke-lett" dialogId={this.props.dialogId} />

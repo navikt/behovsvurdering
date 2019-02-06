@@ -14,6 +14,7 @@ import { KommuneOgLedigeStillingerContext } from './context/kommuneOgLedigeStill
 import { getSpmText } from './dialogTekst';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { KommuneOgLedigeStillinger } from './datatyper/kommuneOgLedigeStillinger';
+import HotJarSluttSide from "./pages/sluttside-hotjar/HotJarSluttSide";
 
 interface State {
     page?: string;
@@ -130,6 +131,9 @@ class App extends React.Component<AppProps, State> {
 
             case ResultatVanskeligAFaJobb.Id:
                 return <ResultatVanskeligAFaJobb dialogId={this.state.dialogId} />;
+
+            case HotJarSluttSide.Id:
+                return <HotJarSluttSide />;
 
             default:
                 return (

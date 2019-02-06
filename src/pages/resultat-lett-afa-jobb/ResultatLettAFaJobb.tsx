@@ -9,6 +9,14 @@ class ResultatLettAFaJobb extends React.Component<ResultatLettAFaJobbProps> {
 
     static Id = 'resultat-lett-afa-jobb';
 
+    componentDidMount() {
+        const hj =  (window as any).hj;  // tslint:disable-line
+
+        if (hj) {
+            hj('trigger', 'testrat');
+        }
+    }
+
     render() {
         return (
             <DeltMedNavInfoPanel modus="lett" dialogId={this.props.dialogId} />
