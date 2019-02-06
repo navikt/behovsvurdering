@@ -34,6 +34,14 @@ const TEKST_MAP = {
 
 class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
 
+    componentDidMount() {
+        const hj =  (window as any).hj;  // tslint:disable-line
+
+        if (hj) {
+            hj('trigger', 'testrat');
+        }
+    }
+
     renderLenkeDeltMedNav(value: string) {
         return (
             <Lenke href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>{value}</Lenke>
