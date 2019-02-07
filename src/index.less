@@ -51,6 +51,23 @@ body {
   align-content: stretch;
 }
 
+#ikke-under-oppfolgning-container {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+
+  .ikke-under-oppfolgning-boks {
+    width: 600px;
+    margin-top: 200px;
+
+    @media (max-width: @screen-xs-max) {
+      width: 90%;
+      margin-top: 150px;
+    }
+  }
+}
+
 .spinner-wrapper {
   display: flex;
   flex: 1;
