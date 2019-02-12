@@ -11,7 +11,6 @@ import ResultatVanskeligAFaJobb from './pages/resultat-vanskelig-afa-jobb/Result
 import { postDialog } from './api/api';
 import { SisteStillingContext } from './context/sisteStilling/SisteStillingProvider';
 import { KommuneOgLedigeStillingerContext } from './context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider';
-import { getSpmText } from './dialogTekst';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { KommuneOgLedigeStillinger } from './datatyper/kommuneOgLedigeStillinger';
 
@@ -61,12 +60,15 @@ class App extends React.Component<AppProps, State> {
     }
 
     byggOgSendDialog(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
+        const kanFinneJobbTekst = this.state.svar[KanDuFinneJobbSpm.Id] === '' ? '' : `Kan finne jobb selv: ${this.state.svar[KanDuFinneJobbSpm.Id]}`;
         const dialog = {
             overskrift: 'Svarene jeg har gitt om mine jobbmuligheter',
-            tekst: `Siste stilling: ${sisteStilling}\n` +
-                `${mia.underkategori.antallStillinger} annonser for ${mia.underkategori.kategori} i ${mia.fylkesnavn} \n` +
-                `${mia.hovedkategori.antallStillinger} annonser i bransje ${mia.hovedkategori.kategori} i ${mia.fylkesnavn} \n` +
-                `${getSpmText(this.state.svar[LettEllerVanskeligSpm.Id],  this.state.svar[KanDuFinneJobbSpm.Id])}`
+            tekst: `Mine jobbmuligheter\n` +
+                `Siste stilling: ${sisteStilling}\n` +
+                `Antall ledige stillinger innen ${mia.underkategori.kategori} i ${mia.fylkesnavn}: ${mia.underkategori.antallStillinger}\n` +
+                `Antall ledige stillinger i kategorien ${mia.hovedkategori.kategori} i ${mia.fylkesnavn}: ${mia.hovedkategori.antallStillinger}\n` +
+                `Lett/vanskelig å få jobb: ${this.state.svar[LettEllerVanskeligSpm.Id]}\n` +
+                kanFinneJobbTekst
         };
         this.setState({
             venterPaaDialogRespons: true,
