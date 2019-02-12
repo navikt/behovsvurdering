@@ -32,11 +32,14 @@ const CONFIG = {
 
 export function hentSisteStilling(errorHandler: (response?: Response) => Promise<SisteStillingType>): Promise<SisteStillingType> {
     return fetchData<RegistreringDataType>(API_VEILARBREGISTRERING, CONFIG)
-        .then((registeringsData: RegistreringDataType) => ({sisteStilling: registeringsData.registrering.sisteStilling}));
+        .then((registeringsData: RegistreringDataType) => ({sisteStilling: registeringsData.registrering.sisteStilling}))
+        .catch(() => ({sisteStilling: {label: 'Kunne ikke hente data', konseptId: 0, styrk08: ''}}));
 }
 
 export function hentOppfolgingStatus(): Promise<OppfolgingStatusType> {
-    return fetchData<OppfolgingStatusType>(API_VEILARBOPPFOLGING, CONFIG).then((oppfolgingStatus: OppfolgingStatusType) => ({underOppfolging: oppfolgingStatus.underOppfolging}));
+    return fetchData<OppfolgingStatusType>(API_VEILARBOPPFOLGING, CONFIG)
+        .then((oppfolgingStatus: OppfolgingStatusType) => ({underOppfolging: oppfolgingStatus.underOppfolging}))
+        .catch(() => ({underOppfolging: false}));
 }
 
 export function hentKommuneOgStillinger([kommunnenummer, styrkkode]: string[], errorHandler: (response?: Response) => Promise<KommuneOgLedigeStillinger>): Promise<KommuneOgLedigeStillinger> {
