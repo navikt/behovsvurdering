@@ -30,7 +30,7 @@ function StillingInfo(props: StillingsInfoProps) {
             <div id="antallStillingerInfo">
                 <div id="antallForStilling">
                     <Sidetittel>{props.antallStillinger}</Sidetittel>
-                    <Normaltekst>Stillinger som <br/> {props.sisteStilling} </Normaltekst>
+                    <Normaltekst>Stillinger innen <br/> {props.sisteStilling} </Normaltekst>
                 </div>
                 <div id="antallForKategori">
                     <Sidetittel>{props.antallIKategorien}</Sidetittel>
