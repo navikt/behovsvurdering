@@ -6,7 +6,7 @@ export const API_VEILARBREGISTRERING = '/veilarbregistrering/api/registrering';
 export const API_VEILARBOPPFOLGING = '/veilarboppfolging/api/oppfolging';
 export const API_VEILARBPERSON = '/veilarbperson/api/person/geografisktilknytning';
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
-export const API_MIA = '/mia/api/';
+export const API_MIA = 'https://mia.nav.no/rest/rat/fylke';
 
 export interface OppfolgingStatusType {
     underOppfolging: boolean;
