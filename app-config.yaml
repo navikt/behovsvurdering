@@ -15,7 +15,7 @@ healthcheck:
     path: /internal/isReady
     initialDelay: 60
 
-team: oppfolging
+team: bos
 
 alertProfiles:
   - common-java-modules
