@@ -31,6 +31,7 @@
   #antallStillingerInfo {
     .centerContent();
     padding-bottom: 5rem;
+    align-items: flex-start;
 
     .typo-sidetittel {
       font-size: 40pt;
@@ -38,14 +39,39 @@
       padding-bottom: 0.8rem;
     }
 
+    #antallForStilling {
+      padding-right: 1.5rem;
+
+      @media (max-width: @screen-sm-max) {
+        padding-right: 1rem;
+      }
+
+      @media (min-width: @screen-md-min) {
+        padding-top: 50px;
+      }
+    }
+
+    #antallForKategori {
+      padding-left: 1rem;
+      @media (min-width: @screen-md-min) {
+        padding-right: 1.5rem;
+        padding-top: 50px;
+      }
+      @media (max-width: @screen-sm-max) {
+        padding-right: .5rem;
+      }
+    }
+
     #antallForStilling,#antallForKategori {
       .centerContent();
       flex-direction: column;
-      width: 180px;
     }
 
     #antallForStilling > *,#antallForKategori > * {
       .centerContent();
+      max-width: 160px;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
     }
   }
 

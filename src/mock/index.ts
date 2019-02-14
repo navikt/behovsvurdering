@@ -37,7 +37,7 @@ const mock = FetchMock.configure({
 mock.get('/veilarbregistrering/api/registrering', SisteArbeidsforhold );
 mock.get('/veilarboppfolging/api/oppfolging', OppfolgingStatus );
 mock.get('/veilarbperson/api/person/geografisktilknytning', BoligInformajson );
-mock.get('/mia/api/', DataFraMia );
+mock.get('https://mia.nav.no/rest/rat/fylke', DataFraMia );
 mock.post('/veilarbdialog/api/dialog', ({ body }): any => opprettDialog(body)); // tslint:disable-line
 
 export default mock;
