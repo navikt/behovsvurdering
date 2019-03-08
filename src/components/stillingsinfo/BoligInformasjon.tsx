@@ -9,7 +9,7 @@ function BoligInformasjon(props: KommuneOgLedigeStillinger) {
     return (
         <div className="stillingContainer__innhold">
             <div className="stillingContainer__innhold__linje">
-                <Ingress>Kommune : {props.kommunenavn} </Ingress>
+                <Ingress>Fylke : {props.fylkesnavn} </Ingress>
             </div>
         </div>
     );
