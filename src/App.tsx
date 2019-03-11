@@ -83,9 +83,10 @@ class App extends React.Component<AppProps, State> {
     }
 
     renderLettVanskeSpmPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
+        const svar = this.state.svar[LettEllerVanskeligSpm.Id];
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
-            .hvis(this.state.svar[LettEllerVanskeligSpm.Id] === 'lett')
+            .hvis(svar === 'lett' || svar === 'vanskelig' || svar === 'usikker')
             .ellers(ResultatVanskeligAFaJobb.Id);
 
         return (
