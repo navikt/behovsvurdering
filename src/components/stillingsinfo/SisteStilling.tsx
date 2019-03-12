@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Ingress, Normaltekst } from 'nav-frontend-typografi';
-import { sisteStillingConsumerHoc } from '../../context/sisteStilling/SisteStillingProvider';
-import SisteStillingType from '../../datatyper/sisteStillingFraRegistrering';
+import { SisteStillingContext } from '../../context/sisteStilling/SisteStillingProvider';
 
-function SisteStilling(props: SisteStillingType) {
-    if (!props.sisteStilling) {
+function SisteStilling() {
+    const stillingContext = React.useContext(SisteStillingContext);
+
+    if (!stillingContext.sisteStilling) {
         return (
             <Normaltekst>
                 Brukeren har ikke oppgitt siste stilling i den nye registreringsløsningen.
@@ -14,9 +15,9 @@ function SisteStilling(props: SisteStillingType) {
     return (
         <div className="stillingContainer__innhold">
             <div className="stillingContainer__innhold__linje">
-                <Ingress>Siste stilling : {props.sisteStilling.label}</Ingress>
+                <Ingress>Siste stilling : {stillingContext.sisteStilling.label}</Ingress>
             </div>
         </div>);
 }
 
-export default sisteStillingConsumerHoc<{}>(SisteStilling);
+export default SisteStilling;
