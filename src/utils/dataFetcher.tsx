@@ -27,7 +27,7 @@ class DataFetcher<T> extends Component<DataFetcherProps<T>, DataFetcherState<T>>
             .catch(() => {
                 this.setState({
                     feil: true
-                })
+                });
             });
     }
 

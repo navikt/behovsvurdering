@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Innholdstittel, Sidetittel, Normaltekst } from 'nav-frontend-typografi';
 import SisteStilling from './SisteStilling';
-import BoligInformasjon from './BoligInformasjon';
 import svg from '../del-med-nav-infopanel/arbeidsplassen.svg';
 import svgStor from './Jobbmuligheter_desktop.svg';
 import MittBehovKnapp from '../mitt-behov-knapp/MittBehovKnapp';
+import { KommuneOgLedigeStillingerContext } from '../../context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider';
 
 interface StillingsInfoProps {
     onClick: () => void;
@@ -15,16 +15,17 @@ interface StillingsInfoProps {
 }
 
 function StillingInfo(props: StillingsInfoProps) {
+    const context = React.useContext(KommuneOgLedigeStillingerContext);
+
     return (
         <div className="stillingContainer">
             <SisteStilling/>
-            <BoligInformasjon/>
             <div id="stillingsInfoSvg">
                 <img src={svg} alt="Arbeidsmarkedet ikon"/>
             </div>
 
             <div id="jobbmuligheter_tittel">
-                <Innholdstittel>Jobbmuligheter i ditt fylke</Innholdstittel>
+                <Innholdstittel>Jobbmuligheter i {context.fylkesnavn} </Innholdstittel>
             </div>
 
             <div id="antallStillingerInfo">
