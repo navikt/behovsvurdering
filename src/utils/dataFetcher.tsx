@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import NavFrontendSpinner from 'nav-frontend-spinner';
+import Feilmelding from '../components/feilmelding/feilmelding';
 
 interface DataFetcherProps<T> {
     fetchFunc: (args?: string[], errorHandler?: (response?: Response) => any) => Promise<T>; // tslint:disable-line
@@ -8,23 +9,32 @@ interface DataFetcherProps<T> {
 
 interface DataFetcherState<T> {
     isLoading: boolean;
+    feil: boolean;
     data: T;
 }
 
 class DataFetcher<T> extends Component<DataFetcherProps<T>, DataFetcherState<T>> {
     state =  {
         isLoading: true,
+        feil: false,
         data: {} as T,
     };
 
     componentDidMount() {
         this.props.fetchFunc()
             .then((data: T) =>
-                this.setState({data, isLoading: false}));
+                this.setState({data, isLoading: false}))
+            .catch(() => {
+                this.setState({
+                    feil: true
+                })
+            });
     }
 
     render() {
-        if (this.state.isLoading) {
+        if (this.state.feil) {
+            return <div className="spinner-wrapper centered"><Feilmelding/></div>;
+        } else if (this.state.isLoading) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 

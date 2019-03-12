@@ -13,12 +13,14 @@ import { SisteStillingContext } from './context/sisteStilling/SisteStillingProvi
 import { KommuneOgLedigeStillingerContext } from './context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider';
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { KommuneOgLedigeStillinger } from './datatyper/kommuneOgLedigeStillinger';
+import Feilmelding from './components/feilmelding/feilmelding';
 
 interface State {
     page?: string;
     svar: object;
     venterPaaDialogRespons: boolean;
     dialogId: string;
+    feil: boolean;
 }
 
 const initialState = {
@@ -28,7 +30,8 @@ const initialState = {
         [KanDuFinneJobbSpm.Id]: ''
     },
     venterPaaDialogRespons: false,
-    dialogId: ''
+    dialogId: '',
+    feil: false
 };
 
 interface AppProps {
@@ -74,12 +77,18 @@ class App extends React.Component<AppProps, State> {
             venterPaaDialogRespons: true,
         });
 
-        return postDialog(dialog).then((response: any) => { // tslint:disable-line
-            this.setState({
-                dialogId: response.id,
-                venterPaaDialogRespons: false,
+        return postDialog(dialog)
+            .then((response: any) => { // tslint:disable-line
+                this.setState({
+                    dialogId: response.id,
+                    venterPaaDialogRespons: false,
+                });
+            })
+            .catch(() => {
+                this.setState({
+                    feil: true,
+                });
             });
-        });
     }
 
     renderLettVanskeSpmPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
@@ -117,7 +126,9 @@ class App extends React.Component<AppProps, State> {
 
     renderPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
 
-        if (this.state.venterPaaDialogRespons) {
+        if (this.state.feil) {
+            return <div className="spinner-wrapper centered"><Feilmelding/></div>;
+        } else if (this.state.venterPaaDialogRespons) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
