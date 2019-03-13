@@ -111,6 +111,10 @@ function App() {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
+        if (mia.underkategori.antallStillinger === 0 && mia.hovedkategori.antallStillinger === 0) {
+            setPage(LettEllerVanskeligSpm.Id);
+        }
+
         switch (page) {
             case LettEllerVanskeligSpm.Id:
                 return renderLettVanskeSpmPage();
