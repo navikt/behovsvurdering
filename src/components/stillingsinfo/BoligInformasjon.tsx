@@ -1,18 +1,19 @@
 import * as React from 'react';
 import { Ingress } from 'nav-frontend-typografi';
 import {
-    kommuneOgLedigeStillingerContextConsumerHoc
+    KommuneOgLedigeStillingerContext
 } from '../../context/kommuneOgLedigeStillinger/KommuneOgLedigeStillingerProvider';
-import { KommuneOgLedigeStillinger } from '../../datatyper/kommuneOgLedigeStillinger';
 
-function BoligInformasjon(props: KommuneOgLedigeStillinger) {
+function BoligInformasjon() {
+    const context = React.useContext(KommuneOgLedigeStillingerContext);
+
     return (
         <div className="stillingContainer__innhold">
             <div className="stillingContainer__innhold__linje">
-                <Ingress>Fylke : {props.fylkesnavn} </Ingress>
+                <Ingress>Fylke : {context.fylkesnavn} </Ingress>
             </div>
         </div>
     );
 }
 
-export default kommuneOgLedigeStillingerContextConsumerHoc<{}>(BoligInformasjon);
+export default BoligInformasjon;

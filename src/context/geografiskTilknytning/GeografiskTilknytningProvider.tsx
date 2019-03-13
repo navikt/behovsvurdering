@@ -7,7 +7,7 @@ export const initalStateGeografiskTilknyting: GeografiskTilknytning = {
     geografiskTilknytning: '',
 };
 
-const GeografiskTilknytningContext = React.createContext<GeografiskTilknytning>(initalStateGeografiskTilknyting);
+export const GeografiskTilknytningContext = React.createContext<GeografiskTilknytning>(initalStateGeografiskTilknyting);
 
 interface GeografiskTilknytningProps {
     children: React.ReactNode;
@@ -22,17 +22,6 @@ function GeografiskTilknytningProvider (props: GeografiskTilknytningProps) {
                 </GeografiskTilknytningContext.Provider>
             }
         </DataFetcher>
-    );
-}
-
-//TODO FIKS TYPER
-export function geografiskTilknytningContextConsumerHoc<P>(Component: React.ComponentType<P & GeografiskTilknytning>): React.ComponentType<P> {
-    return (props: P) => (
-        <GeografiskTilknytningContext.Consumer>
-            {(geografiskTilknytning: GeografiskTilknytning) => {
-                return <Component {...props} {...geografiskTilknytning} />;
-            }}
-        </GeografiskTilknytningContext.Consumer>
     );
 }
 

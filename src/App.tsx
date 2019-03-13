@@ -101,7 +101,7 @@ class App extends React.Component<AppProps, State> {
         return (
             <LettEllerVanskeligSpm
                 valgtAlternativ={this.state.svar[LettEllerVanskeligSpm.Id]}
-                endreAlternativ={(svar) => this.velgSvar(LettEllerVanskeligSpm.Id, svar)}
+                endreAlternativ={svarAlternativ => this.velgSvar(LettEllerVanskeligSpm.Id, svarAlternativ)}
                 nextPage={() => this.endreSide(hvisSvaretErLett.naviger())}
                 byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
             />

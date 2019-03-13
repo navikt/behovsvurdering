@@ -33,15 +33,4 @@ function SisteStillingProvider(props: SisteStillingProviderProps) {
     );
 }
 
-//TODO FIKS TYPER
-export function sisteStillingConsumerHoc<P>(Component: React.ComponentType<P & SisteStillingType>): React.ComponentType<P> {
-    return (props: P) => (
-        <SisteStillingContext.Consumer>
-            {(context: SisteStillingType) => {
-                return <Component {...props} {...context} />;
-            }}
-        </SisteStillingContext.Consumer>
-    );
-}
-
 export default SisteStillingProvider;
