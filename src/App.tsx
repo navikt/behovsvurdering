@@ -16,134 +16,119 @@ import { KommuneOgLedigeStillinger } from './datatyper/kommuneOgLedigeStillinger
 import Feilmelding from './components/feilmelding/feilmelding';
 
 interface State {
-    page?: string;
     svar: object;
-    venterPaaDialogRespons: boolean;
-    dialogId: string;
-    feil: boolean;
 }
 
-const initialState = {
-    page: '',
+const initialState:State = {
     svar: {
         [LettEllerVanskeligSpm.Id] : '',
         [KanDuFinneJobbSpm.Id]: ''
-    },
-    venterPaaDialogRespons: false,
-    dialogId: '',
-    feil: false
+    }
 };
 
-interface AppProps {
+function App() {
 
-}
+    const [dialogId, setDialogId] = React.useState('');
+    const [venterPaDialogResponse, setVenterPaDialogResponse] = React.useState(false);
+    const [error, setError] = React.useState(false);
+    const [page, setPage] = React.useState('');
+    const [state, setState] = React.useState(initialState);
 
-class App extends React.Component<AppProps, State> {
-
-    constructor(props: AppProps) {
-        super(props);
-        this.state = initialState;
-    }
-
-    velgSvar(spm: string, nySvar: string) {
-        const oppdatertSvar = this.state.svar;
+    function velgSvar(spm: string, nySvar: string) {
+        const oppdatertSvar = state.svar;
         oppdatertSvar[spm] = nySvar;
 
-        this.setState({
-            page: this.state.page,
-            svar: oppdatertSvar
-        });
+        setState( { svar: oppdatertSvar });
     }
 
-    endreSide(side: string) {
-        this.setState({
-            page: side,
-            svar: this.state.svar
-        });
+    function endreSide(side: string) {
+        setPage(side);
     }
 
-    byggOgSendDialog(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
-        const kanFinneJobbTekst = this.state.svar[KanDuFinneJobbSpm.Id] === '' ? '' : `Kan finne jobb selv: ${this.state.svar[KanDuFinneJobbSpm.Id]}`;
+    function byggOgSendDialog(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
+        const kanFinneJobbTekst = state.svar[KanDuFinneJobbSpm.Id] === '' ? '' : `Kan finne jobb selv: ${state.svar[KanDuFinneJobbSpm.Id]}`;
         const dialog = {
             overskrift: 'Svarene jeg har gitt om mine jobbmuligheter',
             tekst: `Mine jobbmuligheter\n` +
                 `Siste stilling: ${sisteStilling}\n` +
                 `Antall ledige stillinger innen ${mia.underkategori.kategori} i ${mia.fylkesnavn}: ${mia.underkategori.antallStillinger}\n` +
                 `Antall ledige stillinger i kategorien ${mia.hovedkategori.kategori} i ${mia.fylkesnavn}: ${mia.hovedkategori.antallStillinger}\n` +
-                `Lett/vanskelig å få jobb: ${this.state.svar[LettEllerVanskeligSpm.Id]}\n` +
+                `Lett/vanskelig å få jobb: ${state.svar[LettEllerVanskeligSpm.Id]}\n` +
                 kanFinneJobbTekst
         };
-        this.setState({
-            venterPaaDialogRespons: true,
-        });
+
+        setVenterPaDialogResponse(true);
 
         return postDialog(dialog)
             .then((response: any) => { // tslint:disable-line
-                this.setState({
-                    dialogId: response.id,
-                    venterPaaDialogRespons: false,
-                });
+                setDialogId(response.dialogId);
+                setVenterPaDialogResponse(false);
             })
             .catch(() => {
-                this.setState({
-                    feil: true,
-                });
+                setError(true);
             });
     }
 
-    renderLettVanskeSpmPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
-        const svar = this.state.svar[LettEllerVanskeligSpm.Id];
+    function renderLettVanskeSpmPage() {
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
-            .hvis(svar === 'lett' || svar === 'vanskelig' || svar === 'usikker')
+            .hvis(state.svar[LettEllerVanskeligSpm.Id] === 'lett' ||
+                state.svar[LettEllerVanskeligSpm.Id]=== 'vanskelig' ||
+                state.svar[LettEllerVanskeligSpm.Id]=== 'usikker')
             .ellers(ResultatVanskeligAFaJobb.Id);
 
         return (
             <LettEllerVanskeligSpm
-                valgtAlternativ={this.state.svar[LettEllerVanskeligSpm.Id]}
-                endreAlternativ={svarAlternativ => this.velgSvar(LettEllerVanskeligSpm.Id, svarAlternativ)}
-                nextPage={() => this.endreSide(hvisSvaretErLett.naviger())}
-                byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
+                valgtAlternativ={state.svar[LettEllerVanskeligSpm.Id]}
+                endreAlternativ={svarAlternativ => velgSvar(LettEllerVanskeligSpm.Id, svarAlternativ)}
+                nextPage={() => endreSide(hvisSvaretErLett.naviger())}
             />
         );
     }
 
-    renderanDuFinneJobbSpm(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
+    function renderKanDuFinneJobbSpm(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
         const hvisSvaretErJa = new ConditionalNavigation()
             .navigerTil(ResultatLettAFaJobb.Id)
-            .hvis(this.state.svar[KanDuFinneJobbSpm.Id] === 'ja')
+            .hvis(state.svar[KanDuFinneJobbSpm.Id] === 'ja')
             .ellers(ResultatVanskeligAFaJobb.Id);
 
         return (
             <KanDuFinneJobbSpm
-                valgtAlternativ={this.state.svar[KanDuFinneJobbSpm.Id]}
-                endreAlternativ={(svar) => this.velgSvar(KanDuFinneJobbSpm.Id, svar)}
-                nextPage={() => this.endreSide(hvisSvaretErJa.naviger())}
-                byggOgSendDialog={() => this.byggOgSendDialog(sisteStilling, mia)}
+                valgtAlternativ={state.svar[KanDuFinneJobbSpm.Id]}
+                endreAlternativ={(svar) => velgSvar(KanDuFinneJobbSpm.Id, svar)}
+                nextPage={() => endreSide(hvisSvaretErJa.naviger())}
+                byggOgSendDialog={() => byggOgSendDialog(sisteStilling, mia)}
             />
         );
     }
 
-    renderPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
+    function renderPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
 
-        if (this.state.feil) {
+        if (error) {
             return <div className="spinner-wrapper centered"><Feilmelding/></div>;
-        } else if (this.state.venterPaaDialogRespons) {
+        }
+        else if (venterPaDialogResponse) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
-        switch (this.state.page) {
+        if (mia.underkategori.antallStillinger === 0 && mia.hovedkategori.antallStillinger === 0) {
+            setPage(LettEllerVanskeligSpm.Id);
+        }
+
+        switch (page) {
             case LettEllerVanskeligSpm.Id:
-                return this.renderLettVanskeSpmPage(sisteStilling, mia);
+                return renderLettVanskeSpmPage();
 
             case KanDuFinneJobbSpm.Id:
-                return this.renderanDuFinneJobbSpm(sisteStilling, mia);
+                return renderKanDuFinneJobbSpm(sisteStilling, mia);
 
             case ResultatLettAFaJobb.Id:
-                return <ResultatLettAFaJobb dialogId={this.state.dialogId} />;
+                console.log("render result lett dialogid", dialogId);
+                return <ResultatLettAFaJobb dialogId={dialogId} />;
 
             case ResultatVanskeligAFaJobb.Id:
-                return <ResultatVanskeligAFaJobb dialogId={this.state.dialogId} />;
+                console.log("render result vanskelig dialogid", dialogId);
+                return <ResultatVanskeligAFaJobb dialogId={dialogId} />;
 
             default:
                 return (
@@ -152,27 +137,25 @@ class App extends React.Component<AppProps, State> {
                         sisteStilling={mia.underkategori.kategori}
                         antallStillinger={mia.underkategori.antallStillinger}
                         antallIKategorien={mia.hovedkategori.antallStillinger}
-                        onClick={() => this.setState({page: LettEllerVanskeligSpm.Id })}
+                        onClick={() => setPage(LettEllerVanskeligSpm.Id)}
                     />
                 );
         }
-
     }
 
-    render() {
-        return (
-            <AppProviders>
-                <Banner/>
-                <KommuneOgLedigeStillingerContext.Consumer>
-                    {mia =>
-                        <SisteStillingContext.Consumer>
-                            {stilling => this.renderPage(stilling.sisteStilling.label, mia)}
-                        </SisteStillingContext.Consumer>
-                    }
-                </KommuneOgLedigeStillingerContext.Consumer>
-            </AppProviders>
-        );
-    }
+    return (
+        <AppProviders>
+            <Banner/>
+            <KommuneOgLedigeStillingerContext.Consumer>
+                {mia =>
+                    <SisteStillingContext.Consumer>
+                        {stilling => renderPage(stilling.sisteStilling.label, mia)}
+                    </SisteStillingContext.Consumer>
+                }
+            </KommuneOgLedigeStillingerContext.Consumer>
+        </AppProviders>
+    );
+
 }
 
 export default App;
