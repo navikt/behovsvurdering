@@ -14,6 +14,7 @@ import { KommuneOgLedigeStillingerContext } from './context/kommuneOgLedigeStill
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { KommuneOgLedigeStillinger } from './datatyper/kommuneOgLedigeStillinger';
 import Feilmelding from './components/feilmelding/feilmelding';
+import { frontendLogger } from './metrikker/frontendlogger';
 
 interface State {
     svar: object;
@@ -61,6 +62,7 @@ function App() {
 
         return postDialog(dialog)
             .then((response: any) => { // tslint:disable-line
+                frontendLogger('behovsvurdering.besvarelser', state.svar);
                 setDialogId(response.dialogId);
                 setVenterPaDialogResponse(false);
             })
