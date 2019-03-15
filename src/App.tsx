@@ -14,12 +14,13 @@ import { KommuneOgLedigeStillingerContext } from './context/kommuneOgLedigeStill
 import NavFrontendSpinner from 'nav-frontend-spinner';
 import { KommuneOgLedigeStillinger } from './datatyper/kommuneOgLedigeStillinger';
 import Feilmelding from './components/feilmelding/feilmelding';
+import { parse } from 'query-string';
 
 interface State {
     svar: object;
 }
 
-const initialState:State = {
+const initialState: State = {
     svar: {
         [LettEllerVanskeligSpm.Id] : '',
         [KanDuFinneJobbSpm.Id]: ''
@@ -47,7 +48,9 @@ function App() {
 
     function byggOgSendDialog(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
         const kanFinneJobbTekst = state.svar[KanDuFinneJobbSpm.Id] === '' ? '' : `Kan finne jobb selv: ${state.svar[KanDuFinneJobbSpm.Id]}`;
+        const dialogIdParam = parse(location.search).dialogId;
         const dialog = {
+            dialogId: dialogIdParam,
             overskrift: 'Svarene jeg har gitt om mine jobbmuligheter',
             tekst: `Mine jobbmuligheter\n` +
                 `Siste stilling: ${sisteStilling}\n` +
@@ -69,12 +72,12 @@ function App() {
             });
     }
 
-    function renderLettVanskeSpmPage() {
+    function renderLettVanskeligSpmPage() {
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
             .hvis(state.svar[LettEllerVanskeligSpm.Id] === 'lett' ||
-                state.svar[LettEllerVanskeligSpm.Id]=== 'vanskelig' ||
-                state.svar[LettEllerVanskeligSpm.Id]=== 'usikker')
+                state.svar[LettEllerVanskeligSpm.Id] === 'vanskelig' ||
+                state.svar[LettEllerVanskeligSpm.Id] === 'usikker')
             .ellers(ResultatVanskeligAFaJobb.Id);
 
         return (
@@ -106,8 +109,7 @@ function App() {
 
         if (error) {
             return <div className="spinner-wrapper centered"><Feilmelding/></div>;
-        }
-        else if (venterPaDialogResponse) {
+        } else if (venterPaDialogResponse) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
@@ -117,17 +119,15 @@ function App() {
 
         switch (page) {
             case LettEllerVanskeligSpm.Id:
-                return renderLettVanskeSpmPage();
+                return renderLettVanskeligSpmPage();
 
             case KanDuFinneJobbSpm.Id:
                 return renderKanDuFinneJobbSpm(sisteStilling, mia);
 
             case ResultatLettAFaJobb.Id:
-                console.log("render result lett dialogid", dialogId);
                 return <ResultatLettAFaJobb dialogId={dialogId} />;
 
             case ResultatVanskeligAFaJobb.Id:
-                console.log("render result vanskelig dialogid", dialogId);
                 return <ResultatVanskeligAFaJobb dialogId={dialogId} />;
 
             default:
