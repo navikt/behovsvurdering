@@ -15,6 +15,7 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import { KommuneOgLedigeStillinger } from './datatyper/kommuneOgLedigeStillinger';
 import Feilmelding from './components/feilmelding/feilmelding';
 import { parse } from 'query-string';
+import { frontendLogger } from './metrikker/frontendlogger';
 
 interface State {
     svar: object;
@@ -46,6 +47,17 @@ function App() {
         setPage(side);
     }
 
+    function loggerMetrikker (sisteStilling: string, mia: KommuneOgLedigeStillinger, state: State) {
+        frontendLogger('behovsvurdering', {
+            sisteStilling: sisteStilling,
+            fylkesnavn: mia.fylkesnavn,
+            hovedkategoriAntallStillinger: mia.hovedkategori.antallStillinger,
+            underkategoriAntallStillinger: mia.underkategori.antallStillinger,
+            lettVanskelig: state.svar[LettEllerVanskeligSpm.Id],
+            finneJobb: state.svar[KanDuFinneJobbSpm.Id],
+        });
+    }
+
     function byggOgSendDialog(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
         const kanFinneJobbTekst = state.svar[KanDuFinneJobbSpm.Id] === '' ? '' : `Kan finne jobb selv: ${state.svar[KanDuFinneJobbSpm.Id]}`;
         const dialogIdParam = parse(location.search).dialogId;
@@ -64,6 +76,7 @@ function App() {
 
         return postDialog(dialog)
             .then((response: any) => { // tslint:disable-line
+                loggerMetrikker(sisteStilling, mia, state);
                 setDialogId(response.dialogId);
                 setVenterPaDialogResponse(false);
             })
