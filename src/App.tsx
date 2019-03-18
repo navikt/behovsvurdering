@@ -119,14 +119,15 @@ function App() {
     }
 
     function renderPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
-
         if (error) {
             return <div className="spinner-wrapper centered"><Feilmelding/></div>;
         } else if (venterPaDialogResponse) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
-        if (mia.underkategori.antallStillinger === 0 && mia.hovedkategori.antallStillinger === 0) {
+
+        if (page === '' && mia.underkategori.antallStillinger === 0
+            && mia.hovedkategori.antallStillinger === 0) {
             setPage(LettEllerVanskeligSpm.Id);
         }
 
@@ -150,7 +151,7 @@ function App() {
                         sisteStilling={mia.underkategori.kategori}
                         antallStillinger={mia.underkategori.antallStillinger}
                         antallIKategorien={mia.hovedkategori.antallStillinger}
-                        onClick={() => setPage(LettEllerVanskeligSpm.Id)}
+                        onClick={() => endreSide(LettEllerVanskeligSpm.Id)}
                     />
                 );
         }
