@@ -18,7 +18,7 @@ class LettEllerVanskeligSpm extends React.Component<LettEllerVanskeligSpmProps> 
 
     onChange = (value: string) => {
         this.props.endreAlternativ(value);
-    };
+    }
 
     render() {
         return (

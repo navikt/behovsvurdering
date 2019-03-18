@@ -20,7 +20,7 @@ interface State {
     svar: object;
 }
 
-const initialState:State = {
+const initialState: State = {
     svar: {
         [LettEllerVanskeligSpm.Id] : '',
         [KanDuFinneJobbSpm.Id]: ''
@@ -46,7 +46,7 @@ function App() {
         setPage(side);
     }
 
-    function loggerMetrikker (sisteStilling: string, mia: KommuneOgLedigeStillinger, state: State) {
+    function loggerMetrikker (sisteStilling: string, mia: KommuneOgLedigeStillinger) {
         frontendLogger('behovsvurdering', {
             sisteStilling: sisteStilling,
             fylkesnavn: mia.fylkesnavn,
@@ -73,7 +73,7 @@ function App() {
 
         return postDialog(dialog)
             .then((response: any) => { // tslint:disable-line
-                loggerMetrikker(sisteStilling, mia, state);
+                loggerMetrikker(sisteStilling, mia);
                 setDialogId(response.dialogId);
                 setVenterPaDialogResponse(false);
             })
@@ -86,8 +86,8 @@ function App() {
         const hvisSvaretErLett = new ConditionalNavigation()
             .navigerTil(KanDuFinneJobbSpm.Id)
             .hvis(state.svar[LettEllerVanskeligSpm.Id] === 'lett' ||
-                state.svar[LettEllerVanskeligSpm.Id]=== 'vanskelig' ||
-                state.svar[LettEllerVanskeligSpm.Id]=== 'usikker')
+                state.svar[LettEllerVanskeligSpm.Id] === 'vanskelig' ||
+                state.svar[LettEllerVanskeligSpm.Id] === 'usikker')
             .ellers(ResultatVanskeligAFaJobb.Id);
 
         return (
@@ -119,8 +119,7 @@ function App() {
 
         if (error) {
             return <div className="spinner-wrapper centered"><Feilmelding/></div>;
-        }
-        else if (venterPaDialogResponse) {
+        } else if (venterPaDialogResponse) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
@@ -136,11 +135,9 @@ function App() {
                 return renderKanDuFinneJobbSpm(sisteStilling, mia);
 
             case ResultatLettAFaJobb.Id:
-                console.log("render result lett dialogid", dialogId);
                 return <ResultatLettAFaJobb dialogId={dialogId} />;
 
             case ResultatVanskeligAFaJobb.Id:
-                console.log("render result vanskelig dialogid", dialogId);
                 return <ResultatVanskeligAFaJobb dialogId={dialogId} />;
 
             default:
