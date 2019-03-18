@@ -119,15 +119,10 @@ function App() {
     }
 
     function renderPage(sisteStilling: string, mia: KommuneOgLedigeStillinger) {
-
         if (error) {
             return <div className="spinner-wrapper centered"><Feilmelding/></div>;
         } else if (venterPaDialogResponse) {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
-        }
-
-        if (mia.underkategori.antallStillinger === 0 && mia.hovedkategori.antallStillinger === 0) {
-            setPage(LettEllerVanskeligSpm.Id);
         }
 
         switch (page) {
@@ -144,13 +139,17 @@ function App() {
                 return <ResultatVanskeligAFaJobb dialogId={dialogId} />;
 
             default:
+                if (page === '' && mia.underkategori.antallStillinger === 0
+                    && mia.hovedkategori.antallStillinger === 0) {
+                    setPage(LettEllerVanskeligSpm.Id);
+                }
                 return (
                     <StillingInfo
                         stillingKategori={mia.hovedkategori.kategori}
                         sisteStilling={mia.underkategori.kategori}
                         antallStillinger={mia.underkategori.antallStillinger}
                         antallIKategorien={mia.hovedkategori.antallStillinger}
-                        onClick={() => setPage(LettEllerVanskeligSpm.Id)}
+                        onClick={() => endreSide(LettEllerVanskeligSpm.Id)}
                     />
                 );
         }
