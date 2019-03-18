@@ -47,7 +47,7 @@ function App() {
         setPage(side);
     }
 
-    function loggerMetrikker (sisteStilling: string, mia: KommuneOgLedigeStillinger, state: State) {
+    function loggerMetrikker (sisteStilling: string, mia: KommuneOgLedigeStillinger) {
         frontendLogger('behovsvurdering', {
             sisteStilling: sisteStilling,
             fylkesnavn: mia.fylkesnavn,
@@ -76,7 +76,7 @@ function App() {
 
         return postDialog(dialog)
             .then((response: any) => { // tslint:disable-line
-                loggerMetrikker(sisteStilling, mia, state);
+                loggerMetrikker(sisteStilling, mia);
                 setDialogId(response.dialogId);
                 setVenterPaDialogResponse(false);
             })

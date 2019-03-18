@@ -50,7 +50,8 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                 onClick={() => {
                     frontendLogger('behovsvurdering.lenke', {lenkenavn: 'delt'});
                 }}
-            >{value}</Lenke>
+            >{value}
+            </Lenke>
         );
     }
 
@@ -89,10 +90,13 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                                 <Normaltekst>
                                     Bli synlig for arbeidsgivere i CV-databasen.
                                 </Normaltekst>
-                                <Lenke href={this.getTekst('REG_CV_LENKE')} target="_blank" onClick={() => {
+                                <Lenke
+                                    href={this.getTekst('REG_CV_LENKE')}
+                                    target="_blank"
+                                    onClick={() => {
                                     frontendLogger('behovsvurdering.lenke', {lenkenavn: 'mincv'});
-                                }}>
-                                    <Element>Min CV <NavFrontendChevron stor={true} /> </Element>
+                                }}
+                                ><Element>Min CV <NavFrontendChevron stor={true} /> </Element>
                                 </Lenke>
                             </div>
                         </div>
@@ -108,10 +112,13 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                                 <Normaltekst>
                                     {this.getTekst('text')}
                                 </Normaltekst>
-                                <Lenke href={this.getTekst('link-href')} target="_blank" onClick={() => {
+                                <Lenke
+                                    href={this.getTekst('link-href')}
+                                    target="_blank"
+                                    onClick={() => {
                                     frontendLogger('behovsvurdering.lenke', {lenkenavn: 'setips'});
-                                }}>
-                                    <Element>{this.getTekst('link-text')} <NavFrontendChevron stor={true} /> </Element>
+                                }}
+                                ><Element>{this.getTekst('link-text')} <NavFrontendChevron stor={true} /> </Element>
                                 </Lenke>
                             </div>
                         </div>
@@ -121,9 +128,17 @@ class DeltMedNavInfoPanel extends React.Component<DeltMedNavInfoPanelProps> {
                 <div className="veilederpanel-blokk">
                     <VeilederPanel>
                         <Normaltekst>
-                            {this.getTekst('info')} {<Lenke onClick={() => {
-                            frontendLogger('behovsvurdering.lenke', {lenkenavn: 'dialog'});
-                        }} href={`/aktivitetsplan/dialog/${this.props.dialogId}`}>dialogen</Lenke>}.
+                            {
+                                this.getTekst('info')
+                            }
+                            <Lenke
+                                onClick={() => {
+                                    frontendLogger('behovsvurdering.lenke', {lenkenavn: 'dialog'});
+                                }}
+                                href={`/aktivitetsplan/dialog/${this.props.dialogId}`}
+                            >
+                                dialogen
+                            </Lenke>.
                         </Normaltekst>
                     </VeilederPanel>
                 </div>
