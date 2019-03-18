@@ -125,12 +125,6 @@ function App() {
             return <div className="spinner-wrapper centered"><NavFrontendSpinner type="XXL"/></div>;
         }
 
-
-        if (page === '' && mia.underkategori.antallStillinger === 0
-            && mia.hovedkategori.antallStillinger === 0) {
-            setPage(LettEllerVanskeligSpm.Id);
-        }
-
         switch (page) {
             case LettEllerVanskeligSpm.Id:
                 return renderLettVanskeligSpmPage();
@@ -145,6 +139,10 @@ function App() {
                 return <ResultatVanskeligAFaJobb dialogId={dialogId} />;
 
             default:
+                if (page === '' && mia.underkategori.antallStillinger === 0
+                    && mia.hovedkategori.antallStillinger === 0) {
+                    setPage(LettEllerVanskeligSpm.Id);
+                }
                 return (
                     <StillingInfo
                         stillingKategori={mia.hovedkategori.kategori}
