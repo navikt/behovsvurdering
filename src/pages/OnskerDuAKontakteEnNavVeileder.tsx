@@ -4,6 +4,8 @@ import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { PagesProps } from './PagesTypes';
 import { PAGE_ID as OPPSUMERING_PAGE_ID } from './Oppsumering';
+import {postDialog} from '../api/api';
+import {NyDialogMeldingData} from '../api/dataTypes';
 
 export const PAGE_ID = 'kontakte-en-nav-veileder';
 
@@ -22,6 +24,19 @@ function sendValue(value: string, props: PagesProps) {
         props.setState({pageId: OPPSUMERING_PAGE_ID});
     }
 }
+
+
+function dataFetcher(dispatch: (value: FetchAction) => void, value: string) {
+    dispatch({type: FetchActionTypes.LOADING});
+    const data: NyDialogMeldingData = {tekst: value, overskrift: 'Mitt første møte med NAV'};
+    return postDialog(data)
+        .then(res => dispatch({type: FetchActionTypes.OK, value: res.id}))
+        .catch((reason) => {
+            dispatch({type: FetchActionTypes.FAILURE});
+            return Promise.reject(reason)
+        })
+}
+
 
 function OnskerDuAKontakteEnNavVeileder(props: PagesProps) {
     const [value, setValue] = useState(initRadioState);

@@ -1,4 +1,4 @@
-import { fetchData } from '../utils/fetchData';
+import { fetchData } from './fetchData';
 export const API_VEILARBOPPFOLGING = '/veilarboppfolging/api/oppfolging';
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
 
