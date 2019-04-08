@@ -1,30 +1,33 @@
-import React from 'react';
-import OnskerDuAKontakteEnNavVeileder, {PAGE_ID} from "./pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder";
+import React, { useState } from 'react';
+import OnskerDuAKontakteEnNavVeileder, { PAGE_ID as NAV_KONTAKT_PAGE_ID } from './pages/OnskerDuAKontakteEnNavVeileder';
+import Oppsumering, { PAGE_ID as OPPSUMERING_PAGE_ID } from './pages/Oppsumering';
+import { PagesProps, PagesState } from './pages/PagesTypes';
 import './App.less';
 
-interface AppState {
-    pageId: string;
-}
-
-const initalState: AppState = {
-    pageId: PAGE_ID
+const initalState: PagesState = {
+    pageId: NAV_KONTAKT_PAGE_ID
 };
 
-function getCurrentPage(appState: AppState): ((props: any) => JSX.Element){
+function getCurrentPage(appState: PagesState): ((props: PagesProps) => JSX.Element) {
     switch (appState.pageId) {
-        case PAGE_ID: return OnskerDuAKontakteEnNavVeileder;
-        default: return () => <div></div>;
+        case NAV_KONTAKT_PAGE_ID:
+            return OnskerDuAKontakteEnNavVeileder;
+        case OPPSUMERING_PAGE_ID:
+            return Oppsumering;
+        default:
+            throw new Error('unsupported page');
     }
 }
 
-
 function App() {
-    // const [value] = useState(initalState);
-    const Page = getCurrentPage(initalState);
+    const [value, setValue] = useState(initalState);
+    const Page = getCurrentPage(value);
 
-    return <div className="app">
-        <Page/>
-    </div>
+    return (
+        <div className="app">
+            <Page setState={setValue}/>
+        </div>
+    );
 }
 
 export default App;
