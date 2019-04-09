@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import OnskerDuAKontakteEnNavVeileder, { PAGE_ID as NAV_KONTAKT_PAGE_ID } from './pages/OnskerDuAKontakteEnNavVeileder';
+import OnskerDuAKontakteEnNavVeileder, { PAGE_ID as NAV_KONTAKT_PAGE_ID } from './pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder';
 import Oppsumering, { PAGE_ID as OPPSUMERING_PAGE_ID } from './pages/Oppsumering';
-import HvilkenVeiledningTrengerDu, { PAGE_ID as VEILEDNING_PAGE_ID } from './pages/HvilkenVeiledningTrengerDu';
+import HvilkenVeiledningTrengerDu, { PAGE_ID as VEILEDNING_PAGE_ID } from './pages/hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
 import { PagesProps, PagesState } from './pages/PagesTypes';
 import './App.less';
 
