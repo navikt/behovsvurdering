@@ -1,11 +1,6 @@
 import { fetchData } from './fetchData';
 import {DialogData, NyDialogMeldingData} from "./dataTypes";
-export const API_VEILARBOPPFOLGING = '/veilarboppfolging/api/oppfolging';
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
-
-export interface OppfolgingStatusType {
-    underOppfolging: boolean;
-}
 
 function getCookie(name: string) {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -25,12 +20,6 @@ const CONFIG = {
     headers: getHeaders(),
 };
 
-
-export function hentOppfolgingStatus(): Promise<OppfolgingStatusType> {
-    return fetchData<OppfolgingStatusType>(API_VEILARBOPPFOLGING, CONFIG)
-        .then((oppfolgingStatus: OppfolgingStatusType) => ({underOppfolging: oppfolgingStatus.underOppfolging}))
-        .catch(() => ({underOppfolging: false}));
-}
 
 export function postDialog(data: NyDialogMeldingData): Promise<DialogData> {
     return fetchData<DialogData>(API_VEILARBDIALOG, {method: 'post', body: JSON.stringify(data), ...CONFIG});

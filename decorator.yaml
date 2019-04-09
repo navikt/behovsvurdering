@@ -1,10 +1,4 @@
 proxy:
-  - contextPath: "/veilarboppfolging"
-    baseUrl: "http://veilarbproxy"
-  - contextPath: "/veilarbperson"
-    baseUrl: "http://veilarbproxy"
-  - contextPath: "/veilarbregistrering"
-    baseUrl: "http://veilarbproxy"
   - contextPath: "/veilarbdialog"
     baseUrl: "http://veilarbproxy"
 
