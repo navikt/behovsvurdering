@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
-import { RadioPanelGruppe } from 'nav-frontend-skjema';
-import { Hovedknapp } from 'nav-frontend-knapper';
-import { PagesProps } from './PagesTypes';
-import { PAGE_ID as OPPSUMERING_PAGE_ID } from './Oppsumering';
+import React, {useReducer, useState} from 'react';
+import {Undertittel} from 'nav-frontend-typografi';
+import {RadioPanelGruppe} from 'nav-frontend-skjema';
+import {Hovedknapp} from 'nav-frontend-knapper';
+import {PagesProps, SetStateFunc} from './PagesTypes';
+import {PAGE_ID as OPPSUMERING_PAGE_ID} from './Oppsumering';
+import {PAGE_ID as VEILEDNING_PAGE_ID} from './HvilkenVeiledningTrengerDu';
 import {postDialog} from '../api/api';
 import {NyDialogMeldingData} from '../api/dataTypes';
+import {FetchActionTypes, FetchDispatch, initialFetchState, reducer} from "../utils/fetchReducer";
 
 export const PAGE_ID = 'kontakte-en-nav-veileder';
 
@@ -14,32 +16,36 @@ const KANSKJE = 'Kanskje senere';
 const JA = 'Ja';
 const USIKKER = 'Usikker';
 
-const initRadioState: string = '';
 
-function sendValue(value: string, props: PagesProps) {
-    // todo sendData THEN update to next pages
+function sendValue(value: string, dialogId: string, setPageState: SetStateFunc) {
     if (value === NEI || value === KANSKJE) {
-        props.setState({pageId: OPPSUMERING_PAGE_ID});
+        setPageState({pageId: OPPSUMERING_PAGE_ID, dialogId: dialogId});
     } else {
-        props.setState({pageId: OPPSUMERING_PAGE_ID});
+        setPageState({pageId: VEILEDNING_PAGE_ID, dialogId: dialogId});
     }
 }
 
 
-function dataFetcher(dispatch: (value: FetchAction) => void, value: string) {
+function sendData(value: string, dispatch: FetchDispatch, setPageState: SetStateFunc) {
     dispatch({type: FetchActionTypes.LOADING});
-    const data: NyDialogMeldingData = {tekst: value, overskrift: 'Mitt første møte med NAV'};
+    const data: NyDialogMeldingData = {tekst: value, overskrift: 'Ditt behov for veiledning'};
     return postDialog(data)
-        .then(res => dispatch({type: FetchActionTypes.OK, value: res.id}))
+        .then(res => {
+                dispatch({type: FetchActionTypes.OK});
+                sendValue(value, res.id, setPageState);
+            }
+        )
         .catch((reason) => {
             dispatch({type: FetchActionTypes.FAILURE});
             return Promise.reject(reason)
         })
 }
 
+const initRadioState: string | undefined = undefined;
 
 function OnskerDuAKontakteEnNavVeileder(props: PagesProps) {
     const [value, setValue] = useState(initRadioState);
+    const [fetchState, fetchDispatch] = useReducer(reducer, initialFetchState);
 
     return (
         <div>
@@ -55,19 +61,19 @@ function OnskerDuAKontakteEnNavVeileder(props: PagesProps) {
                             legend=""
                             name=""
                             radios={[
-                                {label: NEI, disabled: false, value: NEI},
-                                {label: KANSKJE, disabled: false, value: KANSKJE},
-                                {label: JA, disabled: false, value: JA},
-                                {label: USIKKER, disabled: false, value: USIKKER},
+                                {label: NEI, disabled: fetchState.loading, value: NEI},
+                                {label: KANSKJE, disabled: fetchState.loading, value: KANSKJE},
+                                {label: JA, disabled: fetchState.loading, value: JA},
+                                {label: USIKKER, disabled: fetchState.loading, value: USIKKER},
                             ]}
                             checked={value}
                             onChange={(_, val) => setValue(val)}
                             // feil={{feilmelding: null}}
                         />
                     </div>
-                    <Hovedknapp spinner={false}
-                                disabled={false}
-                                onClick={() => sendValue(value, props)}>
+                    <Hovedknapp spinner={fetchState.loading}
+                                disabled={fetchState.loading}
+                                onClick={() => sendData(value!, fetchDispatch, props.setState)}>
                         Send</Hovedknapp>
                 </div>
             </div>

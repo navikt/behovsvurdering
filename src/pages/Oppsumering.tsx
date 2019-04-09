@@ -1,8 +1,9 @@
 import React from 'react';
+import {PagesProps} from "./PagesTypes";
 
 export const PAGE_ID = 'oppsumering';
 
-function Oppsumering() {
+function Oppsumering(props: PagesProps) {
 
     return (
         <div className="spm">

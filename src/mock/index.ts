@@ -1,9 +1,5 @@
-import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
-import SisteArbeidsforhold from './registrering';
-import OppfolgingStatus from './oppfolging';
-import BoligInformajson from './boliginformasjon';
-import DataFraMia from './dataFraMia';
-import { opprettDialog } from './dialog';
+import FetchMock, {Middleware, MiddlewareUtils} from 'yet-another-fetch-mock';
+import {opprettDialog} from './dialog';
 
 const loggingMiddleware: Middleware = (request, response) => {
     // tslint:disable
@@ -27,17 +23,13 @@ const loggingMiddleware: Middleware = (request, response) => {
 };
 
 const mock = FetchMock.configure({
-    enableFallback: true,
+    enableFallback: false,
     middleware: MiddlewareUtils.combine(
-        MiddlewareUtils.delayMiddleware(0),
+        MiddlewareUtils.delayMiddleware(1000),
         loggingMiddleware
     )
 });
 
-mock.get('/veilarbregistrering/api/registrering', SisteArbeidsforhold );
-mock.get('/veilarboppfolging/api/oppfolging', OppfolgingStatus );
-mock.get('/veilarbperson/api/person/geografisktilknytning', BoligInformajson );
-mock.get('https://mia.nav.no/rest/rat/fylke', DataFraMia );
-mock.post('/veilarbdialog/api/dialog', ({ body }): any => opprettDialog(body)); // tslint:disable-line
+mock.post('/veilarbdialog/api/dialog', ({body}): any => opprettDialog(body)); // tslint:disable-line
 
 export default mock;

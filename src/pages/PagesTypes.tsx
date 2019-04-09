@@ -1,7 +1,11 @@
 export interface PagesState {
     pageId: string;
+    dialogId?: string
 }
 
 export interface PagesProps {
-    setState: (props: PagesState) => void;
+    setState: SetStateFunc
+    state: PagesState
 }
+
+export type SetStateFunc = (state: PagesState) => void;

@@ -13,7 +13,7 @@ export interface FetchAction {
     type: FetchActionTypes;
 }
 
-export const initialState = {
+export const initialFetchState = {
     loading: false,
     failure: false,
 };

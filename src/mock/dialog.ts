@@ -1,14 +1,16 @@
-interface OpprettDialogType {
-    overskrift: string;
-    tekst: string;
-}
+import {DialogData, NyDialogMeldingData} from "../api/dataTypes";
 
-export function opprettDialog(update: OpprettDialogType) {
-    const dialogId = 1;
-    return {
-        dialogId: dialogId,
-        overskrift: update.overskrift,
-        tekst: update.tekst,
-        sendt: new Date(),
-    };
+const dialogData: DialogData = {
+    id: '123',
+    overskrift: '',
+    henvendelser: [],
+};
+
+export function opprettDialog(update: NyDialogMeldingData): DialogData {
+    if (update.dialogId !== dialogData.id) {
+        dialogData.overskrift = update.overskrift!;
+    }
+    dialogData.henvendelser.push({tekst: update.tekst});
+    return dialogData;
+
 }

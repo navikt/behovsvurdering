@@ -1,4 +1,5 @@
 import { fetchData } from './fetchData';
+import {DialogData, NyDialogMeldingData} from "./dataTypes";
 export const API_VEILARBOPPFOLGING = '/veilarboppfolging/api/oppfolging';
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
 
@@ -31,6 +32,6 @@ export function hentOppfolgingStatus(): Promise<OppfolgingStatusType> {
         .catch(() => ({underOppfolging: false}));
 }
 
-export function postDialog(data: any): Promise<void> { // tslint:disable-line
-    return fetchData<void>(API_VEILARBDIALOG, {method: 'post', body: JSON.stringify(data), ...CONFIG});
+export function postDialog(data: NyDialogMeldingData): Promise<DialogData> {
+    return fetchData<DialogData>(API_VEILARBDIALOG, {method: 'post', body: JSON.stringify(data), ...CONFIG});
 }
