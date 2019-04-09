@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import 'react-app-polyfill/ie11';
+import 'whatwg-fetch'
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import './index.less';
