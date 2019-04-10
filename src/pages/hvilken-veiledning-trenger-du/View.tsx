@@ -1,10 +1,9 @@
-import React, {useState} from 'react';
-import {Undertittel} from "nav-frontend-typografi";
-import {Textarea} from "nav-frontend-skjema";
-import {Hovedknapp} from "nav-frontend-knapper";
+import React, { useState } from 'react';
+import { Undertittel } from 'nav-frontend-typografi';
+import { Textarea } from 'nav-frontend-skjema';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
-
-interface ViewProps{
+interface ViewProps {
   onSubmit: (value: string) => void;
   disabled: boolean;
 }
@@ -41,7 +40,8 @@ function View(props: ViewProps) {
             <Hovedknapp
                 spinner={props.disabled}
                 disabled={props.disabled}
-                onClick={() => props.onSubmit(value)}>
+                onClick={() => props.onSubmit(value)}
+            >
                 Send
             </Hovedknapp>
         </div>

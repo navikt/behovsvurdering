@@ -40,8 +40,8 @@
     "whatwg-fetch": "^3.0.0"
   },
   "scripts": {
-    "lint": "echo not implemented, part of the build script",
-    "tslint:fix": "tslint -c tslint.json 'src/**/*.ts*' --fix",
+    "lint": "tslint --project tsconfig.json -c tslint.json 'src/**/*.ts*'",
+    "lint:fix": "tslint --project tsconfig.json -c tslint.json 'src/**/*.ts*' --fix",
     "test:coverage": "npm test -- --coverage",
     "start": "cross-env REACT_APP_MOCK=true craco start",
     "build": "craco build",

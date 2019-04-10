@@ -1,5 +1,5 @@
 import { fetchData } from './fetchData';
-import {DialogData, NyDialogMeldingData} from "./dataTypes";
+import { DialogData, NyDialogMeldingData } from './dataTypes';
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
 
 function getCookie(name: string) {
@@ -19,7 +19,6 @@ const CONFIG = {
     credentials: ('same-origin' as RequestCredentials),
     headers: getHeaders(),
 };
-
 
 export function postDialog(data: NyDialogMeldingData): Promise<DialogData> {
     return fetchData<DialogData>(API_VEILARBDIALOG, {method: 'post', body: JSON.stringify(data), ...CONFIG});

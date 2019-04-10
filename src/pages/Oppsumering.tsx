@@ -1,5 +1,5 @@
 import React from 'react';
-import {PagesProps} from "./PagesTypes";
+import { PagesProps } from './PagesTypes';
 
 export const PAGE_ID = 'oppsumering';
 

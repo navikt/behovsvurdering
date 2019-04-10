@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
-import {Undertittel} from 'nav-frontend-typografi';
-import {RadioPanelGruppe} from 'nav-frontend-skjema';
-import {Hovedknapp} from 'nav-frontend-knapper';
-
+import React, { useState } from 'react';
+import { Undertittel } from 'nav-frontend-typografi';
+import { RadioPanelGruppe } from 'nav-frontend-skjema';
+import { Hovedknapp } from 'nav-frontend-knapper';
 
 export const NEI = 'Nei';
 export const KANSKJE = 'Kanskje senere';
@@ -10,7 +9,7 @@ export const JA = 'Ja';
 export const USIKKER = 'Usikker';
 
 interface ViewProps {
-    onSubmit: (value: string) => void
+    onSubmit: (value: string) => void;
     disabled: boolean;
 }
 
@@ -19,7 +18,6 @@ const initRadioState: string | undefined = undefined;
 function View(props: ViewProps) {
     const [value, setValue] = useState(initRadioState);
     const [feilState, setFeil] = useState(false);
-
 
     const feil = feilState ? {feilmelding: 'Du har en mega feil'} : undefined;
     return (
@@ -46,18 +44,20 @@ function View(props: ViewProps) {
                             feil={feil}
                         />
                     </div>
-                    <Hovedknapp spinner={props.disabled}
-                                disabled={props.disabled}
-                                onClick={() => {
-                                    if (value === undefined) {
-                                        setFeil(true);
-                                    } else {
-                                        setFeil(false);
-                                        props.onSubmit(value)
-                                    }
-                                }}
+                    <Hovedknapp
+                        spinner={props.disabled}
+                        disabled={props.disabled}
+                        onClick={() => {
+                            if (value === undefined) {
+                                setFeil(true);
+                            } else {
+                                setFeil(false);
+                                props.onSubmit(value);
+                            }
+                        }}
                     >
-                        Send</Hovedknapp>
+                        Send
+                    </Hovedknapp>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
-import FetchMock, {Middleware, MiddlewareUtils} from 'yet-another-fetch-mock';
-import {opprettDialog} from './dialog';
+import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import { opprettDialog } from './dialog';
 
 const loggingMiddleware: Middleware = (request, response) => {
     // tslint:disable

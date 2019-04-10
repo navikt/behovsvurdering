@@ -1,4 +1,4 @@
-import {DialogData, NyDialogMeldingData} from "../api/dataTypes";
+import { DialogData, NyDialogMeldingData } from '../api/dataTypes';
 
 const dialogData: DialogData = {
     id: '123',
