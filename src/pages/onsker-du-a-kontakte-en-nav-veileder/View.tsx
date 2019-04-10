@@ -23,43 +23,43 @@ function View(props: ViewProps) {
     return (
         <div>
             <div>Mer innhold vil komme her</div>
-            <div className="gray-background">
-                <div className="spm">
-                    <Undertittel className="spm-row">
+            <div className="beholder">
+                    <div className="rad">
+                    <Undertittel className="rad-item">
                         Ønsker du å kontakte en NAV-veileder for å få hjelp til å komme i jobb?
                     </Undertittel>
-                    <div className="spm-row">
-                        <RadioPanelGruppe
-                            className="spm-row"
-                            legend=""
-                            name=""
-                            radios={[
-                                {label: NEI, disabled: props.disabled, value: NEI},
-                                {label: KANSKJE, disabled: props.disabled, value: KANSKJE},
-                                {label: JA, disabled: props.disabled, value: JA},
-                                {label: USIKKER, disabled: props.disabled, value: USIKKER},
-                            ]}
-                            checked={value}
-                            onChange={(_, val) => setValue(val)}
-                            feil={feil}
-                        />
+                    <RadioPanelGruppe
+                        className="rad-item"
+                        legend=""
+                        name=""
+                        radios={[
+                            {label: NEI, disabled: props.disabled, value: NEI},
+                            {label: KANSKJE, disabled: props.disabled, value: KANSKJE},
+                            {label: JA, disabled: props.disabled, value: JA},
+                            {label: USIKKER, disabled: props.disabled, value: USIKKER},
+                        ]}
+                        checked={value}
+                        onChange={(_, val) => setValue(val)}
+                        feil={feil}
+                    />
+                    <div className="center">
+                        <Hovedknapp
+                            spinner={props.disabled}
+                            disabled={props.disabled}
+                            onClick={() => {
+                                if (value === undefined) {
+                                    setFeil(true);
+                                } else {
+                                    setFeil(false);
+                                    props.onSubmit(value);
+                                }
+                            }}
+                        >
+                            Send
+                        </Hovedknapp>
                     </div>
-                    <Hovedknapp
-                        spinner={props.disabled}
-                        disabled={props.disabled}
-                        onClick={() => {
-                            if (value === undefined) {
-                                setFeil(true);
-                            } else {
-                                setFeil(false);
-                                props.onSubmit(value);
-                            }
-                        }}
-                    >
-                        Send
-                    </Hovedknapp>
+                    </div>
                 </div>
-            </div>
         </div>
     );
 }
