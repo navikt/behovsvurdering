@@ -15,7 +15,9 @@ function HvilkenVeiledningTrengerDu(props: PagesProps) {
         });
     };
 
-    return <View onSubmit={onSubmit} disabled={fetchState.loading}/>;
+    return (
+        <View onSubmit={onSubmit} disabled={fetchState.loading}/>
+    );
 }
 
 export default HvilkenVeiledningTrengerDu;
