@@ -1,18 +1,17 @@
 import React from 'react';
-import {Undertittel, Element, Normaltekst} from "nav-frontend-typografi";
-import classnames from "classnames";
+import { Undertittel, Element, Normaltekst } from 'nav-frontend-typografi';
+import classnames from 'classnames';
 
-import cvSVG from './cv.svg'
-import arbeidsplassenSVG from './arbeidsplassen.svg'
-import jobbsokertipsSVG from './jobbsokertips.svg'
-import './Anbefaling.less'
-
+import cvSVG from './cv.svg';
+import arbeidsplassenSVG from './arbeidsplassen.svg';
+import jobbsokertipsSVG from './jobbsokertips.svg';
+import './Anbefaling.less';
 
 interface Props {
     className?: string;
 }
 
-function Anbefaling(props: Props){
+function Anbefaling(props: Props) {
     return (
         <div className={classnames('anbefaling', props.className)}>
             <Undertittel className="anbefaling-tittel">
@@ -44,8 +43,8 @@ function Anbefaling(props: Props){
                 </div>
             </div>
         </div>
-    )
+    );
 
 }
 
-export default Anbefaling
+export default Anbefaling;

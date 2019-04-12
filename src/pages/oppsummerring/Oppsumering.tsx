@@ -1,6 +1,6 @@
 import React from 'react';
-import Anbefaling from "../../components/anbefaling/Anbefaling";
-import DialogTekst from "../../components/dialog-lenke/DialogTekst";
+import Anbefaling from '../../components/anbefaling/Anbefaling';
+import DialogTekst from '../../components/dialog-lenke/DialogTekst';
 import './Oppsummering.less';
 
 interface Props {

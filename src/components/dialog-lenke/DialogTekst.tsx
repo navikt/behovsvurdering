@@ -1,7 +1,7 @@
 import React from 'react';
-import {Element} from 'nav-frontend-typografi'
-import circleSVG from './check-circle.svg'
-import './DialogLenke.less'
+import { Element } from 'nav-frontend-typografi';
+import circleSVG from './check-circle.svg';
+import './DialogLenke.less';
 
 interface Props {
     dialogId: string;
@@ -19,4 +19,4 @@ function DialogTekst(props: Props) {
     );
 }
 
-export default DialogTekst
+export default DialogTekst;
