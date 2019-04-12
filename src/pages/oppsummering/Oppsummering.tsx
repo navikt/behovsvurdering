@@ -8,7 +8,7 @@ interface Props {
     tekst: string;
 }
 
-function Oppsumering(props: Props) {
+function Oppsummering(props: Props) {
     return (
         <>
             <div className="beholder oppsummering">
@@ -28,4 +28,4 @@ function Oppsumering(props: Props) {
     );
 }
 
-export default Oppsumering;
+export default Oppsummering;

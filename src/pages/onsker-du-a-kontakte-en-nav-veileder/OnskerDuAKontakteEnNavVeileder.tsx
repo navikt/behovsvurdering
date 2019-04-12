@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { PagesProps, SetStateFunc } from '../PagesTypes';
-import { PAGE_ID as OPPSUMERING_PAGE_ID } from '../oppsummerring/NeiOppsumering';
+import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/NeiOppsummering';
 import { PAGE_ID as VEILEDNING_PAGE_ID } from '../hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
 import { initialFetchState, reducer } from '../../reducers/fetchReducer';
 import InputView, { KANSKJE, NEI } from './InputView';
@@ -11,7 +11,7 @@ export const PAGE_ID = 'kontakte-en-nav-veileder';
 
 function changeStateBasedOnValue(value: string, dialogId: string, setPageState: SetStateFunc) {
     if (value === NEI || value === KANSKJE) {
-        setPageState({pageId: OPPSUMERING_PAGE_ID, dialogId: dialogId});
+        setPageState({pageId: OPPSUMMERING_PAGE_ID, dialogId: dialogId});
     } else {
         setPageState({pageId: VEILEDNING_PAGE_ID, dialogId: dialogId});
     }

@@ -11,3 +11,7 @@ proxy:
 redirect:
   - from: /aktivitetsplan
     to: {{ AKTIVITETSPLAN_URL }}
+  - from: /jobbsokerkompetanse
+    to: {{ JOBBSOKERKOMPETANSE_URL }}
+  - from: /arbeidsplassen
+    to: {{ ARBEIDSPLASSEN_URL }}

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import OnskerDuAKontakteEnNavVeileder, { PAGE_ID as NAV_KONTAKT_PAGE_ID } from './pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder';
 import HvilkenVeiledningTrengerDu, { PAGE_ID as VEILEDNING_PAGE_ID } from './pages/hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
-import JaOppsumering, { PAGE_ID as JA_OPPSUMERING_PAGE_ID } from './pages/oppsummerring/JaOppsumering';
-import NeiOppsumering, { PAGE_ID as NEI_OPPSUMERING_PAGE_ID } from './pages/oppsummerring/NeiOppsumering';
+import JaOppsummering, { PAGE_ID as JA_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/JaOppsummering';
+import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/NeiOppsummering';
 import { PagesProps, PagesState } from './pages/PagesTypes';
 import './App.less';
 
@@ -14,10 +14,10 @@ function getCurrentPage(appState: PagesState): ((props: PagesProps) => JSX.Eleme
     switch (appState.pageId) {
         case NAV_KONTAKT_PAGE_ID:
             return OnskerDuAKontakteEnNavVeileder;
-        case JA_OPPSUMERING_PAGE_ID:
-            return JaOppsumering;
-        case NEI_OPPSUMERING_PAGE_ID:
-            return NeiOppsumering;
+        case JA_OPPSUMMERING_PAGE_ID:
+            return JaOppsummering;
+        case NEI_OPPSUMMERING_PAGE_ID:
+            return NeiOppsummering;
         case VEILEDNING_PAGE_ID:
             return HvilkenVeiledningTrengerDu;
         default:
