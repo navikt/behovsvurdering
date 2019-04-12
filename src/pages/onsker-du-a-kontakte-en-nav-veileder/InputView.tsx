@@ -19,7 +19,7 @@ function InputView(props: InputViewProps) {
     const [value, setValue] = useState(initRadioState);
     const [feilState, setFeil] = useState(false);
 
-    const feil = feilState ? {feilmelding: 'Du har en mega feil'} : undefined;
+    const feil = feilState ? {feilmelding: 'Obligatorisk felt'} : undefined;
     return (
         <div className="beholder">
             <div className="rad">
