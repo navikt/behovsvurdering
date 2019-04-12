@@ -1,7 +1,7 @@
 import React, { useReducer } from 'react';
 import { initialFetchState, reducer } from '../../reducers/fetchReducer';
 import { PagesProps } from '../PagesTypes';
-import { PAGE_ID as OPPSUMERING_PAGE_ID } from '../Oppsumering';
+import { PAGE_ID as OPPSUMERING_PAGE_ID } from '../oppsummerring/JaOppsumering';
 import View from './View';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 

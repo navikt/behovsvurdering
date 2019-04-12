@@ -12,7 +12,9 @@ const initState: string = '';
 
 function View(props: ViewProps) {
     const [value, setValue] = useState(initState);
+    const [feilState, setFeil] = useState(false);
 
+    const feil = feilState ? {feilmelding: 'Obligatorisk felt'} : undefined;
     return (
         <div className="beholder">
             <div className="rad">
@@ -36,13 +38,21 @@ function View(props: ViewProps) {
                         value={value}
                         disabled={props.disabled}
                         onChange={(e) => setValue((e.target as HTMLInputElement).value)}
+                        feil={feil}
                     />
                 </div>
                 <div className="center">
                     <Hovedknapp
                         spinner={props.disabled}
                         disabled={props.disabled}
-                        onClick={() => props.onSubmit(value)}
+                        onClick={() => {
+                            if (value === '') {
+                                setFeil(true);
+                            } else {
+                                setFeil(false);
+                                props.onSubmit(value);
+                            }
+                        }}
                     >
                         Send
                     </Hovedknapp>
