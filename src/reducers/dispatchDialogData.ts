@@ -3,10 +3,16 @@ import { DialogData, NyDialogMeldingData } from '../api/dataTypes';
 import { postDialog } from '../api/api';
 
 // This do not change after first time
-const overskrift = 'Ditt behov for veiledning';
+const overskrift = 'Behovet mitt for veiledning';
 
-export function dispatchDialogData(tekst: string, dispatch: FetchDispatch): Promise<DialogData> {
+interface InputData {
+    spm: string;
+    svar: string;
+}
+
+export function dispatchDialogData(inputData: InputData, dispatch: FetchDispatch): Promise<DialogData> {
     dispatch({type: FetchActionTypes.LOADING});
+    const tekst = `Spørsmål fra NAV: ${inputData.spm}\n Svaret mitt: ${inputData.svar}`;
     const data: NyDialogMeldingData = {tekst, overskrift};
     return postDialog(data)
         .then(res => {

@@ -15,6 +15,8 @@ interface InputViewProps {
 
 const initRadioState: string | undefined = undefined;
 
+export const SPORSMAL = 'Ønsker du å kontakte en NAV-veileder for å få hjelp til å komme i jobb?';
+
 function InputView(props: InputViewProps) {
     const [value, setValue] = useState(initRadioState);
     const [feilState, setFeil] = useState(false);

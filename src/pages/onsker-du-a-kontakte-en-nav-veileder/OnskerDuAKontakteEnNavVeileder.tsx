@@ -3,7 +3,7 @@ import { PagesProps, SetStateFunc } from '../PagesTypes';
 import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/NeiOppsummering';
 import { PAGE_ID as VEILEDNING_PAGE_ID } from '../hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
 import { initialFetchState, reducer } from '../../reducers/fetchReducer';
-import InputView, { KANSKJE, NEI } from './InputView';
+import InputView, {KANSKJE, NEI, SPORSMAL} from './InputView';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 import InfoView from './InfoView';
 
@@ -20,7 +20,8 @@ function changeStateBasedOnValue(value: string, dialogId: string, setPageState: 
 function OnskerDuAKontakteEnNavVeileder(props: PagesProps) {
     const [fetchState, fetchDispatch] = useReducer(reducer, initialFetchState);
     const onSubmit = (value: string) => {
-        dispatchDialogData(value, fetchDispatch).then((res) => {
+        const inputData = {svar: value, spm: SPORSMAL};
+        dispatchDialogData(inputData, fetchDispatch).then((res) => {
             changeStateBasedOnValue(value, res.id, props.setState);
         });
     };

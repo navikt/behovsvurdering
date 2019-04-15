@@ -10,6 +10,8 @@ interface ViewProps {
 
 const initState: string = '';
 
+export const SPORSMAL = "Hvilken veiledning trenger du fra NAV for å komme i jobb?";
+
 function View(props: ViewProps) {
     const [value, setValue] = useState(initState);
     const [feilState, setFeil] = useState(false);
@@ -19,7 +21,7 @@ function View(props: ViewProps) {
         <div className="beholder">
             <div className="rad">
                 <Undertittel className="rad-item">
-                    Hvilken veiledning trenger du fra NAV for å komme i jobb?
+                    {SPORSMAL}
                 </Undertittel>
                 <div className="rad-item">
                     <ul>
