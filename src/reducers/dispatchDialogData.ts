@@ -8,12 +8,13 @@ const overskrift = 'Behovet mitt for veiledning';
 interface InputData {
     spm: string;
     svar: string;
+    dialogId?: string;
 }
 
 export function dispatchDialogData(inputData: InputData, dispatch: FetchDispatch): Promise<DialogData> {
     dispatch({type: FetchActionTypes.LOADING});
     const tekst = `Spørsmål fra NAV: ${inputData.spm}\n Svaret mitt: ${inputData.svar}`;
-    const data: NyDialogMeldingData = {tekst, overskrift};
+    const data: NyDialogMeldingData = {tekst, overskrift, dialogId: inputData.dialogId};
     return postDialog(data)
         .then(res => {
             dispatch({type: FetchActionTypes.OK});
