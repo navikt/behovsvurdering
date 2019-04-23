@@ -3,7 +3,7 @@ import { PagesProps, SetStateFunc } from '../PagesTypes';
 import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/NeiOppsummering';
 import { PAGE_ID as VEILEDNING_PAGE_ID } from '../hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
 import { initialFetchState, reducer } from '../../reducers/fetchReducer';
-import InputView, {KANSKJE, NEI, SPORSMAL} from './InputView';
+import InputView, { KANSKJE, NEI, SPORSMAL } from './InputView';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 import InfoView from './InfoView';
 

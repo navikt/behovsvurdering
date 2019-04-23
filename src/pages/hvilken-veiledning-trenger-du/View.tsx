@@ -10,7 +10,7 @@ interface ViewProps {
 
 const initState: string = '';
 
-export const SPORSMAL = "Hvilken veiledning trenger du fra NAV for å komme i jobb?";
+export const SPORSMAL = 'Hvilken veiledning trenger du fra NAV for å komme i jobb?';
 
 function View(props: ViewProps) {
     const [value, setValue] = useState(initState);

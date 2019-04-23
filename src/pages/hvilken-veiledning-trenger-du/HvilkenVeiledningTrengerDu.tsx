@@ -2,7 +2,7 @@ import React, { useReducer } from 'react';
 import { initialFetchState, reducer } from '../../reducers/fetchReducer';
 import { PagesProps } from '../PagesTypes';
 import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/JaOppsummering';
-import View, {SPORSMAL} from './View';
+import View, { SPORSMAL } from './View';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 
 export const PAGE_ID = 'veiledning';
