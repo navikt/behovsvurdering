@@ -1,4 +1,4 @@
-import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
+import FetchMock, { Middleware, MiddlewareUtils, } from 'yet-another-fetch-mock';
 import { opprettDialog } from './dialog';
 
 const loggingMiddleware: Middleware = (request, response) => {
@@ -30,6 +30,8 @@ const mock = FetchMock.configure({
     )
 });
 
+// Mock med status 500
+// mock.post('/veilarbdialog/api/dialog', ResponseUtils.statusCode(500));
 mock.post('/veilarbdialog/api/dialog', ({body}): any => opprettDialog(body)); // tslint:disable-line
 
 export default mock;

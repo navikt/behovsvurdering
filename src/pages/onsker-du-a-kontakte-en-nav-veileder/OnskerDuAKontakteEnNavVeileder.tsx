@@ -6,6 +6,7 @@ import { initialFetchState, reducer } from '../../reducers/fetchReducer';
 import InputView, { KANSKJE, NEI, SPORSMAL } from './InputView';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 import InfoView from './InfoView';
+import Feilmelding from '../../components/feilmelding/feilmelding';
 
 export const PAGE_ID = 'kontakte-en-nav-veileder';
 
@@ -25,6 +26,10 @@ function OnskerDuAKontakteEnNavVeileder(props: PagesProps) {
             changeStateBasedOnValue(value, res.id, props.setState);
         });
     };
+
+    if (fetchState.failure) {
+        return <Feilmelding/>;
+    }
 
     return (
         <>

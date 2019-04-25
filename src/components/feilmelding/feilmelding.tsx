@@ -1,10 +1,32 @@
 import * as React from 'react';
-import AlertStripe from 'nav-frontend-alertstriper';
+import Veilederpanel from 'nav-frontend-veilederpanel';
+import veilederSvg from './nav-ansatt.svg';
+import './feilmelding.less';
 
-const Feilmelding = () => (
-    <AlertStripe type="advarsel">
-        Det skjedde en feil i systemene våre. Ta kontakt med vår <a href="https://www.nav.no/398761/kontakt-teknisk-brukerst%C3%B8tte-nav.no">teknisk brukerstøtte</a>.
-    </AlertStripe>
-);
+const Feilmelding = () => {
+    let veilederpanelType: 'normal' | 'plakat' = 'plakat';
 
+    if (window.matchMedia('(min-width: 768px)').matches) {
+        veilederpanelType = 'normal';
+    }
+
+    return (
+        <div className="feilmelding">
+            <Veilederpanel
+                type={veilederpanelType}
+                svg={<img src={veilederSvg}/>}
+                fargetema="feilmelding"
+            >
+                På grunn av feil i systemene våre kan vi ikke sende svaret ditt akkurat nå. Vi anbefaler deg å&nbsp;
+                <a
+                    href="https://www.nav.no/398761/kontakt-teknisk-brukerstøtte-nav.no"
+                    className="lenke"
+                >
+                    kontakte teknisk brukerstøtte.
+                </a>
+
+            </Veilederpanel>
+        </div>
+    );
+};
 export default Feilmelding;
