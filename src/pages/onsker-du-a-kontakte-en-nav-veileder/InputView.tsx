@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import { vurderingsMetrikk } from "../../metrikker/frontendlogger";
 
 export const NEI = 'Nei';
 export const KANSKJE = 'Kanskje senere';
@@ -52,6 +53,7 @@ function InputView(props: InputViewProps) {
                             } else {
                                 setFeil(false);
                                 props.onSubmit(value);
+                                vurderingsMetrikk(value)
                             }
                         }}
                     >

@@ -1,11 +1,12 @@
 import React from 'react';
-import Anbefaling from '../../components/anbefaling/Anbefaling';
 import DialogTekst from '../../components/dialog-lenke/DialogTekst';
 import './Oppsummering.less';
+import {Undertittel} from "nav-frontend-typografi";
 
 interface Props {
     dialogId: string;
     tekst: string;
+    children?: React.ReactNode
 }
 
 function Oppsummering(props: Props) {
@@ -21,7 +22,12 @@ function Oppsummering(props: Props) {
             </div>
             <div className="beholder gray fill-height">
                 <div className="rad">
-                    <Anbefaling className="rad-item"/>
+                    <div className='anbefaling'>
+                        <Undertittel className="anbefaling-tittel">
+                            Dette anbefaler vi deg å gjøre nå
+                        </Undertittel>
+                        {props.children}
+                    </div>
                 </div>
             </div>
         </>
