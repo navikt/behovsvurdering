@@ -1,4 +1,4 @@
-import {useEffect, useRef} from "react";
+import { useEffect, useRef } from 'react';
 
 export function usePrevious(value: Object): Object | undefined {
     const ref = useRef<Object>();
@@ -16,7 +16,7 @@ export function useHasCangedChange(value: Object): boolean {
 export function useScrollTopOnChange(value: Object) {
     let changed = useHasCangedChange(value);
 
-    if(changed) {
-        window.scroll(0,0);
+    if (changed) {
+        window.scroll(0, 0);
     }
 }

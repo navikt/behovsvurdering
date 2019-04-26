@@ -1,12 +1,11 @@
 import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 
-
 import cvSVG from './cv.svg';
 import arbeidsplassenSVG from './arbeidsplassen.svg';
 import jobbsokertipsSVG from './jobbsokertips.svg';
 import './Anbefaling.less';
-import {linkMetrikk} from "../../metrikker/frontendlogger";
+import { linkMetrikk } from '../../metrikker/frontendlogger';
 
 interface AnbefalingItemProps {
     tittel: string;
@@ -14,7 +13,7 @@ interface AnbefalingItemProps {
     lenke: string;
     lenkeTekst: string;
     svg: string;
-    onClick?: () => void
+    onClick?: () => void;
 }
 
 export function AnbefalingItem(props: AnbefalingItemProps) {
@@ -36,19 +35,18 @@ interface Anbefaling {
     lenkeTekst?: string;
 }
 
-
 export function Jobbsokertips(props: Anbefaling) {
     const {lenkeTekst, tekst, panel} = props;
     return (
         <AnbefalingItem
             svg={jobbsokertipsSVG}
             tittel="Få jobbsøkertips"
-            tekst={tekst? tekst : "Les råd om CV, søknad, nettverk, motivasjon og intervju."}
+            tekst={tekst ? tekst : 'Les råd om CV, søknad, nettverk, motivasjon og intervju.'}
             lenke="/jobbsokerkompetanse/resultatside"
-            lenkeTekst={lenkeTekst? lenkeTekst : "Se tips"}
-            onClick={()=> linkMetrikk("jobbsokerkompetanse", panel)}
+            lenkeTekst={lenkeTekst ? lenkeTekst : 'Se tips'}
+            onClick={() => linkMetrikk('jobbsokerkompetanse', panel)}
         />
-    )
+    );
 }
 
 export function Arbeidsplassen(props: Anbefaling) {
@@ -57,12 +55,12 @@ export function Arbeidsplassen(props: Anbefaling) {
     <AnbefalingItem
         svg={arbeidsplassenSVG}
         tittel="Registrer CV-en din"
-        tekst={tekst? tekst : "Få oversikt over ledige stillinger i hele landet."}
+        tekst={tekst ? tekst : 'Få oversikt over ledige stillinger i hele landet.'}
         lenke="/arbeidsplassen/stillinger"
-        lenkeTekst={lenkeTekst? lenkeTekst : "Gå til Arbeidsplassen"}
-        onClick={()=> linkMetrikk("stillinger", panel)}
+        lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til Arbeidsplassen'}
+        onClick={() => linkMetrikk('stillinger', panel)}
     />
-    )
+    );
 }
 
 export function CV(props: Anbefaling) {
@@ -71,11 +69,10 @@ export function CV(props: Anbefaling) {
         <AnbefalingItem
             svg={cvSVG}
             tittel="Registrer CV-en din"
-            tekst={tekst? tekst : "CV-en din blir synlig for arbeidsgivere."}
+            tekst={tekst ? tekst : 'CV-en din blir synlig for arbeidsgivere.'}
             lenke="/arbeidsplassen/cv"
-            lenkeTekst={lenkeTekst? lenkeTekst : "Gå til CV"}
-            onClick={()=> linkMetrikk("cv", panel)}
+            lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til CV'}
+            onClick={() => linkMetrikk('cv', panel)}
         />
-    )
+    );
 }
-
