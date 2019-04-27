@@ -41,7 +41,7 @@ export function Jobbsokertips(props: Anbefaling) {
         <AnbefalingItem
             svg={jobbsokertipsSVG}
             tittel="Få jobbsøkertips"
-            tekst={tekst ? tekst : 'Les råd om CV, søknad, nettverk, motivasjon og intervju.'}
+            tekst={tekst ? tekst : 'Les tips om CV, søknad, intervju, motivasjon og mer.'}
             lenke="/jobbsokerkompetanse/resultatside"
             lenkeTekst={lenkeTekst ? lenkeTekst : 'Se tips'}
             onClick={() => linkMetrikk('jobbsokerkompetanse', panel)}

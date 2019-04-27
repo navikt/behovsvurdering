@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Systemtittel } from 'nav-frontend-typografi';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { vurderingsMetrikk } from '../../metrikker/frontendlogger';
@@ -26,9 +26,9 @@ function InputView(props: InputViewProps) {
     return (
         <div className="beholder">
             <div className="rad">
-                <Undertittel className="rad-item">
-                    Ønsker du å kontakte en NAV-veileder for å få hjelp til å komme i jobb?
-                </Undertittel>
+                <Systemtittel className="rad-item center-text">
+                    Ønsker du å kontakte  veilederen din for å komme videre med jobbsøkingen?
+                </Systemtittel>
                 <RadioPanelGruppe
                     className="rad-item"
                     legend=""

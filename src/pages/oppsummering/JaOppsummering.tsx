@@ -6,10 +6,13 @@ import { Arbeidsplassen, CV, Jobbsokertips } from '../../components/anbefaling/A
 export const PAGE_ID = 'ja_oppsummering';
 
 function JaOppsummering(props: PagesProps) {
-    const tekst = 'Veilederen din vil kontakte deg for å avtale veien videre i løpet av noen dager.';
+    const tekst = 'Veilederen vil kontakte deg i løpet av noen dager.';
     return (
         <Oppsummering dialogId={props.state.dialogId!} tekst={tekst}>
-            <CV panel="ja"/>
+            <CV
+                tekst="Veilederen din trenger å kjenne til arbeidserfaringen din."
+                panel="ja"
+            />
             <Arbeidsplassen panel="ja"/>
             <Jobbsokertips panel="ja"/>
         </Oppsummering>

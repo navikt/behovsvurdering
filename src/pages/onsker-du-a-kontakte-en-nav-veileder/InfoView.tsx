@@ -1,7 +1,6 @@
 import React from 'react';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import jobbSokingSVG from './img/jobbsokertips.svg';
-import innformasjonSVG from './img/hand-kindle.svg';
 import cvSVG from './img/cv.svg';
 import sokSVG from './img/stillingsok.svg';
 import mugSVG from './img/design-mug.svg';
@@ -15,32 +14,28 @@ function InfoView() {
         <div className="beholder gray">
             <div className="rad">
                 <Undertittel className="rad-item">
-                    Disse tjenestene kan hjelpe deg med å komme raskere i jobb
+                    På nav.no får du:
                 </Undertittel>
                 <div className="rad-item">
                     <div className="liste-item">
                         <img src={jobbSokingSVG} className="ikon" alt=""/>
-                        <Normaltekst>En digital kartlegging av hvordan du søker jobber og tips tilpasset din prosess.</Normaltekst>
-                    </div>
-                    <div className="liste-item">
-                        <img src={innformasjonSVG} className="ikon" alt=""/>
-                        <Normaltekst>Informasjon fra eksperter om jobbsøking, CV, søknad og intervju.</Normaltekst>
+                        <Normaltekst>Jobbsøkertips som passer din situasjon</Normaltekst>
                     </div>
                     <div className="liste-item">
                         <img src={cvSVG} className="ikon" alt=""/>
-                        <Normaltekst>CV-en din blir synling for arbeidsgivere som ser etter kandidater på våre sider.</Normaltekst>
+                        <Normaltekst>En CV som gjør deg synlig for arbeidsgivere som ser etter din kompetanse.</Normaltekst>
                     </div>
                     <div className="liste-item">
                         <img src={sokSVG} className="ikon" alt=""/>
-                        <Normaltekst>Norges største oversikt over ledige stillinger.</Normaltekst>
+                        <Normaltekst>Oversikt over ledige stillinger i hele landet.</Normaltekst>
                     </div>
                     <div className="liste-item">
                         <img src={mugSVG} className="ikon" alt=""/>
-                        <Normaltekst>En plan hvor du kan holde oversikt over jobbsøking.</Normaltekst>
+                        <Normaltekst>En plan for å holde oversikt over jobbsøkingen.</Normaltekst>
                     </div>
                     <div className="liste-item padding-bottom">
                         <img src={dialogSVG} className="ikon" alt=""/>
-                        <Normaltekst>En dialogløsning hvor du kan stille veilederen din spørsmål.</Normaltekst>
+                        <Normaltekst>En digital dialog hvor du kan stille veilederen din spørsmål.</Normaltekst>
                     </div>
                 </div>
             </div>
