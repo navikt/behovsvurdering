@@ -1,6 +1,6 @@
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import { opprettDialog } from './dialog';
-import {sendSvar} from "./behovsvurdering";
+import { sendSvar } from './behovsvurdering';
 
 const loggingMiddleware: Middleware = (request, response) => {
     // tslint:disable

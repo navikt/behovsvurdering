@@ -1,5 +1,5 @@
-import {fetchData} from './fetchData';
-import {BesvarelseData, DialogData, NyDialogMeldingData, SvarData} from './dataTypes';
+import { fetchData } from './fetchData';
+import { BesvarelseData, DialogData, NyDialogMeldingData, SvarData } from './dataTypes';
 
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
 export const API_VEILARBVEDTAKINFO = '/veilarbvedtakinfo/api/behovsvurdering/svar';
