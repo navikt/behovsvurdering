@@ -32,7 +32,7 @@ function App() {
     useScrollTopOnChange(value);
 
     return (
-            <Page setState={setValue} state={value}/>
+            <Page setState={(props: PagesState) => setValue({...value, ...props})} state={value}/>
     );
 }
 
