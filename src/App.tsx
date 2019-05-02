@@ -5,6 +5,7 @@ import JaOppsummering, { PAGE_ID as JA_OPPSUMMERING_PAGE_ID } from './pages/opps
 import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/NeiOppsummering';
 import { PagesProps, PagesState } from './pages/PagesTypes';
 import './App.less';
+import { useScrollTopOnChange } from './ScrolTopOnChange';
 
 const initalState: PagesState = {
     pageId: NAV_KONTAKT_PAGE_ID
@@ -28,6 +29,7 @@ function getCurrentPage(appState: PagesState): ((props: PagesProps) => JSX.Eleme
 function App() {
     const [value, setValue] = useState(initalState);
     const Page = getCurrentPage(value);
+    useScrollTopOnChange(value);
 
     return (
             <Page setState={setValue} state={value}/>

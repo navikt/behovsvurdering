@@ -4,6 +4,7 @@ import { PagesProps } from '../PagesTypes';
 import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/JaOppsummering';
 import View, { SPORSMAL } from './View';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
+import { hvilkenVeiledningSendtMetrikk } from '../../metrikker/frontendlogger';
 
 export const PAGE_ID = 'veiledning';
 
@@ -14,6 +15,7 @@ function HvilkenVeiledningTrengerDu(props: PagesProps) {
         dispatchDialogData(inputData, fetchDispatch).then((res) => {
             props.setState({pageId: OPPSUMMERING_PAGE_ID, dialogId: res.id});
         });
+        hvilkenVeiledningSendtMetrikk();
     };
 
     return (
