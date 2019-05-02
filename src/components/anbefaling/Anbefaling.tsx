@@ -16,7 +16,7 @@ interface AnbefalingItemProps {
     onClick?: () => void;
 }
 
-export function AnbefalingItem(props: AnbefalingItemProps) {
+function AnbefalingItem(props: AnbefalingItemProps) {
     return (
         <div className="anbefaling-item">
             <img src={props.svg} alt="" className="anbefaling-ikon"/>
