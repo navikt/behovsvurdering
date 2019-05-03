@@ -8,7 +8,7 @@ proxy:
   - contextPath: "/veilarbdialog"
     baseUrl: "http://veilarbproxy"
   - contextPath: "/veilarbvedtakinfo"
-    baseUrl: "http://veilarbvedtakinfo"
+    baseUrl: "http://veilarbproxy"
 
 redirect:
   - from: /aktivitetsplan
