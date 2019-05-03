@@ -13,3 +13,17 @@ export interface DialogData {
     overskrift: string;
     henvendelser: DialogMeldingData[];
 }
+
+export interface SvarData {
+    besvarelseId?: number;
+    spmId: string;
+    svar: string;
+    spm: string;
+    dato?: string;
+}
+
+export interface BesvarelseData {
+    besvarelseId: number;
+    svar: SvarData[];
+    sistOppdatert: string;
+}

@@ -1,6 +1,7 @@
 export interface PagesState {
-    pageId: string;
+    pageId?: string;
     dialogId?: string;
+    besvarelseId?: number;
 }
 
 export interface PagesProps {
