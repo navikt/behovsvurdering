@@ -27,10 +27,15 @@ function OnskerDuAKontakteEnNavVeileder(props: PagesProps) {
         const besvarelseInputData = {svar: val, spm: SPORSMAL, besvarelseId: props.state.besvarelseId, spmId: PAGE_ID};
 
         dispatchDialogData(dialogInputData, fetchDialogDispatch)
-            .then((res) => props.setState({dialogId: res.id}))
-            .then(() => dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch))
-            .then((res) => props.setState({besvarelseId: res.besvarelseId, pageId: getNextPage(val)}));
-
+            .then((dialogRes) => {
+                    dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
+                        .then((bvRes) => props.setState({
+                            dialogId: dialogRes.id,
+                            besvarelseId: bvRes.besvarelseId,
+                            pageId: getNextPage(val)
+                        }));
+                }
+            );
     };
 
     return (

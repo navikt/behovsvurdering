@@ -18,9 +18,15 @@ function HvilkenVeiledningTrengerDu(props: PagesProps) {
         const besvarelseInputData = {svar: val, spm: SPORSMAL, besvarelseId: props.state.besvarelseId, spmId: PAGE_ID};
 
         dispatchDialogData(dialogInputData, fetchDialogDispatch)
-            .then((res) => props.setState({dialogId: res.id}))
-            .then(() => dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch))
-            .then((res) => props.setState({besvarelseId: res.besvarelseId, pageId: OPPSUMMERING_PAGE_ID}));
+            .then((dialogRes) => {
+                    dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
+                        .then((bvRes) => props.setState({
+                            dialogId: dialogRes.id,
+                            besvarelseId: bvRes.besvarelseId,
+                            pageId: OPPSUMMERING_PAGE_ID
+                        }));
+                }
+            );
 
         hvilkenVeiledningSendtMetrikk();
     };

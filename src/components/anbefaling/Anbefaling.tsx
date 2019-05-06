@@ -54,7 +54,7 @@ export function Arbeidsplassen(props: Anbefaling) {
     return (
     <AnbefalingItem
         svg={arbeidsplassenSVG}
-        tittel="Registrer CV-en din"
+        tittel="Se ledige stillinger"
         tekst={tekst ? tekst : 'Få oversikt over ledige stillinger i hele landet.'}
         lenke="/arbeidsplassen/stillinger"
         lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til Arbeidsplassen'}
