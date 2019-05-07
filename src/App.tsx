@@ -1,38 +1,39 @@
 import React, { useState } from 'react';
-import OnskerDuAKontakteEnNavVeileder, { PAGE_ID as NAV_KONTAKT_PAGE_ID } from './pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder';
+import { Route, BrowserRouter } from 'react-router-dom';
+import OnskerDuAKontakteEnNavVeileder  from './pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder';
 import HvilkenVeiledningTrengerDu, { PAGE_ID as VEILEDNING_PAGE_ID } from './pages/hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
 import JaOppsummering, { PAGE_ID as JA_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/JaOppsummering';
 import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/NeiOppsummering';
-import { PagesProps, PagesState } from './pages/PagesTypes';
+import { PagesState } from './pages/PagesTypes';
+import PageChangeListener from './components/pange-change-listener/PageChangeListener';
 import './App.less';
-import { useScrollTopOnChange } from './ScrolTopOnChange';
 
-const initalState: PagesState = {
-    pageId: NAV_KONTAKT_PAGE_ID
-};
-
-function getCurrentPage(appState: PagesState): ((props: PagesProps) => JSX.Element) {
-    switch (appState.pageId) {
-        case NAV_KONTAKT_PAGE_ID:
-            return OnskerDuAKontakteEnNavVeileder;
-        case JA_OPPSUMMERING_PAGE_ID:
-            return JaOppsummering;
-        case NEI_OPPSUMMERING_PAGE_ID:
-            return NeiOppsummering;
-        case VEILEDNING_PAGE_ID:
-            return HvilkenVeiledningTrengerDu;
-        default:
-            throw new Error('unsupported page');
-    }
-}
+const initalState: PagesState = {};
 
 function App() {
     const [value, setValue] = useState(initalState);
-    const Page = getCurrentPage(value);
-    useScrollTopOnChange(value);
 
     return (
-            <Page setState={(props: PagesState) => setValue({...value, ...props})} state={value}/>
+        <BrowserRouter>
+            <Route
+                path="/"
+                exact={true}
+                component={() => <OnskerDuAKontakteEnNavVeileder state={value} setState={setValue}/>}
+            />
+            <Route
+                path={`/${VEILEDNING_PAGE_ID}`}
+                component={() => <HvilkenVeiledningTrengerDu state={value} setState={setValue}/>}
+            />
+            <Route
+                path={`/${JA_OPPSUMMERING_PAGE_ID}`}
+                component={() => <JaOppsummering state={value} setState={setValue}/>}
+            />
+            <Route
+                path={`/${NEI_OPPSUMMERING_PAGE_ID}`}
+                component={() => <NeiOppsummering state={value} setState={setValue}/>}
+            />
+            <PageChangeListener/>
+        </BrowserRouter>
     );
 }
 

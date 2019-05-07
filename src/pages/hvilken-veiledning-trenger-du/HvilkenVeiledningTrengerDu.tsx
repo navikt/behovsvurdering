@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { initialFetchState, reducer } from '../../reducers/fetchReducer';
 import { PagesProps } from '../PagesTypes';
 import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/JaOppsummering';
@@ -7,9 +8,9 @@ import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 import { hvilkenVeiledningSendtMetrikk } from '../../metrikker/frontendlogger';
 import { dispatchBesvarelse } from '../../reducers/dispatchBehovsvurderingData';
 
-export const PAGE_ID = 'veiledning';
+export const PAGE_ID = 'hvilken-veiledning-trengs';
 
-function HvilkenVeiledningTrengerDu(props: PagesProps) {
+function HvilkenVeiledningTrengerDu(props: PagesProps & RouteComponentProps) {
     const [fetchDialogState, fetchDialogDispatch] = useReducer(reducer, initialFetchState);
     const [fetchBesvarelseState, fetchBesvarelseDispatch] = useReducer(reducer, initialFetchState);
 
@@ -20,11 +21,13 @@ function HvilkenVeiledningTrengerDu(props: PagesProps) {
         dispatchDialogData(dialogInputData, fetchDialogDispatch)
             .then((dialogRes) => {
                     dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
-                        .then((bvRes) => props.setState({
-                            dialogId: dialogRes.id,
-                            besvarelseId: bvRes.besvarelseId,
-                            pageId: OPPSUMMERING_PAGE_ID
-                        }));
+                        .then((bvRes) => {
+                            props.setState({
+                                dialogId: dialogRes.id,
+                                besvarelseId: bvRes.besvarelseId,
+                            });
+                            props.history.push(`/${OPPSUMMERING_PAGE_ID}`);
+                        });
                 }
             );
 
@@ -36,4 +39,4 @@ function HvilkenVeiledningTrengerDu(props: PagesProps) {
     );
 }
 
-export default HvilkenVeiledningTrengerDu;
+export default withRouter(HvilkenVeiledningTrengerDu);
