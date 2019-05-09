@@ -1,14 +1,14 @@
-@import '../../../node_modules/nav-frontend-core/less/_variabler';
+@import '~nav-frontend-core/less/_variabler';
 .feilmelding{
-  margin: 3rem 1rem;
-  img {
-    height: 100%;
-  }
-}
+  display: flex;
+  margin-top: 3.75rem;
+  justify-content: center;
 
-@media (min-width: @screen-sm-min) {
-  .feilmelding{
-    margin: 10rem auto;
+  .nav-veilederpanel {
     width: 620px;
+    margin: 0 1rem;
+    img {
+      height: 100%;
+    }
   }
 }

@@ -4,16 +4,11 @@ import veilederSvg from './nav-ansatt.svg';
 import './feilmelding.less';
 
 const Feilmelding = () => {
-    let veilederpanelType: 'normal' | 'plakat' = 'plakat';
-
-    if (window.matchMedia('(min-width: 768px)').matches) {
-        veilederpanelType = 'normal';
-    }
 
     return (
         <div className="feilmelding">
             <Veilederpanel
-                type={veilederpanelType}
+                type="plakat"
                 svg={<img src={veilederSvg}/>}
                 fargetema="feilmelding"
             >
