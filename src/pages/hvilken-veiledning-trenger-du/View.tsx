@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Systemtittel } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
 
@@ -9,26 +9,46 @@ interface ViewProps {
 }
 
 const initState: string = '';
+const maxLengde = 500;
 
-export const SPORSMAL = 'Hvilken veiledning trenger du fra NAV for å komme i jobb?';
+export const SPORSMAL = 'Hva trenger du hjelp til i jobbsøkingen?';
+
+const TekstTeller = (antallSkrvet: number, max: number): React.ReactNode => {
+    if (antallSkrvet > max) {
+        return 'Du har ' + (antallSkrvet - max)  + ' tegn for mye';
+    }
+    if (max - antallSkrvet <= 50) {
+        return 'Du har ' + (max - antallSkrvet) + ' tegn igjen';
+    }
+    return '';
+};
+
+function feilmelding(feil: boolean, maksLengde: number, value: string) {
+    if (!feil) {
+        return;
+    }
+    if (maksLengde < value.length) {
+        return {feilmelding: 'Du må korte ned teksten til 500 tegn'};
+    }
+    return {feilmelding: 'Obligatorisk felt'};
+}
 
 function View(props: ViewProps) {
     const [value, setValue] = useState(initState);
     const [feilState, setFeil] = useState(false);
 
-    const feil = feilState ? {feilmelding: 'Obligatorisk felt'} : undefined;
+    const feil = feilmelding(feilState, maxLengde, value);
     return (
         <div className="beholder">
             <div className="rad">
-                <Undertittel className="rad-item">
+                <Systemtittel className="rad-item">
                     {SPORSMAL}
-                </Undertittel>
+                </Systemtittel>
+                Du kan skrive om
                 <div className="rad-item">
                     <ul>
-                        <li>Er det lett eller vanskelig for deg å komme i jobb?</li>
-                        <li>Hva slags jobb du ser for deg i fremtiden?</li>
-                        <li>Hva påvirker mulighetene dine for jobb?</li>
-                        <li>Hva må til for at du skal komme i jobb?</li>
+                        <li>hva slags jobb du ønsker deg</li>
+                        <li>hva som skal til for at du skal komme i jobb</li>
                     </ul>
                 </div>
                 <div className="rad-item">
@@ -36,8 +56,9 @@ function View(props: ViewProps) {
                         placeholder="Skriv til din veileder her"
                         textareaClass="spm-text-area"
                         label={false}
-                        tellerTekst={() => false}
+                        tellerTekst={TekstTeller}
                         value={value}
+                        maxLength={maxLengde}
                         disabled={props.disabled}
                         onChange={(e) => setValue((e.target as HTMLInputElement).value)}
                         feil={feil}
@@ -48,7 +69,7 @@ function View(props: ViewProps) {
                         spinner={props.disabled}
                         disabled={props.disabled}
                         onClick={() => {
-                            if (value === '') {
+                            if (value === '' || value.length > maxLengde) {
                                 setFeil(true);
                             } else {
                                 setFeil(false);

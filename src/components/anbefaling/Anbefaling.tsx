@@ -1,11 +1,11 @@
 import React from 'react';
-import { Undertittel, Element, Normaltekst } from 'nav-frontend-typografi';
-import classnames from 'classnames';
+import { Element, Normaltekst } from 'nav-frontend-typografi';
 
 import cvSVG from './cv.svg';
 import arbeidsplassenSVG from './arbeidsplassen.svg';
 import jobbsokertipsSVG from './jobbsokertips.svg';
 import './Anbefaling.less';
+import { linkMetrikk } from '../../metrikker/frontendlogger';
 
 interface AnbefalingItemProps {
     tittel: string;
@@ -13,6 +13,7 @@ interface AnbefalingItemProps {
     lenke: string;
     lenkeTekst: string;
     svg: string;
+    onClick?: () => void;
 }
 
 function AnbefalingItem(props: AnbefalingItemProps) {
@@ -22,49 +23,56 @@ function AnbefalingItem(props: AnbefalingItemProps) {
             <div className="anbefaling-tekst-bolk">
                 <Element>{props.tittel}</Element>
                 <Normaltekst>{props.tekst}</Normaltekst>
-                <a href={props.lenke}>{props.lenkeTekst}</a>
+                <a href={props.lenke} onClick={props.onClick}>{props.lenkeTekst}</a>
             </div>
         </div>
     );
 }
 
-interface Props {
-    className?: string;
+interface Anbefaling {
+    panel?: string;
+    tekst?: string;
+    lenkeTekst?: string;
 }
 
-function Anbefaling(props: Props) {
+export function Jobbsokertips(props: Anbefaling) {
+    const {lenkeTekst, tekst, panel} = props;
     return (
-        <div className={classnames('anbefaling', props.className)}>
-            <Undertittel className="anbefaling-tittel">
-                Dette anbefaler vi deg å gjøre nå
-            </Undertittel>
-
-            <AnbefalingItem
-                svg={cvSVG}
-                tittel="Registrer CV-en din"
-                tekst="CV-en din blir synlig for arbeidsgivere."
-                lenke="/arbeidsplassen/cv"
-                lenkeTekst="Gå til CV"
-            />
-
-            <AnbefalingItem
-                svg={arbeidsplassenSVG}
-                tittel="Registrer CV-en din"
-                tekst="Få oversikt over ledige stillinger i hele landet."
-                lenke="/arbeidsplassen/stillinger"
-                lenkeTekst="Gå til Arbeidsplassen"
-            />
-
-            <AnbefalingItem
-                svg={jobbsokertipsSVG}
-                tittel="Få jobbsøkertips"
-                tekst="Les råd om CV, søknad, nettverk, motivasjon og intervju."
-                lenke="/jobbsokerkompetanse/resultatside"
-                lenkeTekst="Se tips"
-            />
-        </div>
+        <AnbefalingItem
+            svg={jobbsokertipsSVG}
+            tittel="Få jobbsøkertips"
+            tekst={tekst ? tekst : 'Les tips om CV, søknad, intervju, motivasjon og mer.'}
+            lenke="/jobbsokerkompetanse/resultatside"
+            lenkeTekst={lenkeTekst ? lenkeTekst : 'Se tips'}
+            onClick={() => linkMetrikk('jobbsokerkompetanse', panel)}
+        />
     );
-
 }
 
-export default Anbefaling;
+export function Arbeidsplassen(props: Anbefaling) {
+    const {lenkeTekst, tekst, panel} = props;
+    return (
+    <AnbefalingItem
+        svg={arbeidsplassenSVG}
+        tittel="Se ledige stillinger"
+        tekst={tekst ? tekst : 'Få oversikt over ledige stillinger i hele landet.'}
+        lenke="/arbeidsplassen/stillinger"
+        lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til Arbeidsplassen'}
+        onClick={() => linkMetrikk('stillinger', panel)}
+    />
+    );
+}
+
+export function CV(props: Anbefaling) {
+    const {lenkeTekst, tekst, panel} = props;
+    return (
+        <AnbefalingItem
+            svg={cvSVG}
+            tittel="Registrer CV-en din"
+            tekst={tekst ? tekst : 'CV-en din blir synlig for arbeidsgivere.'}
+            lenke="/arbeidsplassen/cv"
+            lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til CV'}
+            onClick={() => linkMetrikk('cv', panel)}
+        />
+    );
+}
