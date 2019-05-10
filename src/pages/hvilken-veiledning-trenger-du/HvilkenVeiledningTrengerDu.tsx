@@ -21,21 +21,25 @@ function HvilkenVeiledningTrengerDu(props: PagesProps & RouteComponentProps) {
 
         dispatchDialogData(dialogInputData, fetchDialogDispatch)
             .then((dialogRes) => {
-                    dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
-                        .then((bvRes) => {
-                            props.setState({
-                                dialogId: dialogRes.id,
-                                besvarelseId: bvRes.besvarelseId,
+                if (dialogRes) {
+                        dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
+                            .then((bvRes) => {
+                                if (bvRes) {
+                                    props.setState({
+                                        dialogId: dialogRes.id,
+                                        besvarelseId: bvRes.besvarelseId,
+                                    });
+                                    props.history.push(`/${OPPSUMMERING_PAGE_ID}`);
+                                }
                             });
-                            props.history.push(`/${OPPSUMMERING_PAGE_ID}`);
-                        });
+                    }
                 }
             );
 
         hvilkenVeiledningSendtMetrikk();
     };
 
-    if (fetchDialogState.failure || fetchDialogState.failure) {
+    if (fetchDialogState.failure || fetchBesvarelseState.failure) {
         return <Feilmelding/>;
     }
 

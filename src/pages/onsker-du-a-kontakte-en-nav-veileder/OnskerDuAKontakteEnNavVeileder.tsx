@@ -30,21 +30,23 @@ function OnskerDuAKontakteEnNavVeileder(props: PagesProps & RouteComponentProps)
 
         dispatchDialogData(dialogInputData, fetchDialogDispatch)
             .then((dialogRes) => {
+                if (dialogRes) {
                     dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
                         .then((bvRes) => {
-                            props.setState({
-                                dialogId: dialogRes.id,
-                                besvarelseId: bvRes.besvarelseId,
-                            });
-
-                            props.history.push(`/${getNextPage(val)}`);
+                            if (bvRes) {
+                                props.setState({
+                                    dialogId: dialogRes.id,
+                                    besvarelseId: bvRes.besvarelseId,
+                                });
+                                props.history.push(`/${getNextPage(val)}`);
+                            }
                         });
-
+                    }
                 }
             );
     };
 
-    if (fetchDialogState.failure || fetchDialogState.failure) {
+    if (fetchDialogState.failure || fetchBesvarelseState.failure) {
         return <Feilmelding/>;
     }
 

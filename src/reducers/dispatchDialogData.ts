@@ -22,6 +22,6 @@ export function dispatchDialogData(inputData: InputData, dispatch: FetchDispatch
         })
         .catch((reason) => {
             dispatch({type: FetchActionTypes.FAILURE});
-            throw new Error(reason);
+            return Promise.reject(reason);
         });
 }
