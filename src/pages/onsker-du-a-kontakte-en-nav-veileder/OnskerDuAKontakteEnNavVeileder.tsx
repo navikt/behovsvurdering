@@ -8,6 +8,7 @@ import InputView, { KANSKJE, NEI, SPORSMAL } from './InputView';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 import InfoView from './InfoView';
 import { dispatchBesvarelse } from '../../reducers/dispatchBehovsvurderingData';
+import Feilmelding from '../../components/feilmelding/feilmelding';
 
 export const PAGE_ID = 'kontakt-fra-nav-veileder';
 
@@ -42,6 +43,10 @@ function OnskerDuAKontakteEnNavVeileder(props: PagesProps & RouteComponentProps)
                 }
             );
     };
+
+    if (fetchDialogState.failure || fetchDialogState.failure) {
+        return <Feilmelding/>;
+    }
 
     return (
         <>
