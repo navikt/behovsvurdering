@@ -21,18 +21,14 @@ function HvilkenVeiledningTrengerDu(props: PagesProps & RouteComponentProps) {
 
         dispatchDialogData(dialogInputData, fetchDialogDispatch)
             .then((dialogRes) => {
-                if (dialogRes) {
-                        dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
-                            .then((bvRes) => {
-                                if (bvRes) {
-                                    props.setState({
-                                        dialogId: dialogRes.id,
-                                        besvarelseId: bvRes.besvarelseId,
-                                    });
-                                    props.history.push(`/${OPPSUMMERING_PAGE_ID}`);
-                                }
+                dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
+                    .then((bvRes) => {
+                            props.setState({
+                                dialogId: dialogRes.id,
+                                besvarelseId: bvRes.besvarelseId,
                             });
-                    }
+                            props.history.push(`/${OPPSUMMERING_PAGE_ID}`);
+                    });
                 }
             );
 

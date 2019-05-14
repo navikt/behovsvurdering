@@ -2,6 +2,7 @@ import * as React from 'react';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import veilederSvg from './nav-ansatt.svg';
 import './feilmelding.less';
+import Lenke from 'nav-frontend-lenker';
 
 const Feilmelding = () => {
 
@@ -13,13 +14,9 @@ const Feilmelding = () => {
                 fargetema="feilmelding"
             >
                 På grunn av feil i systemene våre kan vi ikke sende svaret ditt akkurat nå. Vi anbefaler deg å&nbsp;
-                <a
-                    href="https://www.nav.no/398761/kontakt-teknisk-brukerstøtte-nav.no"
-                    className="lenke"
-                >
+                <Lenke href="https://www.nav.no/398761/kontakt-teknisk-brukerstøtte-nav.no">
                     kontakte teknisk brukerstøtte.
-                </a>
-
+                </Lenke>
             </Veilederpanel>
         </div>
     );
