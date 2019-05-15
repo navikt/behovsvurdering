@@ -7,6 +7,7 @@ import View, { SPORSMAL } from './View';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 import { hvilkenVeiledningSendtMetrikk } from '../../metrikker/frontendlogger';
 import { dispatchBesvarelse } from '../../reducers/dispatchBehovsvurderingData';
+import Feilmelding from '../../components/feilmelding/feilmelding';
 
 export const PAGE_ID = 'hvilken-veiledning-trengs';
 
@@ -20,19 +21,23 @@ function HvilkenVeiledningTrengerDu(props: PagesProps & RouteComponentProps) {
 
         dispatchDialogData(dialogInputData, fetchDialogDispatch)
             .then((dialogRes) => {
-                    dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
-                        .then((bvRes) => {
+                dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
+                    .then((bvRes) => {
                             props.setState({
                                 dialogId: dialogRes.id,
                                 besvarelseId: bvRes.besvarelseId,
                             });
                             props.history.push(`/${OPPSUMMERING_PAGE_ID}`);
-                        });
+                    });
                 }
             );
 
         hvilkenVeiledningSendtMetrikk();
     };
+
+    if (fetchDialogState.failure || fetchBesvarelseState.failure) {
+        return <Feilmelding/>;
+    }
 
     return (
         <View onSubmit={onSubmit} disabled={fetchDialogState.loading || fetchBesvarelseState.loading}/>
