@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Veilederpanel from 'nav-frontend-veilederpanel';
-import veilederSvg from './nav-ansatt.svg';
+import { ReactComponent as VeilederSvg } from './nav-ansatt.svg';
 import './feilmelding.less';
 import Lenke from 'nav-frontend-lenker';
 
@@ -10,7 +10,7 @@ const Feilmelding = () => {
         <div className="feilmelding">
             <Veilederpanel
                 type="plakat"
-                svg={<img src={veilederSvg}/>}
+                svg={<VeilederSvg/>}
                 fargetema="feilmelding"
             >
                 På grunn av feil i systemene våre kan vi ikke sende svaret ditt akkurat nå. Vi anbefaler deg å&nbsp;
