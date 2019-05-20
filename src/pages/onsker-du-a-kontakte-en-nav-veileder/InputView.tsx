@@ -16,7 +16,7 @@ interface InputViewProps {
 
 const initRadioState: string | undefined = undefined;
 
-export const SPORSMAL = 'Ønsker du å kontakte en NAV-veileder for å få hjelp til å komme i jobb?';
+export const SPORSMAL = 'Ønsker du å kontakte  veilederen din for å komme videre med jobbsøkingen?';
 
 function InputView(props: InputViewProps) {
     const [value, setValue] = useState(initRadioState);
@@ -27,7 +27,7 @@ function InputView(props: InputViewProps) {
         <div className="beholder">
             <div className="rad">
                 <Systemtittel className="rad-item center-text">
-                    Ønsker du å kontakte  veilederen din for å komme videre med jobbsøkingen?
+                    {SPORSMAL}
                 </Systemtittel>
                 <RadioPanelGruppe
                     className="rad-item"
