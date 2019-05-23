@@ -1,6 +1,6 @@
 import FetchMock, {
     Middleware,
-    MiddlewareUtils,
+    MiddlewareUtils, ResponseUtils,
 } from 'yet-another-fetch-mock';
 import { opprettDialog } from './dialog';
 import { sendSvar } from './behovsvurdering';
@@ -41,5 +41,7 @@ mock.post('/veilarbdialog/api/dialog', ({body}): any => opprettDialog(body)); //
 // Mock med status 500
 // mock.post('/veilarbvedtakinfo/api/behovsvurdering/svar', ResponseUtils.statusCode(500));
 mock.post('/veilarbvedtakinfo/api/behovsvurdering/svar', ({body}): any => sendSvar(body)); // tslint:disable-line
+
+mock.get('/api/auth', ResponseUtils.statusCode(200)); // tslint:disable-line
 
 export default mock;

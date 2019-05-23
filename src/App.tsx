@@ -7,6 +7,7 @@ import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/op
 import { PagesState } from './pages/PagesTypes';
 import PageChangeListener from './components/pange-change-listener/PageChangeListener';
 import './App.less';
+import TimoutboxModal from 'nav-fo-timeoutbox-modal/dist/TimoutboxModal';
 
 const initalState: PagesState = {};
 
@@ -15,6 +16,7 @@ function App() {
 
     return (
         <BrowserRouter>
+            <TimoutboxModal/>
             <Route
                 path="/"
                 exact={true}
