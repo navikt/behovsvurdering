@@ -2,11 +2,13 @@ import React from 'react';
 import './Oppsummering.less';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
+import { linkMetrikk } from '../../metrikker/frontendlogger';
 
 interface Props {
     dialogId: string;
     tekst: string;
     children?: React.ReactNode;
+    panel?: string;
 }
 
 function Oppsummering(props: Props) {
@@ -18,7 +20,12 @@ function Oppsummering(props: Props) {
                     <AlertStripeSuksess>
                         <Normaltekst>
                             Svaret ditt er&nbsp;
-                            <a href={`aktivitetsplan/dialog/${props.dialogId}`}>delt med veilederen din</a>&nbsp;
+                            <a
+                                href={`aktivitetsplan/dialog/${props.dialogId}`}
+                                onClick={() => linkMetrikk('dialog-lenke', props.panel)}
+                            >
+                                delt med veilederen din
+                            </a>&nbsp;
                             som nå vil vurdere:
                         </Normaltekst>
                         <ul>
