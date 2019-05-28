@@ -9,8 +9,8 @@ export function frontendLogger(eventNavn: string, feltObjekt?: object, tagObjekt
     }
 }
 
-export function vurderingsMetrikk(value: string) {
-    frontendLogger('behovsvurdering.kontaktNavForJobb', undefined, {'valg': value});
+export function vurderingsMetrikk(value: string, innsatsgruppe: string | null) {
+    frontendLogger('behovsvurdering.kontaktNavForJobb', undefined, {'valg': value, innsatsgruppe});
 }
 
 export function hvilkenVeiledningSendtMetrikk() {

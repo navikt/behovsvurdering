@@ -7,11 +7,15 @@ import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/op
 import { PagesState } from './pages/PagesTypes';
 import PageChangeListener from './components/pange-change-listener/PageChangeListener';
 import './App.less';
+import { hentRegistreringData, settSessionInnsatsGruppe } from './api/api';
 
 const initalState: PagesState = {};
 
 function App() {
     const [value, setValue] = useState(initalState);
+
+    hentRegistreringData()
+        .then(response => settSessionInnsatsGruppe(response.registrering));
 
     return (
         <BrowserRouter>

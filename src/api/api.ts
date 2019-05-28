@@ -3,6 +3,7 @@ import { BesvarelseData, DialogData, NyDialogMeldingData, SvarData } from './dat
 
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
 export const API_VEILARBVEDTAKINFO = '/veilarbvedtakinfo/api/behovsvurdering/svar';
+export const API_VEILARBREGISTRERING = '/veilarbregistrering/api/registrering';
 
 function getCookie(name: string) {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -28,4 +29,24 @@ export function postDialog(data: NyDialogMeldingData): Promise<DialogData> {
 
 export function postBesvarelse(data: SvarData): Promise<BesvarelseData> {
     return fetchData<BesvarelseData>(API_VEILARBVEDTAKINFO, {method: 'post', body: JSON.stringify(data), ...CONFIG});
+}
+
+export function hentRegistreringData(): Promise<any> { // tslint:disable-line
+    return fetchData<any>(API_VEILARBREGISTRERING, CONFIG) // tslint:disable-line
+        .then((registeringsData: any) => ({ // tslint:disable-line
+            registrering: registeringsData.registrering
+        }));
+}
+
+export const INNSATSGRUPPE = 'INNSATSGRUPPE';
+export function settSessionInnsatsGruppe(registrering: any) { // tslint:disable-line
+    window.sessionStorage.setItem(INNSATSGRUPPE, registrering.profilering.innsatsgruppe);
+}
+
+export function hentSessionInnsatsGruppe() { // tslint:disable-line
+    return window.sessionStorage.getItem(INNSATSGRUPPE);
+}
+
+export function fjernSessionInnsatsGruppe() { // tslint:disable-line
+    return window.sessionStorage.removeItem(INNSATSGRUPPE);
 }

@@ -3,6 +3,7 @@ import { Systemtittel } from 'nav-frontend-typografi';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
 import { vurderingsMetrikk } from '../../metrikker/frontendlogger';
+import { fjernSessionInnsatsGruppe, hentSessionInnsatsGruppe } from '../../api/api';
 
 export const NEI = 'Nei';
 export const KANSKJE = 'Kanskje senere';
@@ -53,7 +54,9 @@ function InputView(props: InputViewProps) {
                             } else {
                                 setFeil(false);
                                 props.onSubmit(value);
-                                vurderingsMetrikk(value);
+                                const innsatsgruppe = hentSessionInnsatsGruppe();
+                                vurderingsMetrikk(value, innsatsgruppe);
+                                fjernSessionInnsatsGruppe();
                             }
                         }}
                     >
