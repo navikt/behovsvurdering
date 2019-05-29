@@ -6,6 +6,7 @@ import JaOppsummering, { PAGE_ID as JA_OPPSUMMERING_PAGE_ID } from './pages/opps
 import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/NeiOppsummering';
 import { PagesState } from './pages/PagesTypes';
 import PageChangeListener from './components/pange-change-listener/PageChangeListener';
+import { TimeoutModal } from '@navikt/fo-session-timeout-modal';
 import './App.less';
 
 const initalState: PagesState = {};
@@ -15,6 +16,7 @@ function App() {
 
     return (
         <BrowserRouter>
+            <TimeoutModal/>
             <Route
                 path="/"
                 exact={true}

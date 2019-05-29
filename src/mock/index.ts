@@ -42,4 +42,6 @@ mock.post('/veilarbdialog/api/dialog', ({body}): any => opprettDialog(body)); //
 // mock.post('/veilarbvedtakinfo/api/behovsvurdering/svar', ResponseUtils.statusCode(500));
 mock.post('/veilarbvedtakinfo/api/behovsvurdering/svar', ({body}): any => sendSvar(body)); // tslint:disable-line
 
+mock.get('/api/auth', {});
+
 export default mock;
