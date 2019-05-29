@@ -38,15 +38,16 @@ export function hentRegistreringData(): Promise<any> { // tslint:disable-line
         }));
 }
 
-export const INNSATSGRUPPE = 'INNSATSGRUPPE';
-export function settSessionInnsatsGruppe(registrering: any) { // tslint:disable-line
-    window.sessionStorage.setItem(INNSATSGRUPPE, registrering.profilering.innsatsgruppe);
+declare  global {
+    interface Window {
+        INNSATSGRUPPE: string;
+    }
 }
 
-export function hentSessionInnsatsGruppe() { // tslint:disable-line
-    return window.sessionStorage.getItem(INNSATSGRUPPE);
+export function settWindowInnsatsGruppe(registrering: any) { // tslint:disable-line
+    window.INNSATSGRUPPE = registrering.profilering.innsatsgruppe;
 }
 
-export function fjernSessionInnsatsGruppe() { // tslint:disable-line
-    return window.sessionStorage.removeItem(INNSATSGRUPPE);
+export function hentWindowInnsatsGruppe() {
+    return window.INNSATSGRUPPE;
 }
