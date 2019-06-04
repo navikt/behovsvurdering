@@ -31,20 +31,23 @@ export function postBesvarelse(data: SvarData): Promise<BesvarelseData> {
     return fetchData<BesvarelseData>(API_VEILARBVEDTAKINFO, {method: 'post', body: JSON.stringify(data), ...CONFIG});
 }
 
-export function hentRegistreringData(): Promise<any> {
-    return fetchData<any>(API_VEILARBREGISTRERING, CONFIG)
-        .then((registeringsData: any) => ({
+interface Registrering { profilering: { innsatsgruppe: string }; }
+interface RegistreringsData { registrering: Registrering; }
+
+export function hentRegistreringData(): Promise<RegistreringsData> {
+    return fetchData<RegistreringsData>(API_VEILARBREGISTRERING, CONFIG)
+        .then((registeringsData: RegistreringsData) => ({
             registrering: registeringsData.registrering
         }));
 }
 
-declare  global {
+declare global {
     interface Window {
         INNSATSGRUPPE: string;
     }
 }
 
-export function settWindowInnsatsGruppe(registrering: any) {
+export function settWindowInnsatsGruppe(registrering: Registrering) {
     window.INNSATSGRUPPE = registrering.profilering.innsatsgruppe;
 }
 

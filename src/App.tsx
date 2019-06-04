@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 import OnskerDuAKontakteEnNavVeileder  from './pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder';
 import HvilkenVeiledningTrengerDu, { PAGE_ID as VEILEDNING_PAGE_ID } from './pages/hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
@@ -14,8 +14,10 @@ const initalState: PagesState = {};
 function App() {
     const [value, setValue] = useState(initalState);
 
-    hentRegistreringData()
-        .then(response => settWindowInnsatsGruppe(response.registrering));
+    useEffect(() => {
+        hentRegistreringData()
+            .then(response => settWindowInnsatsGruppe(response.registrering));
+    }, []); // [] sørger for at funksjonen kjøres kun èn gang.
 
     return (
         <BrowserRouter>
