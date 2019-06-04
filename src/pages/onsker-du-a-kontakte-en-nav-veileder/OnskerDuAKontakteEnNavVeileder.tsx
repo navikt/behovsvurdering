@@ -9,6 +9,8 @@ import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 import InfoView from './InfoView';
 import { dispatchBesvarelse } from '../../reducers/dispatchBehovsvurderingData';
 import Feilmelding from '../../components/feilmelding/feilmelding';
+import { vurderingsMetrikk } from '../../metrikker/frontendlogger';
+import { hentWindowInnsatsGruppe } from '../../api/api';
 
 export const PAGE_ID = 'kontakt-fra-nav-veileder';
 
@@ -40,6 +42,10 @@ function OnskerDuAKontakteEnNavVeileder(props: PagesProps & RouteComponentProps)
                     });
                 }
             );
+
+        const innsatsgruppe = hentWindowInnsatsGruppe();
+        vurderingsMetrikk(val, innsatsgruppe);
+
     };
 
     if (fetchDialogState.failure || fetchBesvarelseState.failure) {
