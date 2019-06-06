@@ -3,6 +3,7 @@ import { BesvarelseData, DialogData, NyDialogMeldingData, SvarData } from './dat
 
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
 export const API_VEILARBVEDTAKINFO = '/veilarbvedtakinfo/api/behovsvurdering/svar';
+export const API_VEILARBREGISTRERING = '/veilarbregistrering/api/registrering';
 
 function getCookie(name: string) {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -28,4 +29,28 @@ export function postDialog(data: NyDialogMeldingData): Promise<DialogData> {
 
 export function postBesvarelse(data: SvarData): Promise<BesvarelseData> {
     return fetchData<BesvarelseData>(API_VEILARBVEDTAKINFO, {method: 'post', body: JSON.stringify(data), ...CONFIG});
+}
+
+interface Registrering { profilering: { innsatsgruppe: string }; }
+interface RegistreringsData { registrering: Registrering; }
+
+export function hentRegistreringData(): Promise<RegistreringsData> {
+    return fetchData<RegistreringsData>(API_VEILARBREGISTRERING, CONFIG)
+        .then((registeringsData: RegistreringsData) => ({
+            registrering: registeringsData.registrering
+        }));
+}
+
+declare global {
+    interface Window {
+        INNSATSGRUPPE: string;
+    }
+}
+
+export function settWindowInnsatsGruppe(registrering: Registrering) {
+    window.INNSATSGRUPPE = registrering.profilering.innsatsgruppe;
+}
+
+export function hentWindowInnsatsGruppe() {
+    return window.INNSATSGRUPPE;
 }

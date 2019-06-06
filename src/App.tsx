@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 import OnskerDuAKontakteEnNavVeileder  from './pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder';
 import HvilkenVeiledningTrengerDu, { PAGE_ID as VEILEDNING_PAGE_ID } from './pages/hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
@@ -7,11 +7,17 @@ import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/op
 import { PagesState } from './pages/PagesTypes';
 import PageChangeListener from './components/pange-change-listener/PageChangeListener';
 import './App.less';
+import { hentRegistreringData, settWindowInnsatsGruppe } from './api/api';
 
 const initalState: PagesState = {};
 
 function App() {
     const [value, setValue] = useState(initalState);
+
+    useEffect(() => {
+        hentRegistreringData()
+            .then(response => settWindowInnsatsGruppe(response.registrering));
+    }, []); // [] sørger for at funksjonen kjøres kun èn gang.
 
     return (
         <BrowserRouter>
