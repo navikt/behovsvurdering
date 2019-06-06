@@ -31,7 +31,12 @@ export function postBesvarelse(data: SvarData): Promise<BesvarelseData> {
     return fetchData<BesvarelseData>(API_VEILARBVEDTAKINFO, {method: 'post', body: JSON.stringify(data), ...CONFIG});
 }
 
-interface Registrering { profilering: { innsatsgruppe: string }; }
+enum Innsatsgruppe {
+    STANDARD_INNSATS,
+    SITUASJONSBESTEMT_INNSATS,
+    BEHOV_FOR_ARBEIDSEVNEVURDERING
+}
+interface Registrering { profilering: { innsatsgruppe: Innsatsgruppe }; }
 interface RegistreringsData { registrering: Registrering; }
 
 export function hentRegistreringData(): Promise<RegistreringsData> {
@@ -43,7 +48,7 @@ export function hentRegistreringData(): Promise<RegistreringsData> {
 
 declare global {
     interface Window {
-        INNSATSGRUPPE: string;
+        INNSATSGRUPPE: Innsatsgruppe;
     }
 }
 
