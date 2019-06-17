@@ -9,6 +9,8 @@ proxy:
     baseUrl: "http://veilarbproxy"
   - contextPath: "/veilarbvedtakinfo"
     baseUrl: "http://veilarbproxy"
+  - contextPath: "/veilarbregistrering"
+    baseUrl: "http://veilarbproxy"
 
 redirect:
   - from: /aktivitetsplan
