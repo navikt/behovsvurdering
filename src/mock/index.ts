@@ -1,48 +1,20 @@
-import FetchMock, {
-    Middleware,
-    MiddlewareUtils,
-} from 'yet-another-fetch-mock';
+import FetchMock, { MiddlewareUtils } from 'yet-another-fetch-mock';
 import { opprettDialog } from './dialog';
 import { sendSvar } from './behovsvurdering';
 import { registrering } from './registrering';
-
-const loggingMiddleware: Middleware = (request, response) => {
-    // tslint:disable
-    console.groupCollapsed(request.url);
-    console.groupCollapsed('config');
-    console.log('url', request.url);
-    console.log('queryParams', request.queryParams);
-    console.log('pathParams', request.pathParams);
-    console.log('body', request.body);
-    console.groupEnd();
-
-    try {
-        console.log('response', JSON.parse(response.body));
-    } catch (e) {
-        console.log('response', response);
-    }
-
-    console.groupEnd();
-    // tslint:enable
-    return response;
-};
+import underOppfolgingData from './under-oppfolging';
 
 const mock = FetchMock.configure({
     enableFallback: false,
     middleware: MiddlewareUtils.combine(
         MiddlewareUtils.delayMiddleware(300),
-        loggingMiddleware
+        MiddlewareUtils.loggingMiddleware()
     )
 });
 
-// Mock med status 500
-// mock.post('/veilarbdialog/api/dialog', ResponseUtils.statusCode(500));
 mock.post('/veilarbdialog/api/dialog', ({body}): any => opprettDialog(body)); // tslint:disable-line
-
-// Mock med status 500
-// mock.post('/veilarbvedtakinfo/api/behovsvurdering/svar', ResponseUtils.statusCode(500));
 mock.post('/veilarbvedtakinfo/api/behovsvurdering/svar', ({body}): any => sendSvar(body)); // tslint:disable-line
-
 mock.get('/veilarbregistrering/api/registrering', registrering);
+mock.get('/veilarboppfolging/api/underoppfolging', underOppfolgingData);
 
 export default mock;
