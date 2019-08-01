@@ -19,11 +19,9 @@ import { hasData, hasFailed, isNotStartedOrPending } from './api/utils';
 import Spinner from './components/spinner/spinner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
-const initalState: PagesState = {};
-
 function App() {
     const underOppfolging = useFetch<UnderOppfolgingData>();
-    const [value, setValue] = useState(initalState);
+    const [value, setValue] = useState<PagesState>({});
     const erUnderOppfolging = hasData(underOppfolging) && underOppfolging.data.underOppfolging;
 
     useEffect(() => {
@@ -31,7 +29,8 @@ function App() {
             .then(response => settWindowInnsatsGruppe(response.registrering));
 
         underOppfolging.fetch(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING);
-    }, []); // [] sørger for at funksjonen kjøres kun èn gang.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     if (isNotStartedOrPending(underOppfolging)) {
         return <Spinner center={true}/>;
