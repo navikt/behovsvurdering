@@ -1,23 +1,53 @@
 import React, { useEffect, useState } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
-import OnskerDuAKontakteEnNavVeileder  from './pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder';
+import OnskerDuAKontakteEnNavVeileder
+    from './pages/onsker-du-a-kontakte-en-nav-veileder/OnskerDuAKontakteEnNavVeileder';
 import HvilkenVeiledningTrengerDu, { PAGE_ID as VEILEDNING_PAGE_ID } from './pages/hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
 import JaOppsummering, { PAGE_ID as JA_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/JaOppsummering';
 import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/NeiOppsummering';
 import { PagesState } from './pages/PagesTypes';
 import PageChangeListener from './components/pange-change-listener/PageChangeListener';
 import './App.less';
-import { hentRegistreringData, settWindowInnsatsGruppe } from './api/api';
+import {
+    API_VEILARBOPPFOLGING_UNDER_OPPFOLGING,
+    hentRegistreringData,
+    settWindowInnsatsGruppe,
+    UnderOppfolgingData
+} from './api/api';
+import useFetch from './api/use-fetch';
+import { hasData, hasFailed, isNotStartedOrPending } from './api/utils';
+import Spinner from './components/spinner/spinner';
+import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
 
 const initalState: PagesState = {};
 
 function App() {
+    const underOppfolging = useFetch<UnderOppfolgingData>();
     const [value, setValue] = useState(initalState);
+    const erUnderOppfolging = hasData(underOppfolging) && underOppfolging.data.underOppfolging;
 
     useEffect(() => {
         hentRegistreringData()
             .then(response => settWindowInnsatsGruppe(response.registrering));
+
+        underOppfolging.fetch(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING);
     }, []); // [] sørger for at funksjonen kjøres kun èn gang.
+
+    if (isNotStartedOrPending(underOppfolging)) {
+        return <Spinner center={true}/>;
+    } else if (hasFailed(underOppfolging)) {
+        return (
+            <AlertStripeAdvarsel className="underoppfolging__feilmelding">
+                Fikk ikke kontakt med baksystem. Prøv igjen senere.
+            </AlertStripeAdvarsel>
+        );
+    } else if (!erUnderOppfolging) {
+        return (
+            <AlertStripeAdvarsel className="underoppfolging__feilmelding">
+                Du må være registrert hos NAV for å bruke denne tjenesten.
+            </AlertStripeAdvarsel>
+        );
+    }
 
     return (
         <BrowserRouter>

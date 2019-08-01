@@ -4,6 +4,7 @@ import { BesvarelseData, DialogData, NyDialogMeldingData, SvarData } from './dat
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
 export const API_VEILARBVEDTAKINFO = '/veilarbvedtakinfo/api/behovsvurdering/svar';
 export const API_VEILARBREGISTRERING = '/veilarbregistrering/api/registrering';
+export const API_VEILARBOPPFOLGING_UNDER_OPPFOLGING = '/veilarboppfolging/api/underoppfolging';
 
 function getCookie(name: string) {
     const re = new RegExp(`${name}=([^;]+)`);
@@ -34,11 +35,19 @@ export function postBesvarelse(data: SvarData): Promise<BesvarelseData> {
 interface Registrering { profilering: { innsatsgruppe: string }; }
 interface RegistreringsData { registrering: Registrering; }
 
+export interface UnderOppfolgingData {
+    underOppfolging: boolean;
+}
+
 export function hentRegistreringData(): Promise<RegistreringsData> {
     return fetchData<RegistreringsData>(API_VEILARBREGISTRERING, CONFIG)
         .then((registeringsData: RegistreringsData) => ({
             registrering: registeringsData.registrering
         }));
+}
+
+export function hentUnderOppfolging(): Promise<UnderOppfolgingData> {
+    return fetchData<UnderOppfolgingData>(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING, CONFIG);
 }
 
 declare global {

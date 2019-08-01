@@ -73,6 +73,6 @@
     "express": "^4.16.3",
     "tslint": "^5.12.1",
     "tslint-react": "^4.0.0",
-    "yet-another-fetch-mock": "^2.4.0"
+    "yet-another-fetch-mock": "^3.2.0"
   }
 }
