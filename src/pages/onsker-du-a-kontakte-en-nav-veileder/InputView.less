@@ -1,0 +1,30 @@
+@import "~nav-frontend-core/less/_variabler";
+
+.input-view {
+	display: flex;
+	flex-direction: column;
+	margin: 4rem auto 0 auto;
+	width: 50%;
+
+	&__send-knapp {
+		margin: 3rem auto;
+	}
+
+	&__radio-gruppe {
+		.inputPanelGruppe__inner {
+			display: grid;
+			grid-template-columns: 1fr;
+			grid-column-gap: 1rem;
+		}
+	}
+
+	@media (min-width: @screen-sm-min) {
+		&__radio-gruppe {
+			.inputPanelGruppe__inner {
+				grid-template-columns: 1fr 1fr;
+				grid-row-gap: 1rem;
+			}
+		}
+	}
+
+}
