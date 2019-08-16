@@ -1,22 +1,33 @@
-.anbefaling-tittel{
-  text-align: center;
-  margin-bottom: 1.5rem;
+@import "~nav-frontend-core/less/_variabler";
+
+.anbefaling-tittel {
+	text-align: center;
+	margin-bottom: 1.5rem;
 }
 
 .anbefaling-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 2.5rem;
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	max-width: 220px;
 }
 
 .anbefaling-ikon {
-  margin: 0 2rem 0 0
+	width: 100px;
+	height: 100px;
+	margin: 0 auto 0.5rem auto;
 }
 
-.anbefaling-tekst-bolk{
-  text-align: left;
+.anbefaling-tekst-bolk {
+	text-align: left;
 }
 
 .center-text {
-  text-align: center;
+	text-align: center;
+}
+
+@media (min-width: @screen-sm-min) {
+	.anbefaling-item {
+		//flex-direction: column;
+	}
 }
