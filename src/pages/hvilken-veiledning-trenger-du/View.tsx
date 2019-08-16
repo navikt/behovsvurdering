@@ -8,18 +8,19 @@ interface ViewProps {
     disabled: boolean;
 }
 
-const initState: string = '';
 const maxLengde = 500;
 
 export const SPORSMAL = 'Hva trenger du hjelp til i jobbsøkingen?';
 
-const TekstTeller = (antallSkrvet: number, max: number): React.ReactNode => {
-    if (antallSkrvet > max) {
-        return 'Du har ' + (antallSkrvet - max)  + ' tegn for mye';
+const TekstTeller = (antallSkrevet: number, max: number): React.ReactNode => {
+    const tegnDifferanse = Math.abs(antallSkrevet - max);
+
+    if (antallSkrevet > max) {
+        return `Du har ${tegnDifferanse} tegn for mye`;
+    } else if (tegnDifferanse <= 50) {
+        return `Du har ${tegnDifferanse} tegn igjen`;
     }
-    if (max - antallSkrvet <= 50) {
-        return 'Du har ' + (max - antallSkrvet) + ' tegn igjen';
-    }
+
     return '';
 };
 
@@ -34,7 +35,7 @@ function feilmelding(feil: boolean, maksLengde: number, value: string) {
 }
 
 function View(props: ViewProps) {
-    const [value, setValue] = useState(initState);
+    const [value, setValue] = useState('');
     const [feilState, setFeil] = useState(false);
 
     const feil = feilmelding(feilState, maxLengde, value);
