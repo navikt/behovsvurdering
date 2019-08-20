@@ -25,7 +25,7 @@ function InputView(props: InputViewProps) {
     const feil = feilState ? {feilmelding: 'Obligatorisk felt'} : undefined;
     return (
         <section className="input-view">
-            <Systemtittel className="rad-item center-text">
+            <Systemtittel className="blokk-m center-text">
                 {SPORSMAL}
             </Systemtittel>
             <RadioPanelGruppe
@@ -34,8 +34,8 @@ function InputView(props: InputViewProps) {
                 name=""
                 radios={[
                     {label: NEI, disabled: props.disabled, value: NEI},
-                    {label: KANSKJE, disabled: props.disabled, value: KANSKJE},
                     {label: JA, disabled: props.disabled, value: JA},
+                    {label: KANSKJE, disabled: props.disabled, value: KANSKJE},
                     {label: USIKKER, disabled: props.disabled, value: USIKKER},
                 ]}
                 checked={value}

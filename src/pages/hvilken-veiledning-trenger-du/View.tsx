@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Systemtittel } from 'nav-frontend-typografi';
+import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
 import { Hovedknapp } from 'nav-frontend-knapper';
+import './View.less';
 
 interface ViewProps {
     onSubmit: (value: string) => void;
@@ -40,48 +41,43 @@ function View(props: ViewProps) {
 
     const feil = feilmelding(feilState, maxLengde, value);
     return (
-        <div className="beholder">
-            <div className="rad">
-                <Systemtittel className="rad-item">
-                    {SPORSMAL}
-                </Systemtittel>
+        <div className="hvilken-veiledning">
+            <Systemtittel className="hvilken-veiledning__tittel blokk-m">
+                {SPORSMAL}
+            </Systemtittel>
+            <Normaltekst className="blokk-xxs">
                 Du kan skrive om
-                <div className="rad-item">
-                    <ul>
-                        <li>hva slags jobb du ønsker deg</li>
-                        <li>hva som skal til for at du skal komme i jobb</li>
-                    </ul>
-                </div>
-                <div className="rad-item">
-                    <Textarea
-                        placeholder="Skriv til din veileder her"
-                        textareaClass="spm-text-area"
-                        label={false}
-                        tellerTekst={TekstTeller}
-                        value={value}
-                        maxLength={maxLengde}
-                        disabled={props.disabled}
-                        onChange={(e) => setValue((e.target as HTMLInputElement).value)}
-                        feil={feil}
-                    />
-                </div>
-                <div className="center">
-                    <Hovedknapp
-                        spinner={props.disabled}
-                        disabled={props.disabled}
-                        onClick={() => {
-                            if (value === '' || value.length > maxLengde) {
-                                setFeil(true);
-                            } else {
-                                setFeil(false);
-                                props.onSubmit(value);
-                            }
-                        }}
-                    >
-                        Send
-                    </Hovedknapp>
-                </div>
-            </div>
+            </Normaltekst>
+            <ul className="hvilken-veiledning__tips-liste blokk-s">
+                <li>hva slags jobb du ønsker deg</li>
+                <li>hva som skal til for at du skal komme i jobb</li>
+            </ul>
+            <Textarea
+                placeholder="Skriv til din veileder her"
+                textareaClass="hvilken-veiledning__tekst-felt blokk-l"
+                label={false}
+                tellerTekst={TekstTeller}
+                value={value}
+                maxLength={maxLengde}
+                disabled={props.disabled}
+                onChange={(e) => setValue((e.target as HTMLInputElement).value)}
+                feil={feil}
+            />
+            <Hovedknapp
+                spinner={props.disabled}
+                disabled={props.disabled}
+                className="hvilken-veiledning__send-knapp"
+                onClick={() => {
+                    if (value === '' || value.length > maxLengde) {
+                        setFeil(true);
+                    } else {
+                        setFeil(false);
+                        props.onSubmit(value);
+                    }
+                }}
+            >
+                Send
+            </Hovedknapp>
         </div>
     );
 }

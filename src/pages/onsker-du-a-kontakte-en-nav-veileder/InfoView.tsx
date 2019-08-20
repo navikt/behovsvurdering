@@ -9,7 +9,7 @@ import ScrollKnapp from '../../components/scroll-knapp/ScrollKnapp';
 import './InfoView.less';
 
 const InfoView = () => (
-    <section className="info-view gray">
+    <section className="info-view">
         <Systemtittel className="info-view__header">
             På nav.no får du:
         </Systemtittel>
