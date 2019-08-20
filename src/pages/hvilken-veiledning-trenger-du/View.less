@@ -1,0 +1,33 @@
+@import "~nav-frontend-core/less/_variabler";
+
+.hvilken-veiledning {
+	margin: 3rem auto;
+	max-width: 70%;
+
+	&__tips-liste {
+		margin-top: 0.25rem;
+		padding-left: 1.25rem;
+
+		> li {
+			padding-left: 0.75rem;
+		}
+	}
+
+	&__tekst-felt {
+		min-height: 120px;
+	}
+
+	&__tittel {
+		text-align: center;
+	}
+
+	&__send-knapp {
+		display: block;
+		margin: 0 auto;
+	}
+
+	@media (min-width: @screen-md-min) {
+		max-width: 700px;
+	}
+
+}
