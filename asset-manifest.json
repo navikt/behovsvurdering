@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.chunk.css",
+    "main.js": "/static/js/main.chunk.js",
+    "main.js.map": "/static/js/main.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.js",
+    "runtime~main.js.map": "/static/js/runtime~main.js.map",
+    "static/css/2.chunk.css": "/static/css/2.chunk.css",
+    "static/js/2.chunk.js": "/static/js/2.chunk.js",
+    "static/js/2.chunk.js.map": "/static/js/2.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.06ae04081ccf074de26a6cd25ffd3df1.js": "/precache-manifest.06ae04081ccf074de26a6cd25ffd3df1.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.chunk.css.map": "/static/css/2.chunk.css.map",
+    "static/css/main.chunk.css.map": "/static/css/main.chunk.css.map",
+    "static/media/arbeidsplassen.svg": "/static/media/arbeidsplassen.59de4275.svg",
+    "static/media/cv.svg": "/static/media/cv.cf168c08.svg",
+    "static/media/design-mug.svg": "/static/media/design-mug.ebf90859.svg",
+    "static/media/dialog.svg": "/static/media/dialog.7330e2f9.svg",
+    "static/media/jobbsokertips.svg": "/static/media/jobbsokertips.a8a67012.svg",
+    "static/media/nav-ansatt.9a33657d.svg": "/static/media/nav-ansatt.9a33657d.svg",
+    "static/media/stillingsok.svg": "/static/media/stillingsok.1ddd7c66.svg"
+  }
+}
