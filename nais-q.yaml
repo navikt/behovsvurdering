@@ -31,13 +31,5 @@ spec:
   webproxy: true
   ingresses:
     - https://behovsvurdering-{{namespace}}.dev-sbs.nais.io
-  env:
-    - AAD_B2C_CLIENTID_USERNAME
-    - AAD_B2C_DISCOVERY_URL
-    - APPRES_CMS_URL
-    - LOGINSERVICE_URL
-    - APPRES_CMS_URL
-    - UNLEASH_API_URL
-    - AKTIVITETSPLAN_URL
-    - JOBBSOKERKOMPETANSE_URL
-    - ARBEIDSPLASSEN_URL
+  envFrom:
+    - configmap: pto-config
