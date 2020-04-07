@@ -2,7 +2,7 @@ apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
   name: behovsvurdering
-  namespace: {{namespace}}
+  namespace: q0
   cluster: dev-sbs
   labels:
     team: pto
@@ -30,6 +30,7 @@ spec:
     path: /internal/metrics
   webproxy: true
   ingresses:
-    - https://behovsvurdering-{{namespace}}.dev-sbs.nais.io
+    - https://behovsvurdering-q.nav.no
+    - https://behovsvurdering-q0.dev-sbs.nais.io
   envFrom:
     - configmap: pto-config
