@@ -4,9 +4,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
     <title>Behovsvurdering</title>
+    <link href="https://dekoratoren.dev.nav.no/css/client.css" rel="stylesheet" />
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="decorator-header"></div>
     <main id="root"></main>
+    <div id="decorator-footer"></div>
+    <!-- TODO: enforceLogin er i beta, gjør avklaring på om det kan brukes -->
+    <div id="decorator-env" data-src="https://dekoratoren.dev.nav.no/env?feedback=false&enforceLogin=true&redirectToApp=true&level=Level4"></div>
+    <script src="https://dekoratoren.dev.nav.no/client.js"></script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
   </body>
 </html>
