@@ -10,11 +10,11 @@ spec:
   image: docker.pkg.github.com/navikt/behovsvurdering/behovsvurdering:{{version}}
   port: 80
   liveness:
-    path: /isAlive
-    initialDelay: 30
+    path: /internal/isAlive
+    initialDelay: 10
   readiness:
-    path: /isReady
-    initialDelay: 30
+    path: /internal/isReady
+    initialDelay: 10
   replicas:
     min: 1
     max: 2
