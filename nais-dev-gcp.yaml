@@ -8,11 +8,12 @@ metadata:
     team: pto
 spec:
   image: docker.pkg.github.com/navikt/behovsvurdering/behovsvurdering:{{version}}
+  port: 80
   liveness:
-    path: /internal/isAlive
+    path: /isAlive
     initialDelay: 30
   readiness:
-    path: /internal/isReady
+    path: /isReady
     initialDelay: 30
   replicas:
     min: 1
@@ -25,8 +26,5 @@ spec:
     requests:
       cpu: 500m
       memory: 1Gi
-  prometheus:
-    enabled: true
-    path: /internal/metrics
   ingresses:
     - https://behovsvurdering.dev.nav.no
