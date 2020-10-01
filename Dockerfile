@@ -1,2 +1,2 @@
-FROM docker.pkg.github.com/navikt/pto-frontend/pto-frontend:fd471c18d91f2ba828a7304b3b33211b2c59db09
+FROM docker.pkg.github.com/navikt/pto-frontend/pto-frontend:d33a76e7d52c3f0b5fd029478f81d28dda6fd765
 COPY build /app/public
