@@ -14,7 +14,6 @@
 	},
 	"dependencies": {
 		"@craco/craco": "^5.2.4",
-		"@navikt/nav-dekoratoren-moduler": "^1.0.21",
 		"babel-polyfill": "^6.26.0",
 		"classnames": "^2.2.6",
 		"craco-less": "^1.9.0",
