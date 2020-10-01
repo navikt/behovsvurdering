@@ -11,10 +11,10 @@ spec:
   port: 8080
   liveness:
     path: /internal/isAlive
-    initialDelay: 10
+    initialDelay: 20
   readiness:
     path: /internal/isReady
-    initialDelay: 10
+    initialDelay: 20
   replicas:
     min: 1
     max: 2
@@ -30,7 +30,7 @@ spec:
     - https://behovsvurdering.dev.nav.no
   env:
     - name: ENFORCE_LOGIN
-      value: true
+      value: "true"
     - name: LOGIN_REDIRECT_URL
       value: https://loginservice.dev.nav.no/login?redirect={RETURN_TO_URL}&level=Level4
     - name: OIDC_DISCOVERY_URL
