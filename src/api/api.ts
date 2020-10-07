@@ -1,10 +1,10 @@
 import { fetchData } from './fetchData';
 import { BesvarelseData, DialogData, NyDialogMeldingData, SvarData } from './dataTypes';
 
-export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
-export const API_VEILARBVEDTAKINFO = '/veilarbvedtakinfo/api/behovsvurdering/svar';
-export const API_VEILARBREGISTRERING = '/veilarbregistrering/api/registrering';
-export const API_VEILARBOPPFOLGING_UNDER_OPPFOLGING = '/veilarboppfolging/api/underoppfolging';
+export const API_VEILARBDIALOG = '/proxy/veilarbdialog/api/dialog';
+export const API_VEILARBVEDTAKINFO = '/proxy/veilarbvedtakinfo/api/behovsvurdering/svar';
+export const API_VEILARBREGISTRERING = '/proxy/veilarbregistrering/api/registrering';
+export const API_VEILARBOPPFOLGING_UNDER_OPPFOLGING = '/proxy/veilarboppfolging/api/underoppfolging';
 
 function getCookie(name: string) {
     const re = new RegExp(`${name}=([^;]+)`);

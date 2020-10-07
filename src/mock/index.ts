@@ -12,9 +12,9 @@ const mock = FetchMock.configure({
     )
 });
 
-mock.post('/veilarbdialog/api/dialog', ({body}): any => opprettDialog(body)); // tslint:disable-line
-mock.post('/veilarbvedtakinfo/api/behovsvurdering/svar', ({body}): any => sendSvar(body)); // tslint:disable-line
-mock.get('/veilarbregistrering/api/registrering', registrering);
-mock.get('/veilarboppfolging/api/underoppfolging', underOppfolgingData);
+mock.post('/proxy/veilarbdialog/api/dialog', ({body}): any => opprettDialog(body)); // tslint:disable-line
+mock.post('/proxy/veilarbvedtakinfo/api/behovsvurdering/svar', ({body}): any => sendSvar(body)); // tslint:disable-line
+mock.get('/proxy/veilarbregistrering/api/registrering', registrering);
+mock.get('/proxy/veilarboppfolging/api/underoppfolging', underOppfolgingData);
 
 export default mock;
