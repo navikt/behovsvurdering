@@ -28,6 +28,11 @@ spec:
       memory: 1Gi
   ingresses:
     - https://behovsvurdering.dev.nav.no
+  accessPolicy:
+    outbound:
+      external:
+        - host: dekoratoren.dev.nav.no
+        - host: pto-proxy.dev.nav.no
   env:
     - name: ENFORCE_LOGIN
       value: "true"
