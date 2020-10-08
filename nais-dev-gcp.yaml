@@ -31,7 +31,6 @@ spec:
   accessPolicy:
     outbound:
       external:
-        - host: dekoratoren.dev.nav.no
         - host: pto-proxy.dev.nav.no
   env:
     - name: ENFORCE_LOGIN
@@ -48,7 +47,6 @@ spec:
       value: >
         {
           "proxies": [
-            { "from": "/dekorator", "to": "https://dekoratoren.dev.nav.no" },
             { "from": "/proxy", "to": "https://pto-proxy.dev.nav.no", "preserveContextPath": true }
           ]
         }
