@@ -7,7 +7,7 @@ metadata:
   labels:
     team: pto
 spec:
-  image: docker.pkg.github.com/navikt/behovsvurdering/behovsvurdering:{{version}}
+  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:64370ce23ddb3c65ea88ec920af1db541b59182b
   port: 8080
   liveness:
     path: /internal/isAlive
@@ -47,6 +47,10 @@ spec:
       value: 0090b6e1-ffcc-4c37-bc21-049f7d1f0fe5
     - name: TOKEN_COOKIE_NAME
       value: selvbetjening-idtoken
+    - name: GCS_BUCKET_NAME
+      value: pto-dev-behovsvurdering
+    - name: GCS_BUCKET_PREFIX_PATH
+      value: /build
     - name: JSON_CONFIG
       value: >
         {
