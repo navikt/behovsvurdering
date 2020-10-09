@@ -34,7 +34,7 @@ spec:
         - host: pto-proxy.dev.nav.no
   gcp:
     buckets:
-      - name: pto-dev-behovsvurdering
+      - name: pto-dev-behovsvurdering2
         cascadingDelete: true
   env:
     - name: ENFORCE_LOGIN
@@ -48,7 +48,7 @@ spec:
     - name: TOKEN_COOKIE_NAME
       value: selvbetjening-idtoken
     - name: GCS_BUCKET_NAME
-      value: pto-dev-behovsvurdering
+      value: pto-dev-behovsvurdering2
     - name: GCS_BUCKET_PREFIX_PATH
       value: /build
     - name: JSON_CONFIG

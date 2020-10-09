@@ -81,7 +81,7 @@ jobs:
         with:
           credentials: ${{ secrets.GCS_SA_KEY_DEV }}
           path: build/
-          destination: pto-dev-behovsvurdering
+          destination: pto-dev-behovsvurdering2
 
 #  deploy-q0:
 #    name: Deploy application to Q0
