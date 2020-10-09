@@ -61,6 +61,29 @@ jobs:
           RESOURCE: nais-dev-gcp.yaml
           VAR: version=${{ env.IMAGE_TAG }}
 
+  upload-dev-gcs:
+    name: Upload files to dev GCS
+    if: github.ref == 'refs/heads/gcp-migrering'
+    needs: test-build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build application
+        run: npm run build
+      - name: Upload files
+        uses: GoogleCloudPlatform/github-actions/upload-cloud-storage@master
+        with:
+          service_account_key: ${{ secrets.GCS_SA_KEY }}
+          path: build
+          destination: pto-dev-behovsvurdering
+
   deploy-q0:
     name: Deploy application to Q0
     if: github.ref == 'refs/heads/dev'

@@ -32,6 +32,10 @@ spec:
     outbound:
       external:
         - host: pto-proxy.dev.nav.no
+  gcp:
+    buckets:
+      - name: pto-dev-behovsvurdering
+        cascadingDelete: true
   env:
     - name: ENFORCE_LOGIN
       value: "true"
