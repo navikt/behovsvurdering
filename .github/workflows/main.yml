@@ -80,7 +80,7 @@ jobs:
         uses: GoogleCloudPlatform/github-actions/upload-cloud-storage@master
         with:
           credentials: ${{ secrets.GCS_SA_KEY_DEV }}
-          path: build/
+          path: build/*
           destination: pto-dev-behovsvurdering2
 
 #  deploy-q0:

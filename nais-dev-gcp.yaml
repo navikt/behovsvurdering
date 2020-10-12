@@ -7,7 +7,7 @@ metadata:
   labels:
     team: pto
 spec:
-  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:d879d284efdfcf1cf32eabdd21092bdb93035e2c
+  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:19bf5fe1b248bc956db8f716672496202a680d13
   port: 8080
   liveness:
     path: /internal/isAlive
@@ -50,7 +50,7 @@ spec:
     - name: GCS_BUCKET_NAME
       value: pto-dev-behovsvurdering2
     - name: GCS_BUCKET_PREFIX_PATH
-      value: /build
+      value: build
     - name: JSON_CONFIG
       value: >
         {
