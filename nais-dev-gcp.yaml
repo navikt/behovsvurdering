@@ -7,7 +7,7 @@ metadata:
   labels:
     team: pto
 spec:
-  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:19bf5fe1b248bc956db8f716672496202a680d13
+  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:3800b289004d9a7d3dafe4dda8ece837afe033da
   port: 8080
   liveness:
     path: /internal/isAlive
@@ -35,7 +35,7 @@ spec:
   gcp:
     buckets:
       - name: behovsvurdering-dev
-        cascadingDelete: true
+        cascadingDelete: false
   env:
     - name: ENFORCE_LOGIN
       value: "true"
@@ -49,8 +49,6 @@ spec:
       value: selvbetjening-idtoken
     - name: GCS_BUCKET_NAME
       value: behovsvurdering-dev
-    - name: GCS_BUCKET_PREFIX_PATH
-      value: build
     - name: JSON_CONFIG
       value: >
         {
