@@ -3,7 +3,6 @@ kind: "Application"
 metadata:
   name: behovsvurdering
   namespace: pto
-  cluster: dev-gcp
   labels:
     team: pto
 spec:
