@@ -34,3 +34,4 @@ spec:
     - https://behovsvurdering-q0.dev-sbs.nais.io
   envFrom:
     - configmap: pto-config
+    - configmap: loginservice-idporten
