@@ -30,7 +30,7 @@ function InputView(props: InputViewProps) {
             </Systemtittel>
             <RadioPanelGruppe
                 className="input-view__radio-gruppe"
-                legend=""
+                legend="Ønsker du kontakt med veileder?"
                 name=""
                 radios={[
                     {label: NEI, disabled: props.disabled, value: NEI},
