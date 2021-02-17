@@ -17,7 +17,7 @@ const InfoView = () => (
                 Jobbsøkertips som passer din situasjon.
             </InfoItem>
             <InfoItem ikon={cvSVG}>
-                En CV som gjør deg synlig for arbeidsgivere som ser etter din kompetanse.
+                En CV-registrering som gjør at NAV kan finne din kompetanse og hjelpe deg ut i jobb.
             </InfoItem>
             <InfoItem ikon={sokSVG}>
                 Oversikt over ledige stillinger i hele landet.
