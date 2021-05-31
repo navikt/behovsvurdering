@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import { ReactComponent as VeilederSvg } from './nav-ansatt.svg';
 import './feilmelding.less';

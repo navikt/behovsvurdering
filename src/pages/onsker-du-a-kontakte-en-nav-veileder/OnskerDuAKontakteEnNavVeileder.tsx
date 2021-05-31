@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { PagesProps } from '../PagesTypes';
 import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/NeiOppsummering';

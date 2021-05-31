@@ -60,7 +60,7 @@ function View(props: ViewProps) {
                 value={value}
                 maxLength={maxLengde}
                 disabled={props.disabled}
-                onChange={(e) => setValue((e.target as HTMLInputElement).value)}
+                onChange={(e) => setValue((e.target as HTMLTextAreaElement).value)}
                 feil={feil}
             />
             <Hovedknapp

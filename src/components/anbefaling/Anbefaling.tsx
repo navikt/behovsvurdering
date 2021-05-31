@@ -1,4 +1,3 @@
-import React from 'react';
 import { Element, Normaltekst } from 'nav-frontend-typografi';
 
 import cvSVG from './cv.svg';

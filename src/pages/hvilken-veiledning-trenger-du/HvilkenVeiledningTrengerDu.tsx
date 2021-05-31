@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import { useReducer } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import { initialFetchState, reducer } from '../../reducers/fetchReducer';
 import { PagesProps } from '../PagesTypes';

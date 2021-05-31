@@ -1,4 +1,3 @@
-import React from 'react';
 import { PagesProps } from '../PagesTypes';
 import Oppsummering from './Oppsummering';
 import { Arbeidsplassen, CV, Jobbsokertips } from '../../components/anbefaling/Anbefaling';

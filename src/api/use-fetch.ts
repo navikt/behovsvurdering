@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useState } from 'react';
 import { FetchState, FetchStatus } from './utils';
 
-export interface Fetch<D = any, FP = any> extends FetchState<D> {
+export interface Fetch<D = any> extends FetchState<D> {
     fetch: (url: string, request?: RequestInit, onFinished?: (fetchState: FetchState<D>) => void) => void;
     reset: () => void;
 }
