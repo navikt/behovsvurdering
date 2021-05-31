@@ -7,59 +7,72 @@ export const API_VEILARBREGISTRERING = '/proxy/veilarbregistrering/api/registrer
 export const API_VEILARBOPPFOLGING_UNDER_OPPFOLGING = '/proxy/veilarboppfolging/api/underoppfolging';
 
 function getCookie(name: string) {
-    const re = new RegExp(`${name}=([^;]+)`);
-    const match = re.exec(document.cookie);
-    return match !== null ? match[1] : '';
+	const re = new RegExp(`${name}=([^;]+)`);
+	const match = re.exec(document.cookie);
+	return match !== null ? match[1] : '';
 }
 
 function getHeaders() {
-    return new Headers({
-        'Content-Type': 'application/json',
-        'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'), // eslint-disable-line quote-props
-    });
+	return new Headers({
+		'Content-Type': 'application/json',
+		NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION') // eslint-disable-line quote-props
+	});
 }
 
 const CONFIG = {
-    credentials: ('same-origin' as RequestCredentials),
-    headers: getHeaders(),
+	credentials: 'same-origin' as RequestCredentials,
+	headers: getHeaders()
 };
 
 export function postDialog(data: NyDialogMeldingData): Promise<DialogData> {
-    return fetchData<DialogData>(API_VEILARBDIALOG, {method: 'post', body: JSON.stringify(data), ...CONFIG});
+	return fetchData<DialogData>(API_VEILARBDIALOG, {
+		method: 'post',
+		body: JSON.stringify(data),
+		...CONFIG
+	});
 }
 
 export function postBesvarelse(data: SvarData): Promise<BesvarelseData> {
-    return fetchData<BesvarelseData>(API_VEILARBVEDTAKINFO, {method: 'post', body: JSON.stringify(data), ...CONFIG});
+	return fetchData<BesvarelseData>(API_VEILARBVEDTAKINFO, {
+		method: 'post',
+		body: JSON.stringify(data),
+		...CONFIG
+	});
 }
 
-interface Registrering { profilering: { innsatsgruppe: string }; }
-interface RegistreringsData { registrering: Registrering; }
+interface Registrering {
+	profilering: { innsatsgruppe: string };
+}
+interface RegistreringsData {
+	registrering: Registrering;
+}
 
 export interface UnderOppfolgingData {
-    underOppfolging: boolean;
+	underOppfolging: boolean;
 }
 
 export function hentRegistreringData(): Promise<RegistreringsData> {
-    return fetchData<RegistreringsData>(API_VEILARBREGISTRERING, CONFIG)
-        .then((registeringsData: RegistreringsData) => ({
-            registrering: registeringsData.registrering
-        }));
+	return fetchData<RegistreringsData>(API_VEILARBREGISTRERING, CONFIG).then(
+		(registeringsData: RegistreringsData) => ({
+			registrering: registeringsData.registrering
+		})
+	);
 }
 
 export function hentUnderOppfolging(): Promise<UnderOppfolgingData> {
-    return fetchData<UnderOppfolgingData>(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING, CONFIG);
+	return fetchData<UnderOppfolgingData>(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING, CONFIG);
 }
 
 declare global {
-    interface Window {
-        INNSATSGRUPPE: string;
-    }
+	interface Window {
+		INNSATSGRUPPE: string;
+	}
 }
 
 export function settWindowInnsatsGruppe(registrering: Registrering) {
-    window.INNSATSGRUPPE = registrering.profilering.innsatsgruppe;
+	window.INNSATSGRUPPE = registrering.profilering.innsatsgruppe;
 }
 
 export function hentWindowInnsatsGruppe() {
-    return window.INNSATSGRUPPE;
+	return window.INNSATSGRUPPE;
 }

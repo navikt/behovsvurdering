@@ -15,49 +15,50 @@ import { hentWindowInnsatsGruppe } from '../../api/api';
 export const PAGE_ID = 'kontakt-fra-nav-veileder';
 
 function getNextPage(value: string) {
-    if (value === NEI || value === KANSKJE) {
-        return OPPSUMMERING_PAGE_ID;
-    } else {
-        return VEILEDNING_PAGE_ID;
-    }
+	if (value === NEI || value === KANSKJE) {
+		return OPPSUMMERING_PAGE_ID;
+	} else {
+		return VEILEDNING_PAGE_ID;
+	}
 }
 
 function OnskerDuAKontakteEnNavVeileder(props: PagesProps & RouteComponentProps) {
-    const [fetchDialogState, fetchDialogDispatch] = useReducer(reducer, initialFetchState);
-    const [fetchBesvarelseState, fetchBesvarelseDispatch] = useReducer(reducer, initialFetchState);
+	const [fetchDialogState, fetchDialogDispatch] = useReducer(reducer, initialFetchState);
+	const [fetchBesvarelseState, fetchBesvarelseDispatch] = useReducer(reducer, initialFetchState);
 
-    const onSubmit = (val: string) => {
-        const dialogInputData = {svar: val, spm: SPORSMAL};
-        const besvarelseInputData = {svar: val, spm: SPORSMAL, besvarelseId: props.state.besvarelseId, spmId: PAGE_ID};
+	const onSubmit = (val: string) => {
+		const dialogInputData = { svar: val, spm: SPORSMAL };
+		const besvarelseInputData = {
+			svar: val,
+			spm: SPORSMAL,
+			besvarelseId: props.state.besvarelseId,
+			spmId: PAGE_ID
+		};
 
-        dispatchDialogData(dialogInputData, fetchDialogDispatch)
-            .then((dialogRes) => {
-                dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch)
-                    .then((bvRes) => {
-                        props.setState({
-                            dialogId: dialogRes.id,
-                            besvarelseId: bvRes.besvarelseId,
-                        });
-                        props.history.push(`/${getNextPage(val)}`);
-                    });
-                }
-            );
+		dispatchDialogData(dialogInputData, fetchDialogDispatch).then(dialogRes => {
+			dispatchBesvarelse(besvarelseInputData, fetchBesvarelseDispatch).then(bvRes => {
+				props.setState({
+					dialogId: dialogRes.id,
+					besvarelseId: bvRes.besvarelseId
+				});
+				props.history.push(`/${getNextPage(val)}`);
+			});
+		});
 
-        const innsatsgruppe = hentWindowInnsatsGruppe();
-        vurderingsMetrikk(val, innsatsgruppe);
+		const innsatsgruppe = hentWindowInnsatsGruppe();
+		vurderingsMetrikk(val, innsatsgruppe);
+	};
 
-    };
+	if (fetchDialogState.failure || fetchBesvarelseState.failure) {
+		return <Feilmelding />;
+	}
 
-    if (fetchDialogState.failure || fetchBesvarelseState.failure) {
-        return <Feilmelding/>;
-    }
-
-    return (
-        <>
-            <InfoView/>
-            <InputView disabled={fetchDialogState.loading || fetchBesvarelseState.loading} onSubmit={onSubmit}/>
-        </>
-    );
+	return (
+		<>
+			<InfoView />
+			<InputView disabled={fetchDialogState.loading || fetchBesvarelseState.loading} onSubmit={onSubmit} />
+		</>
+	);
 }
 
 export default withRouter(OnskerDuAKontakteEnNavVeileder);
