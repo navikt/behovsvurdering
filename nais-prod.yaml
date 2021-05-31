@@ -6,7 +6,7 @@ metadata:
   labels:
     team: pto
 spec:
-  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:3800b289004d9a7d3dafe4dda8ece837afe033da
+  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:2021.05.12_07.10-79775437ff2a
   port: 8080
   liveness:
     path: /internal/isAlive
@@ -21,16 +21,17 @@ spec:
   resources:
     limits:
       cpu: "1"
-      memory: 1Gi
+      memory: 512Mi
     requests:
-      cpu: 500m
-      memory: 500Mi
-#  ingresses:
-#    - https://behovsvurdering.nav.no
+      cpu: 250m
+      memory: 256Mi
+  ingresses:
+    - https://behovsvurdering2.nav.no # TODO Sett riktig ingress etter testing
   accessPolicy:
     outbound:
       external:
         - host: pto-proxy.nav.no
+        - host: navnob2c.b2clogin.com
   gcp:
     buckets:
       - name: behovsvurdering-prod

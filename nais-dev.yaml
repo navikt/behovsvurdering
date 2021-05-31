@@ -6,7 +6,7 @@ metadata:
   labels:
     team: pto
 spec:
-  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:44f67f939279f8b3511a2e4e1ea635119744a50b
+  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:2021.05.12_07.10-79775437ff2a
   port: 8080
   liveness:
     path: /internal/isAlive
@@ -16,15 +16,15 @@ spec:
     initialDelay: 20
   replicas:
     min: 1
-    max: 1
+    max: 2
     cpuThresholdPercentage: 75
   resources:
     limits:
       cpu: "1"
-      memory: 2Gi
+      memory: 512Mi
     requests:
-      cpu: 500m
-      memory: 1Gi
+      cpu: 250m
+      memory: 256Mi
   ingresses:
     - https://behovsvurdering.dev.nav.no
   accessPolicy:
