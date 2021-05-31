@@ -5,7 +5,6 @@ import cvSVG from './img/cv.svg';
 import sokSVG from './img/stillingsok.svg';
 import mugSVG from './img/design-mug.svg';
 import dialogSVG from './img/dialog.svg';
-import ScrollKnapp from '../../components/scroll-knapp/ScrollKnapp';
 import './InfoView.less';
 
 const InfoView = () => (
@@ -18,7 +17,7 @@ const InfoView = () => (
                 Jobbsøkertips som passer din situasjon.
             </InfoItem>
             <InfoItem ikon={cvSVG}>
-                En CV som gjør deg synlig for arbeidsgivere som ser etter din kompetanse.
+                En CV-registrering som gjør at NAV kan finne din kompetanse og hjelpe deg ut i jobb.
             </InfoItem>
             <InfoItem ikon={sokSVG}>
                 Oversikt over ledige stillinger i hele landet.
@@ -30,9 +29,6 @@ const InfoView = () => (
                 En digital dialog hvor du kan stille veilederen din spørsmål.
             </InfoItem>
         </ul>
-        <div className="scroll-knapp-container">
-            <ScrollKnapp className="middle-scroll"/>
-        </div>
     </section>
 );
 
