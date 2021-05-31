@@ -29,8 +29,9 @@ spec:
     - https://behovsvurdering.dev.nav.no
   accessPolicy:
     outbound:
+      rules:
+        - application: pto-proxy
       external:
-        - host: pto-proxy.dev.nav.no
         - host: navtestb2c.b2clogin.com
   gcp:
     buckets:
@@ -53,6 +54,6 @@ spec:
       value: >
         {
           "proxies": [
-            { "from": "/proxy", "to": "https://pto-proxy.dev.nav.no", "preserveContextPath": true }
+            { "from": "/proxy", "to": "http://pto-proxy", "preserveContextPath": true }
           ]
         }

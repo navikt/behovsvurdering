@@ -29,8 +29,9 @@ spec:
     - https://behovsvurdering2.nav.no # TODO Sett riktig ingress etter testing
   accessPolicy:
     outbound:
+      rules:
+        - application: pto-proxy
       external:
-        - host: pto-proxy.nav.no
         - host: navnob2c.b2clogin.com
   gcp:
     buckets:
@@ -53,6 +54,6 @@ spec:
       value: >
         {
           "proxies": [
-            { "from": "/proxy", "to": "https://pto-proxy.nav.no", "preserveContextPath": true }
+            { "from": "/proxy", "to": "http://pto-proxy", "preserveContextPath": true }
           ]
         }
