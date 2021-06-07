@@ -3,12 +3,8 @@ import { APP_NAME } from './constants';
 
 const logger = createFrontendLogger(APP_NAME, '/proxy/frontendlogger/api');
 
-export const logError = (fields?: {}, tags?: {}): void => {
-	logger.event(`${APP_NAME}.error`, fields, tags);
-};
-
 const logMetrikk = (metrikkNavn: string, fields?: {}, tags?: {}): void => {
-	logger.event(`${APP_NAME}.metric.${metrikkNavn}`, fields, tags);
+	logger.event(`${APP_NAME}.${metrikkNavn}`, fields, tags);
 };
 
 export function logVurderingsMetrikk(value: string, innsatsgruppe: string | null) {
