@@ -6,7 +6,7 @@ metadata:
   labels:
     team: pto
 spec:
-  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:2021.05.12_07.10-79775437ff2a
+  image: docker.pkg.github.com/navikt/pto-frontend/pto-frontend:2021.06.07_11.12-09a62aa37369
   port: 8080
   liveness:
     path: /internal/isAlive
