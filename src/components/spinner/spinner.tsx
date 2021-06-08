@@ -3,7 +3,7 @@ import NavFrontendSpinner from 'nav-frontend-spinner';
 import './spinner.less';
 
 const Spinner = (props: { center: boolean }) => (
-	<div className={cls({ 'spinner--center': props.center })}>
+	<div className={cls('page-spinner', { 'spinner--center': props.center })}>
 		<NavFrontendSpinner type="XL" />
 	</div>
 );

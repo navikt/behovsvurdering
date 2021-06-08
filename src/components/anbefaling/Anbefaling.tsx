@@ -4,7 +4,7 @@ import cvSVG from './cv.svg';
 import arbeidsplassenSVG from './arbeidsplassen.svg';
 import jobbsokertipsSVG from './jobbsokertips.svg';
 import './Anbefaling.less';
-import { linkMetrikk } from '../../metrikker/frontendlogger';
+import { logLinkTrykketMetrikk } from '../../utils/logger';
 
 interface AnbefalingItemProps {
 	tittel: string;
@@ -45,7 +45,7 @@ export function Jobbsokertips(props: Anbefaling) {
 			tekst={tekst ? tekst : 'Les tips om CV, søknad, intervju, motivasjon og mer.'}
 			lenke="/jobbsokerkompetanse/resultatside"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Se tips'}
-			onClick={() => linkMetrikk('jobbsokerkompetanse', panel)}
+			onClick={() => logLinkTrykketMetrikk('jobbsokerkompetanse', panel)}
 		/>
 	);
 }
@@ -59,7 +59,7 @@ export function Arbeidsplassen(props: Anbefaling) {
 			tekst={tekst ? tekst : 'Få oversikt over ledige stillinger i hele landet.'}
 			lenke="/arbeidsplassen/stillinger"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til Arbeidsplassen'}
-			onClick={() => linkMetrikk('stillinger', panel)}
+			onClick={() => logLinkTrykketMetrikk('stillinger', panel)}
 		/>
 	);
 }
@@ -73,7 +73,7 @@ export function CV(props: Anbefaling) {
 			tekst={tekst ? tekst : 'CV-en din blir synlig for arbeidsgivere.'}
 			lenke="/arbeidsplassen/cv"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til CV'}
-			onClick={() => linkMetrikk('cv', panel)}
+			onClick={() => logLinkTrykketMetrikk('cv', panel)}
 		/>
 	);
 }

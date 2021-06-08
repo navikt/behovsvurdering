@@ -1,8 +1,8 @@
 import React from 'react';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import { linkMetrikk } from '../../metrikker/frontendlogger';
 import './Oppsummering.less';
+import { logLinkTrykketMetrikk } from '../../utils/logger';
 
 interface Props {
 	dialogId: string;
@@ -19,7 +19,7 @@ function Oppsummering(props: Props) {
 					Svaret ditt er&nbsp;
 					<a
 						href={`aktivitetsplan/dialog/${props.dialogId}`}
-						onClick={() => linkMetrikk('dialog-lenke', props.panel)}
+						onClick={() => logLinkTrykketMetrikk('dialog-lenke', props.panel)}
 					>
 						delt med veilederen din
 					</a>
