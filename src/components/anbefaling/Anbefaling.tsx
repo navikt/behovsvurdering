@@ -43,7 +43,7 @@ export function Jobbsokertips(props: Anbefaling) {
 			svg={jobbsokertipsSVG}
 			tittel="Få jobbsøkertips"
 			tekst={tekst ? tekst : 'Les tips om CV, søknad, intervju, motivasjon og mer.'}
-			lenke="/jobbsokerkompetanse/resultatside"
+			lenke="https://jobbsokerkompetanse.nav.no/resultatside"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Se tips'}
 			onClick={() => logLinkTrykketMetrikk('jobbsokerkompetanse', panel)}
 		/>
@@ -57,7 +57,7 @@ export function Arbeidsplassen(props: Anbefaling) {
 			svg={arbeidsplassenSVG}
 			tittel="Se ledige stillinger"
 			tekst={tekst ? tekst : 'Få oversikt over ledige stillinger i hele landet.'}
-			lenke="/arbeidsplassen/stillinger"
+			lenke="https://arbeidsplassen.nav.no/stillinger"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til Arbeidsplassen'}
 			onClick={() => logLinkTrykketMetrikk('stillinger', panel)}
 		/>
@@ -71,7 +71,7 @@ export function CV(props: Anbefaling) {
 			svg={cvSVG}
 			tittel="Registrer CV-en din"
 			tekst={tekst ? tekst : 'CV-en din blir synlig for arbeidsgivere.'}
-			lenke="/arbeidsplassen/cv"
+			lenke="https://arbeidsplassen.nav.no/cv"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til CV'}
 			onClick={() => logLinkTrykketMetrikk('cv', panel)}
 		/>
