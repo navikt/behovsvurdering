@@ -18,7 +18,7 @@ function Oppsummering(props: Props) {
 				<Normaltekst>
 					Svaret ditt er&nbsp;
 					<a
-						href={`aktivitetsplan/dialog/${props.dialogId}`}
+						href={`https://aktivitetsplan.nav.no/dialog/${props.dialogId}`}
 						onClick={() => logLinkTrykketMetrikk('dialog-lenke', props.panel)}
 					>
 						delt med veilederen din
