@@ -1,5 +1,6 @@
 import { fetchData } from './fetchData';
 import { BesvarelseData, DialogData, NyDialogMeldingData, SvarData } from './dataTypes';
+import { APP_NAME } from '../utils/constants';
 
 export const API_VEILARBDIALOG = '/proxy/veilarbdialog/api/dialog';
 export const API_VEILARBVEDTAKINFO = '/proxy/veilarbvedtakinfo/api/behovsvurdering/svar';
@@ -15,6 +16,7 @@ function getCookie(name: string) {
 function getHeaders() {
 	return new Headers({
 		'Content-Type': 'application/json',
+		'Nav-Consumer-Id': APP_NAME,
 		NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION') // eslint-disable-line quote-props
 	});
 }
