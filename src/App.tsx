@@ -4,7 +4,7 @@ import OnskerDuAKontakteEnNavVeileder from './pages/onsker-du-a-kontakte-en-nav-
 import HvilkenVeiledningTrengerDu, {
 	PAGE_ID as VEILEDNING_PAGE_ID
 } from './pages/hvilken-veiledning-trenger-du/HvilkenVeiledningTrengerDu';
-import JaOppsummering, { PAGE_ID as JA_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/JaOppsummering';
+import { PAGE_ID as JA_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/JaOppsummering';
 import NeiOppsummering, { PAGE_ID as NEI_OPPSUMMERING_PAGE_ID } from './pages/oppsummering/NeiOppsummering';
 import { PagesState } from './pages/PagesTypes';
 import PageChangeListener from './components/pange-change-listener/PageChangeListener';
@@ -19,6 +19,7 @@ import useFetch from './api/use-fetch';
 import { hasData, hasFailed, isNotStartedOrPending } from './api/utils';
 import Spinner from './components/spinner/spinner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
+import { DITT_NAV_URL } from './utils/constants'
 
 function App() {
 	const underOppfolging = useFetch<UnderOppfolgingData>();
@@ -61,7 +62,7 @@ function App() {
 			/>
 			<Route
 				path={`/${JA_OPPSUMMERING_PAGE_ID}`}
-				component={() => <JaOppsummering state={value} setState={setValue} />}
+				component={() => {window.location.assign(`${DITT_NAV_URL}?goTo=registrering&visKvittering=behovsvurderingJa`); return null;}}
 			/>
 			<Route
 				path={`/${NEI_OPPSUMMERING_PAGE_ID}`}
