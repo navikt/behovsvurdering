@@ -19,7 +19,7 @@ import useFetch from './api/use-fetch';
 import { hasData, hasFailed, isNotStartedOrPending } from './api/utils';
 import Spinner from './components/spinner/spinner';
 import { AlertStripeAdvarsel } from 'nav-frontend-alertstriper';
-import { DITT_NAV_URL } from './utils/constants'
+import { DITT_NAV_URL } from './utils/constants';
 
 function App() {
 	const underOppfolging = useFetch<UnderOppfolgingData>();
@@ -62,11 +62,11 @@ function App() {
 			/>
 			<Route
 				path={`/${JA_OPPSUMMERING_PAGE_ID}`}
-				component={() => {window.location.assign(`${DITT_NAV_URL}?goTo=registrering&visKvittering=behovsvurderingJa`); return null;}}
+				component={() => {window.location.assign(`${DITT_NAV_URL}?goTo=registrering&visKvittering=behovsvurderingJa`); return null; }}
 			/>
 			<Route
 				path={`/${NEI_OPPSUMMERING_PAGE_ID}`}
-				component={() => {window.location.assign(`${DITT_NAV_URL}?goTo=registrering&visKvittering=behovsvurderingNei`); return null;}}
+				component={() => {window.location.assign(`${DITT_NAV_URL}?goTo=registrering&visKvittering=behovsvurderingNei`); return null; }}
 			/>
 			<PageChangeListener />
 		</BrowserRouter>
