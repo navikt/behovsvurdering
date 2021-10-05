@@ -62,11 +62,11 @@ function App() {
 			/>
 			<Route
 				path={`/${JA_OPPSUMMERING_PAGE_ID}`}
-				component={() => {window.location.assign(`${DITT_NAV_URL}?goTo=registrering&visKvittering=behovsvurderingJa`); return null; }}
+				component={() => {window.location.assign(`${DITT_NAV_URL}goTo=registrering&visKvittering=behovsvurderingJa`); return null; }}
 			/>
 			<Route
 				path={`/${NEI_OPPSUMMERING_PAGE_ID}`}
-				component={() => {window.location.assign(`${DITT_NAV_URL}?goTo=registrering&visKvittering=behovsvurderingNei`); return null; }}
+				component={() => {window.location.assign(`${DITT_NAV_URL}goTo=registrering&visKvittering=behovsvurderingNei`); return null; }}
 			/>
 			<PageChangeListener />
 		</BrowserRouter>
