@@ -10,7 +10,7 @@ import { PagesState } from './pages/PagesTypes';
 import PageChangeListener from './components/pange-change-listener/PageChangeListener';
 import './App.less';
 import {
-	API_VEILARBOPPFOLGING_UNDER_OPPFOLGING,
+	API_VEILARBOPPFOLGING_UNDER_OPPFOLGING, FETCH_CONFIG,
 	hentRegistreringData,
 	settWindowInnsatsGruppe,
 	UnderOppfolgingData
@@ -28,7 +28,7 @@ function App() {
 	useEffect(() => {
 		hentRegistreringData().then(response => settWindowInnsatsGruppe(response.registrering));
 
-		underOppfolging.fetch(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING);
+		underOppfolging.fetch(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING, FETCH_CONFIG);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
