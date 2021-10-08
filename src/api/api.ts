@@ -21,7 +21,7 @@ function getHeaders() {
 	});
 }
 
-const CONFIG = {
+export const FETCH_CONFIG = {
 	credentials: 'same-origin' as RequestCredentials,
 	headers: getHeaders()
 };
@@ -30,7 +30,7 @@ export function postDialog(data: NyDialogMeldingData): Promise<DialogData> {
 	return fetchData<DialogData>(API_VEILARBDIALOG, {
 		method: 'post',
 		body: JSON.stringify(data),
-		...CONFIG
+		...FETCH_CONFIG
 	});
 }
 
@@ -38,7 +38,7 @@ export function postBesvarelse(data: SvarData): Promise<BesvarelseData> {
 	return fetchData<BesvarelseData>(API_VEILARBVEDTAKINFO, {
 		method: 'post',
 		body: JSON.stringify(data),
-		...CONFIG
+		...FETCH_CONFIG
 	});
 }
 
@@ -54,15 +54,11 @@ export interface UnderOppfolgingData {
 }
 
 export function hentRegistreringData(): Promise<RegistreringsData> {
-	return fetchData<RegistreringsData>(API_VEILARBREGISTRERING, CONFIG).then(
+	return fetchData<RegistreringsData>(API_VEILARBREGISTRERING, FETCH_CONFIG).then(
 		(registeringsData: RegistreringsData) => ({
 			registrering: registeringsData.registrering
 		})
 	);
-}
-
-export function hentUnderOppfolging(): Promise<UnderOppfolgingData> {
-	return fetchData<UnderOppfolgingData>(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING, CONFIG);
 }
 
 declare global {
