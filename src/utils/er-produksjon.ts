@@ -1,3 +1,4 @@
 export function erProduksjon (url: string): boolean {
-  return url.indexOf('behovsvurdering.nav.no') > -1;
+  const erDev = /dev/.test(url)
+  return url.indexOf('nav.no') > -1 && !erDev;
 }

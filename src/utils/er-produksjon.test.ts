@@ -13,4 +13,12 @@ describe('tester funksjonen erProduksjon', () => {
     const url = 'https://behovsvurdering.nav.no'
     expect(erProduksjon(url)).toBe(true)
   })
+  test('gir true fra prod på mulig ny url', () => {
+    const url = 'https://nav.no/arbeid/behovsvurdering'
+    expect(erProduksjon(url)).toBe(true)
+  })
+  test('gir false fra dev på mulig ny url', () => {
+    const url = 'https://dev.nav.no/arbeid/behovsvurdering'
+    expect(erProduksjon(url)).toBe(false)
+  })
 })
