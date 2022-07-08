@@ -2,7 +2,6 @@ import React from 'react';
 import { Normaltekst, Systemtittel } from 'nav-frontend-typografi';
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import './Oppsummering.less';
-import { logLinkTrykketMetrikk } from '../../utils/logger';
 
 interface Props {
 	dialogId: string;
@@ -17,10 +16,7 @@ function Oppsummering(props: Props) {
 			<AlertStripeSuksess className="oppsummering__alertstripe">
 				<Normaltekst>
 					Svaret ditt er&nbsp;
-					<a
-						href={`https://aktivitetsplan.nav.no/dialog/${props.dialogId}`}
-						onClick={() => logLinkTrykketMetrikk('dialog-lenke', props.panel)}
-					>
+					<a href={`https://aktivitetsplan.nav.no/dialog/${props.dialogId}`}>
 						delt med veilederen din
 					</a>
 					&nbsp; som nå vil vurdere:

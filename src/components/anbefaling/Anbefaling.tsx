@@ -4,7 +4,6 @@ import cvSVG from './cv.svg';
 import arbeidsplassenSVG from './arbeidsplassen.svg';
 import jobbsokertipsSVG from './jobbsokertips.svg';
 import './Anbefaling.less';
-import { logLinkTrykketMetrikk } from '../../utils/logger';
 
 interface AnbefalingItemProps {
 	tittel: string;
@@ -37,7 +36,7 @@ interface Anbefaling {
 }
 
 export function Jobbsokertips(props: Anbefaling) {
-	const { lenkeTekst, tekst, panel } = props;
+	const { lenkeTekst, tekst } = props;
 	return (
 		<AnbefalingItem
 			svg={jobbsokertipsSVG}
@@ -45,13 +44,12 @@ export function Jobbsokertips(props: Anbefaling) {
 			tekst={tekst ? tekst : 'Les tips om CV, søknad, intervju, motivasjon og mer.'}
 			lenke="https://jobbsokerkompetanse.nav.no/resultatside"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Se tips'}
-			onClick={() => logLinkTrykketMetrikk('jobbsokerkompetanse', panel)}
 		/>
 	);
 }
 
 export function Arbeidsplassen(props: Anbefaling) {
-	const { lenkeTekst, tekst, panel } = props;
+	const { lenkeTekst, tekst } = props;
 	return (
 		<AnbefalingItem
 			svg={arbeidsplassenSVG}
@@ -59,13 +57,12 @@ export function Arbeidsplassen(props: Anbefaling) {
 			tekst={tekst ? tekst : 'Få oversikt over ledige stillinger i hele landet.'}
 			lenke="https://arbeidsplassen.nav.no/stillinger"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til Arbeidsplassen'}
-			onClick={() => logLinkTrykketMetrikk('stillinger', panel)}
 		/>
 	);
 }
 
 export function CV(props: Anbefaling) {
-	const { lenkeTekst, tekst, panel } = props;
+	const { lenkeTekst, tekst } = props;
 	return (
 		<AnbefalingItem
 			svg={cvSVG}
@@ -73,7 +70,6 @@ export function CV(props: Anbefaling) {
 			tekst={tekst ? tekst : 'CV-en din blir synlig for arbeidsgivere.'}
 			lenke="https://arbeidsplassen.nav.no/cv"
 			lenkeTekst={lenkeTekst ? lenkeTekst : 'Gå til CV'}
-			onClick={() => logLinkTrykketMetrikk('cv', panel)}
 		/>
 	);
 }

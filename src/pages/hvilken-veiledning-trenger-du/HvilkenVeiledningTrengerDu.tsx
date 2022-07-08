@@ -7,7 +7,6 @@ import View, { SPORSMAL } from './View';
 import { dispatchDialogData } from '../../reducers/dispatchDialogData';
 import { dispatchBesvarelse } from '../../reducers/dispatchBehovsvurderingData';
 import Feilmelding from '../../components/feilmelding/feilmelding';
-import { logHvilkenVeiledningSendtMetrikk } from '../../utils/logger';
 
 export const PAGE_ID = 'hvilken-veiledning-trengs';
 
@@ -37,8 +36,6 @@ function HvilkenVeiledningTrengerDu(props: PagesProps & RouteComponentProps) {
 				props.history.push(`/${OPPSUMMERING_PAGE_ID}`);
 			});
 		});
-
-		logHvilkenVeiledningSendtMetrikk();
 	};
 
 	if (fetchDialogState.failure || fetchBesvarelseState.failure) {
