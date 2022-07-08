@@ -12,8 +12,6 @@ import PageChangeListener from './components/pange-change-listener/PageChangeLis
 import './App.less';
 import {
 	API_VEILARBOPPFOLGING_UNDER_OPPFOLGING, FETCH_CONFIG,
-	hentRegistreringData,
-	settWindowInnsatsGruppe,
 	UnderOppfolgingData
 } from './api/api';
 import useFetch from './api/use-fetch';
@@ -28,8 +26,6 @@ function App() {
 	const erUnderOppfolging = hasData(underOppfolging) && underOppfolging.data.underOppfolging;
 
 	useEffect(() => {
-		hentRegistreringData().then(response => settWindowInnsatsGruppe(response.registrering));
-
 		underOppfolging.fetch(API_VEILARBOPPFOLGING_UNDER_OPPFOLGING, FETCH_CONFIG);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);

@@ -40,21 +40,6 @@ export const allHandlers: RequestHandler[] = [
 
 		return res(ctx.delay(500), ctx.json(besvarelseData));
 	}),
-	rest.get('/proxy/veilarbregistrering/api/registrering', (req, res, ctx) => {
-		return res(
-			ctx.delay(500),
-			ctx.json({
-				type: 'ORDINAER',
-				registrering: {
-					profilering: {
-						jobbetSammenhengendeSeksAvTolvSisteManeder: true,
-						alder: 35,
-						innsatsgruppe: 'BEHOV_FOR_ARBEIDSEVNEVURDERING'
-					}
-				}
-			})
-		);
-	}),
 	rest.get('/proxy/veilarboppfolging/api/underoppfolging', (req, res, ctx) => {
 		return res(
 			ctx.delay(500),
