@@ -7,4 +7,8 @@ function erMock(): boolean {
 
 export const APP_NAME = 'behovsvurdering';
 
-export const DITT_NAV_URL = erMock() ? 'https://veientilarbeid.nav.party/demo/index.html?underOppfolging=true&' : erProduksjon(url) ? 'https://www.nav.no/person/dittnav?' : 'https://www.dev.nav.no/person/dittnav?';
+export const DITT_NAV_URL = erMock()
+	? 'https://veientilarbeid.nav.party/demo/index.html?underOppfolging=true&'
+	: erProduksjon(url)
+	? 'https://www.nav.no/person/dittnav?'
+	: 'https://www.dev.nav.no/person/dittnav?';
