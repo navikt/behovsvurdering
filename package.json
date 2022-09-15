@@ -5,10 +5,10 @@
   "scripts": {
     "start": "cross-env REACT_APP_MOCK=true craco start",
     "build": "craco build",
-    "lint": "tslint --project tsconfig.json -c tslint.json",
-    "lint:fix": "tslint --project tsconfig.json -c tslint.json --fix",
     "test": "craco test --env=jsdom",
-    "prettier": "prettier --write 'src/**/*.ts{,x}'"
+    "prettier": "prettier --write 'src/**/*.ts{,x}'",
+    "pre-commit": "lint-staged --verbose",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@craco/craco": "7.0.0-alpha.7",
@@ -56,10 +56,10 @@
     "@types/react-dom": "^17.0.5",
     "@types/react-router-dom": "^5.1.7",
     "cross-env": "^7.0.3",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
     "msw": "^0.29.0",
     "prettier": "^2.3.0",
-    "tslint": "^5.20.1",
-    "tslint-react": "^4.1.0",
     "typescript": "4.7.4"
   },
   "eslintConfig": {
@@ -73,5 +73,11 @@
   ],
   "msw": {
     "workerDirectory": "public"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx,json,less,css,md}": [
+      "prettier --write",
+      "eslint --config .eslintrc.lintstaged.json"
+    ]
   }
 }
