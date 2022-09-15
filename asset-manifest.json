@@ -1,24 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.chunk.css",
-    "main.js": "/static/js/main.chunk.js",
-    "main.js.map": "/static/js/main.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.js",
-    "runtime~main.js.map": "/static/js/runtime~main.js.map",
-    "static/css/2.chunk.css": "/static/css/2.chunk.css",
-    "static/js/2.chunk.js": "/static/js/2.chunk.js",
-    "static/js/2.chunk.js.map": "/static/js/2.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.06ae04081ccf074de26a6cd25ffd3df1.js": "/precache-manifest.06ae04081ccf074de26a6cd25ffd3df1.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.chunk.css.map": "/static/css/2.chunk.css.map",
-    "static/css/main.chunk.css.map": "/static/css/main.chunk.css.map",
-    "static/media/arbeidsplassen.svg": "/static/media/arbeidsplassen.59de4275.svg",
-    "static/media/cv.svg": "/static/media/cv.cf168c08.svg",
-    "static/media/design-mug.svg": "/static/media/design-mug.ebf90859.svg",
-    "static/media/dialog.svg": "/static/media/dialog.7330e2f9.svg",
-    "static/media/jobbsokertips.svg": "/static/media/jobbsokertips.a8a67012.svg",
-    "static/media/nav-ansatt.9a33657d.svg": "/static/media/nav-ansatt.9a33657d.svg",
-    "static/media/stillingsok.svg": "/static/media/stillingsok.1ddd7c66.svg"
-  }
+    "main.css": "/behovsvurdering/static/css/main.8179eb1e.css",
+    "main.js": "/behovsvurdering/static/js/main.ceb637a8.js",
+    "static/media/nav-ansatt.svg": "/behovsvurdering/static/media/nav-ansatt.4ba4ddf13094b5c6a0558b76efdbc04c.svg",
+    "index.html": "/behovsvurdering/index.html",
+    "static/media/design-mug.svg": "/behovsvurdering/static/media/design-mug.e34d51442dcc7f9dd4e43b4f4e6486dc.svg",
+    "static/media/jobbsokertips.svg": "/behovsvurdering/static/media/jobbsokertips.23a8a6902e1b47ef67d5cd5dc267b576.svg",
+    "static/media/dialog.svg": "/behovsvurdering/static/media/dialog.c3247e1853c14019cfb6cf12c7f4685f.svg",
+    "static/media/cv.svg": "/behovsvurdering/static/media/cv.9f44e449b38feb7158d36ddf6eb3f908.svg",
+    "static/media/stillingsok.svg": "/behovsvurdering/static/media/stillingsok.35c72ade090e42339bb76918b1bf347a.svg",
+    "main.8179eb1e.css.map": "/behovsvurdering/static/css/main.8179eb1e.css.map",
+    "main.ceb637a8.js.map": "/behovsvurdering/static/js/main.ceb637a8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8179eb1e.css",
+    "static/js/main.ceb637a8.js"
+  ]
 }
