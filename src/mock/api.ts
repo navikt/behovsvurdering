@@ -47,5 +47,5 @@ export const allHandlers: RequestHandler[] = [
 				underOppfolging: true
 			})
 		);
-	}),
+	})
 ];
