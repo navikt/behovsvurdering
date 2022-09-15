@@ -5,6 +5,7 @@
 	"scripts": {
 		"start": "cross-env REACT_APP_MOCK=true craco start",
 		"build": "craco build",
+		"build:mock": "cross-env PUBLIC_URL=/behovsvurdering REACT_APP_MOCK=true craco build",
 		"test": "craco test --env=jsdom",
 		"prettier": "prettier --write 'src/**/*.ts{,x}'",
 		"pre-commit": "lint-staged --verbose",
