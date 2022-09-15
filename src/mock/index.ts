@@ -6,6 +6,6 @@ setupWorker(...allHandlers)
 		serviceWorker: { url: process.env.PUBLIC_URL + '/mockServiceWorker.js' }
 	})
 	.catch(e => {
-		// tslint:disable-next-line:no-console
+		// eslint-disable-next-line no-console
 		console.error('Unable to setup mocked API endpoints', e);
 	});
