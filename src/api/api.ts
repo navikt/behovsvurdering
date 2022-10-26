@@ -4,7 +4,6 @@ import { APP_NAME } from '../utils/constants';
 
 export const API_VEILARBDIALOG = '/proxy/veilarbdialog/api/dialog';
 export const API_VEILARBVEDTAKINFO = '/proxy/veilarbvedtakinfo/api/behovsvurdering/svar';
-export const API_VEILARBREGISTRERING = '/proxy/veilarbregistrering/api/registrering';
 export const API_VEILARBOPPFOLGING_UNDER_OPPFOLGING = '/proxy/veilarboppfolging/api/underoppfolging';
 
 function getCookie(name: string) {
@@ -42,35 +41,6 @@ export function postBesvarelse(data: SvarData): Promise<BesvarelseData> {
 	});
 }
 
-interface Registrering {
-	profilering: { innsatsgruppe: string };
-}
-interface RegistreringsData {
-	registrering: Registrering;
-}
-
 export interface UnderOppfolgingData {
 	underOppfolging: boolean;
-}
-
-export function hentRegistreringData(): Promise<RegistreringsData> {
-	return fetchData<RegistreringsData>(API_VEILARBREGISTRERING, FETCH_CONFIG).then(
-		(registeringsData: RegistreringsData) => ({
-			registrering: registeringsData.registrering
-		})
-	);
-}
-
-declare global {
-	interface Window {
-		INNSATSGRUPPE: string;
-	}
-}
-
-export function settWindowInnsatsGruppe(registrering: Registrering) {
-	window.INNSATSGRUPPE = registrering.profilering.innsatsgruppe;
-}
-
-export function hentWindowInnsatsGruppe() {
-	return window.INNSATSGRUPPE;
 }
