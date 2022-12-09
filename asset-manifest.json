@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/behovsvurdering/static/css/main.8179eb1e.css",
-    "main.js": "/behovsvurdering/static/js/main.ceb637a8.js",
+    "main.css": "/behovsvurdering/static/css/main.9be34dbd.css",
+    "main.js": "/behovsvurdering/static/js/main.d27ac9f8.js",
     "static/media/nav-ansatt.svg": "/behovsvurdering/static/media/nav-ansatt.4ba4ddf13094b5c6a0558b76efdbc04c.svg",
     "index.html": "/behovsvurdering/index.html",
     "static/media/design-mug.svg": "/behovsvurdering/static/media/design-mug.e34d51442dcc7f9dd4e43b4f4e6486dc.svg",
@@ -9,11 +9,11 @@
     "static/media/dialog.svg": "/behovsvurdering/static/media/dialog.c3247e1853c14019cfb6cf12c7f4685f.svg",
     "static/media/cv.svg": "/behovsvurdering/static/media/cv.9f44e449b38feb7158d36ddf6eb3f908.svg",
     "static/media/stillingsok.svg": "/behovsvurdering/static/media/stillingsok.35c72ade090e42339bb76918b1bf347a.svg",
-    "main.8179eb1e.css.map": "/behovsvurdering/static/css/main.8179eb1e.css.map",
-    "main.ceb637a8.js.map": "/behovsvurdering/static/js/main.ceb637a8.js.map"
+    "main.9be34dbd.css.map": "/behovsvurdering/static/css/main.9be34dbd.css.map",
+    "main.d27ac9f8.js.map": "/behovsvurdering/static/js/main.d27ac9f8.js.map"
   },
   "entrypoints": [
-    "static/css/main.8179eb1e.css",
-    "static/js/main.ceb637a8.js"
+    "static/css/main.9be34dbd.css",
+    "static/js/main.d27ac9f8.js"
   ]
 }
