@@ -24,6 +24,8 @@ jobs:
     name: Upload files to dev GCS
     if: github.ref == 'refs/heads/dev'
     runs-on: ubuntu-latest
+    permissions:
+      id-token: 'write' # Used to authenticate with Google Cloud
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -38,9 +40,10 @@ jobs:
       - name: Build application
         run: npm run build
       - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v1
         with:
-          credentials_json: ${{ secrets.GCS_SA_KEY_DEV }}
+          workload_identity_provider: projects/168288490841/locations/global/workloadIdentityPools/github/providers/github-action
+          service_account: pto-dev-2fbb@appspot.gserviceaccount.com
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
       - name: Upload files to GCS
@@ -48,6 +51,8 @@ jobs:
   update-gh-pages:
     name: Update GitHub pages
     runs-on: ubuntu-latest
+    permissions:
+      id-token: 'write' # Used to authenticate with Google Cloud
     if: github.ref == 'refs/heads/dev'
     steps:
       - name: Checkout
@@ -71,6 +76,9 @@ jobs:
     name: Upload files to prod GCS
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    permissions:
+      id-token: 'write' # Used to authenticate with Google Cloud
+      contents: 'write' # Create release
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -86,9 +94,10 @@ jobs:
         run: npm run build
 
       - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v1
         with:
-          credentials_json: ${{ secrets.GCS_SA_KEY_PROD }}
+          workload_identity_provider: projects/230235624122/locations/global/workloadIdentityPools/github/providers/github-action
+          service_account: pto-prod@pto-prod-4dd0.iam.gserviceaccount.com
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v0
       - name: Upload files to GCS
